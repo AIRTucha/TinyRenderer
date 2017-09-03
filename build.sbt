@@ -12,6 +12,7 @@ artifactPath in(Compile, fastOptJS) := baseDirectory.value / "dist" / "lib.js"
 // testFrameworks += new TestFramework("utest.runner.Framework")
 
 libraryDependencies ++= Seq(
+    "fr.hmil" %%% "roshttp" % "2.0.2",
     "org.scala-js" %%% "scalajs-dom" % "0.9.1",
     "com.lihaoyi" %%% "utest" % "0.4.5" % "test"
 )

@@ -3,9 +3,17 @@ package tinyrenderer
 import scala.scalajs.js
 import js.annotation.JSExport
 import org.scalajs.dom
+import fr.hmil.roshttp.HttpRequest
+import monix.execution.Scheduler.Implicits.global
+import scala.util.{Failure, Success}
+import fr.hmil.roshttp.response.SimpleHttpResponse
 
 object TinyRenderer extends js.JSApp {
   def main(): Unit = {
+    HttpRequest(s"${dom.window.location.href}/obj/floor.obj").send().onComplete({
+        case res:Success[SimpleHttpResponse] => println("ok")
+        case e: Failure[SimpleHttpResponse] => println("Huston, we got a problem!")
+      })
     val canvas = dom.document.createElement("canvas").asInstanceOf[dom.html.Canvas]
     canvas.width = 1000;
     canvas.height = 1000;
