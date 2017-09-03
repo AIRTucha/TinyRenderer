@@ -16,6 +16,8 @@ object App extends js.JSApp {
       scene.dot(Vec3(i, 100), Color(129.asInstanceOf[Short], 255.toShort, 255.toShort))
     
     enginge draw scene
+    scene.clear
+    enginge draw scene
     dom.document.getElementById("main").appendChild(canvas)
   }
 }
