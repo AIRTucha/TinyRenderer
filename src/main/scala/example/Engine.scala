@@ -3,7 +3,7 @@ package tinyrenderer
 import org.scalajs.dom.CanvasRenderingContext2D
 import org.scalajs.dom.html.Canvas
 import org.scalajs.dom.raw.ImageData
-import scala.math.floor
+import scala.math.{floor, abs}
 import Commone.{Vec3, Color}
 
 class Engine(val canvas: Canvas) {
@@ -30,7 +30,32 @@ case class Scene( width: Int, height: Int, img: ImageData ) {
     img.data( redIndex + 2 ) = color.b
     img.data( redIndex + 3 ) = color.a
   }
-  def line(vec1: Vec3, vec2: Vec3, color: Color) = {
-    
+  def dot(x: Double, y: Double, color: Color) = {
+    val redIndex: Int = ( y.asInstanceOf[Int] * width + x.asInstanceOf[Int] ) * 4
+    img.data( redIndex )     = color.r
+    img.data( redIndex + 1 ) = color.g
+    img.data( redIndex + 2 ) = color.b
+    img.data( redIndex + 3 ) = color.a
   }
+  def line(vec1: Vec3, vec2: Vec3, color: Color) = {
+    var x = vec1.x
+    var y = vec1.y
+    val dx = abs( vec2.x - vec1.x )
+		val dy = abs( vec2.y - vec1.y ) 
+		val sx = if(vec1.x < vec2.x) 1 else -1
+		val sy = if(vec1.y < vec2.y) 1 else -1
+		var e = dx - dy;
+    do {
+      dot( x, y, color )
+        val e2 = 2 * e
+        if( e2 > -dy ) {
+          e -= dy
+          x += sx
+        }
+        if( e2 < dx ) { 
+          e += dx
+          y += sy
+        }
+    } while ( !( x == vec2.x && y == vec2.y ) ) 
+  }	
 }

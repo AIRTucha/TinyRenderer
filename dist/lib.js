@@ -1735,17 +1735,8 @@ $c_Ltinyrenderer_App$.prototype.main__V = (function() {
   var canvas = $m_Lorg_scalajs_dom_package$().document__Lorg_scalajs_dom_raw_HTMLDocument().createElement("canvas");
   var enginge = new $c_Ltinyrenderer_Engine().init___Lorg_scalajs_dom_raw_HTMLCanvasElement(canvas);
   var scene = enginge.createScene__Ltinyrenderer_Scene();
-  var i = 1;
-  while (true) {
-    var v1 = i;
-    scene.dot__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Color__V(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(v1, 100.0, 0.0), new $c_Ltinyrenderer_Commone_package$Color().init___S__S__S__S(129, 255, 255, $m_Ltinyrenderer_Commone_package$Color$().apply$default$4__S()));
-    if ((i === 100)) {
-      break
-    };
-    i = ((1 + i) | 0)
-  };
-  enginge.draw__Ltinyrenderer_Scene__V(scene);
-  scene.clear__V();
+  var color = new $c_Ltinyrenderer_Commone_package$Color().init___S__S__S__S(129, 255, 255, $m_Ltinyrenderer_Commone_package$Color$().apply$default$4__S());
+  scene.line__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Color__V(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 100.0, 0.0), new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(400.0, 400.0, 0.0), color);
   enginge.draw__Ltinyrenderer_Scene__V(scene);
   $m_Lorg_scalajs_dom_package$().document__Lorg_scalajs_dom_raw_HTMLDocument().getElementById("main").appendChild(canvas)
 });
@@ -3042,15 +3033,31 @@ $c_Ltinyrenderer_Scene.prototype.productElement__I__O = (function(x$1) {
     }
   }
 });
-$c_Ltinyrenderer_Scene.prototype.dot__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Color__V = (function(vec, color) {
-  var redIndex = ((($imul($doubleToInt(vec.y$1), this.width$1) + $doubleToInt(vec.x$1)) | 0) << 2);
-  this.img$1.data[redIndex] = color.r$1;
-  this.img$1.data[((1 + redIndex) | 0)] = color.g$1;
-  this.img$1.data[((2 + redIndex) | 0)] = color.b$1;
-  this.img$1.data[((3 + redIndex) | 0)] = color.a$1
-});
 $c_Ltinyrenderer_Scene.prototype.toString__T = (function() {
   return $m_sr_ScalaRunTime$().$$undtoString__s_Product__T(this)
+});
+$c_Ltinyrenderer_Scene.prototype.line__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Color__V = (function(vec1, vec2, color) {
+  var x = vec1.x$1;
+  var y = vec1.y$1;
+  var x$1 = (vec2.x$1 - vec1.x$1);
+  var dx = $uD($g.Math.abs(x$1));
+  var x$2 = (vec2.y$1 - vec1.y$1);
+  var dy = $uD($g.Math.abs(x$2));
+  var sx = ((vec1.x$1 < vec2.x$1) ? 1 : (-1));
+  var sy = ((vec1.y$1 < vec2.y$1) ? 1 : (-1));
+  var e = (dx - dy);
+  do {
+    this.dot__D__D__Ltinyrenderer_Commone_package$Color__V(x, y, color);
+    var e2 = (2 * e);
+    if ((e2 > (-dy))) {
+      e = (e - dy);
+      x = (x + sx)
+    };
+    if ((e2 < dx)) {
+      e = (e + dx);
+      y = (y + sy)
+    }
+  } while ((!((x === vec2.x$1) && (y === vec2.y$1))))
 });
 $c_Ltinyrenderer_Scene.prototype.init___I__I__Lorg_scalajs_dom_raw_ImageData = (function(width, height, img) {
   this.width$1 = width;
@@ -3066,15 +3073,15 @@ $c_Ltinyrenderer_Scene.prototype.hashCode__I = (function() {
   acc = $m_sr_Statics$().mix__I__I__I(acc, $m_sr_Statics$().anyHash__O__I(this.img$1));
   return $m_sr_Statics$().finalizeHash__I__I__I(acc, 3)
 });
-$c_Ltinyrenderer_Scene.prototype.clear__V = (function() {
-  var i = 0;
-  while ((i < this.dataAmount$1)) {
-    this.img$1.data[i] = 0;
-    i = ((1 + i) | 0)
-  }
-});
 $c_Ltinyrenderer_Scene.prototype.productIterator__sc_Iterator = (function() {
   return new $c_sr_ScalaRunTime$$anon$1().init___s_Product(this)
+});
+$c_Ltinyrenderer_Scene.prototype.dot__D__D__Ltinyrenderer_Commone_package$Color__V = (function(x, y, color) {
+  var redIndex = ((($imul($doubleToInt(y), this.width$1) + $doubleToInt(x)) | 0) << 2);
+  this.img$1.data[redIndex] = color.r$1;
+  this.img$1.data[((1 + redIndex) | 0)] = color.g$1;
+  this.img$1.data[((2 + redIndex) | 0)] = color.b$1;
+  this.img$1.data[((3 + redIndex) | 0)] = color.a$1
 });
 var $d_Ltinyrenderer_Scene = new $TypeData().initClass({
   Ltinyrenderer_Scene: 0
