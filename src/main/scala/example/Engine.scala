@@ -19,25 +19,28 @@ case class Scene( width: Int, height: Int, img: ImageData ) {
   def clear = {
     var i = 0
     while(i < dataAmount) {
-      img.data(i) = 0
-      i += 1
+      img.data( i )     = 0
+      img.data( i + 1 ) = 0
+      img.data( i + 2 ) = 0
+      img.data( i + 3 ) = 255
+      i += 4
     }
   }
-  def dot(vec: Vec3, color: Color) = {
+  def dot( vec: Vec3, color: Color ) = {
     val redIndex: Int = ( vec.y.asInstanceOf[Int] * width + vec.x.asInstanceOf[Int] ) * 4
     img.data( redIndex )     = color.r
     img.data( redIndex + 1 ) = color.g
     img.data( redIndex + 2 ) = color.b
     img.data( redIndex + 3 ) = color.a
   }
-  def dot(x: Double, y: Double, color: Color) = {
+  def dot( x: Double, y: Double, color: Color ) = {
     val redIndex: Int = ( y.asInstanceOf[Int] * width + x.asInstanceOf[Int] ) * 4
     img.data( redIndex )     = color.r
     img.data( redIndex + 1 ) = color.g
     img.data( redIndex + 2 ) = color.b
     img.data( redIndex + 3 ) = color.a
   }
-  def line(vec1: Vec3, vec2: Vec3, color: Color) = {
+  def line( vec1: Vec3, vec2: Vec3, color: Color ) = {
     var x = vec1.x
     var y = vec1.y
     val dx = abs( vec2.x - vec1.x )
