@@ -16,7 +16,12 @@ object App extends js.JSApp {
     val scene = enginge.createScene(Vec3(-1, 1, -1), Vec3(1, -1, 1))
     val color = Color(129.asInstanceOf[Short], 255.toShort, 255.toShort)
     scene.clear
-    // scene.line( Vec3(0.195, .2), Vec3(.2,.2), color )
+    // scene.triangle(
+    //     Vec3(0.9, 0.8),
+    //     Vec3(0.95, -0.7),
+    //     Vec3(0.9, -0.6),
+    //     color
+    // )
     // println("ok") 
     // scene.dot(500, 500, color)
     enginge draw scene 
@@ -50,11 +55,17 @@ object App extends js.JSApp {
                 )
               }
           )
-          // println(obj.faces.length)
+          println(obj.faces.length)
           for ( ( fst, snd, trd ) <- obj.faces ) {
-            scene.line( obj.vertices(fst.vertex), obj.vertices(snd.vertex), color )
-            scene.line( obj.vertices(snd.vertex), obj.vertices(trd.vertex), color )
-            scene.line( obj.vertices(trd.vertex), obj.vertices(fst.vertex), color )
+            scene.triangle(
+              obj.vertices(fst.vertex),
+              obj.vertices(snd.vertex),
+              obj.vertices(trd.vertex),
+              color
+            )
+            // scene.line( obj.vertices(fst.vertex), obj.vertices(snd.vertex), color )
+            // scene.line( obj.vertices(snd.vertex), obj.vertices(trd.vertex), color )
+            // scene.line( obj.vertices(trd.vertex), obj.vertices(fst.vertex), color )
           }
           // scene.line(obj.vertices(obj.faces(0)._1.vertex), obj.vertices(obj.faces(0)._2.vertex), color )
           enginge draw scene

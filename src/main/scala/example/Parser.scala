@@ -7,7 +7,7 @@ import fr.hmil.roshttp.response.SimpleHttpResponse
 import org.scalajs.dom
 
 object Parser {
-  def get(url: String) = HttpRequest(s"${dom.window.location.href}/${url}").send()    
+  def get( url: String ) = HttpRequest( s"${dom.window.location.href}/${url}" ).send   
 }
 
 // .onComplete({
