@@ -17799,7 +17799,7 @@ $c_Ltinyrenderer_Scene.prototype.triangle__Ltinyrenderer_Commone_package$Vec3__L
   };
   var k23 = x1$3.$$und1$mcD$sp__D();
   var slope23 = x1$3.$$und2$mcD$sp__D();
-  if ((((vert2.y$1 !== vert1.y$1) ? $uD($g.Math.pow(slope12, (-1.0))) : 0.0) > ((vert3.y$1 !== vert1.y$1) ? $uD($g.Math.pow(slope13, (-1.0))) : 0.0))) {
+  if ((vert2.x$1 < ((vert2.y$1 + k13) / slope13))) {
     var x = $doubleToInt(vert1.y$1);
     var end = $doubleToInt(vert2.y$1);
     var isEmpty$4 = (x > end);
@@ -17807,7 +17807,7 @@ $c_Ltinyrenderer_Scene.prototype.triangle__Ltinyrenderer_Commone_package$Vec3__L
       var i = x;
       while (true) {
         var v1 = i;
-        this.a__I__D__D__D__D__Ltinyrenderer_Commone_package$Color__V(v1, slope13, slope12, k13, k12, color);
+        this.lineByLF__I__D__D__D__D__Ltinyrenderer_Commone_package$Color__V(v1, slope13, slope12, k13, k12, color);
         if ((i === end)) {
           break
         };
@@ -17822,7 +17822,7 @@ $c_Ltinyrenderer_Scene.prototype.triangle__Ltinyrenderer_Commone_package$Vec3__L
       var i$1 = x$1;
       while (true) {
         var v1$1 = i$1;
-        this.a__I__D__D__D__D__Ltinyrenderer_Commone_package$Color__V(v1$1, slope13, slope23, k13, k23, color);
+        this.lineByLF__I__D__D__D__D__Ltinyrenderer_Commone_package$Color__V(v1$1, slope13, slope23, k13, k23, color);
         if ((i$1 === scala$collection$immutable$Range$$lastElement$4)) {
           break
         };
@@ -17837,7 +17837,7 @@ $c_Ltinyrenderer_Scene.prototype.triangle__Ltinyrenderer_Commone_package$Vec3__L
       var i$2 = x$2;
       while (true) {
         var v1$2 = i$2;
-        this.a__I__D__D__D__D__Ltinyrenderer_Commone_package$Color__V(v1$2, slope12, slope13, k12, k13, color);
+        this.lineByLF__I__D__D__D__D__Ltinyrenderer_Commone_package$Color__V(v1$2, slope12, slope13, k12, k13, color);
         if ((i$2 === end$2)) {
           break
         };
@@ -17852,7 +17852,7 @@ $c_Ltinyrenderer_Scene.prototype.triangle__Ltinyrenderer_Commone_package$Vec3__L
       var i$3 = x$3;
       while (true) {
         var v1$3 = i$3;
-        this.a__I__D__D__D__D__Ltinyrenderer_Commone_package$Color__V(v1$3, slope23, slope13, k23, k13, color);
+        this.lineByLF__I__D__D__D__D__Ltinyrenderer_Commone_package$Color__V(v1$3, slope23, slope13, k23, k13, color);
         if ((i$3 === scala$collection$immutable$Range$$lastElement$4$1)) {
           break
         };
@@ -17919,16 +17919,9 @@ $c_Ltinyrenderer_Scene.prototype.productElement__I__O = (function(x$1) {
 $c_Ltinyrenderer_Scene.prototype.toString__T = (function() {
   return $m_sr_ScalaRunTime$().$$undtoString__s_Product__T(this)
 });
-$c_Ltinyrenderer_Scene.prototype.dot__I__I__Ltinyrenderer_Commone_package$Color__V = (function(x, y, color) {
-  var redIndex = ((($imul(this.width$1, y) + x) | 0) << 2);
-  this.img$1.data[redIndex] = color.r$1;
-  this.img$1.data[((1 + redIndex) | 0)] = color.g$1;
-  this.img$1.data[((2 + redIndex) | 0)] = color.b$1;
-  this.img$1.data[((3 + redIndex) | 0)] = color.a$1
-});
-$c_Ltinyrenderer_Scene.prototype.a__I__D__D__D__D__Ltinyrenderer_Commone_package$Color__V = (function(y, slope1, slope2, k1, k2, color) {
-  var x = $doubleToInt(((y + k1) / slope1));
-  var end = $doubleToInt(((y + k2) / slope2));
+$c_Ltinyrenderer_Scene.prototype.lineByLF__I__D__D__D__D__Ltinyrenderer_Commone_package$Color__V = (function(y, slope1, slope2, k1, k2, color) {
+  var x = $doubleToInt(((y + k2) / slope2));
+  var end = $doubleToInt(((y + k1) / slope1));
   var isEmpty$4 = (x > end);
   if ((!isEmpty$4)) {
     var i = x;
@@ -17941,6 +17934,13 @@ $c_Ltinyrenderer_Scene.prototype.a__I__D__D__D__D__Ltinyrenderer_Commone_package
       i = ((1 + i) | 0)
     }
   }
+});
+$c_Ltinyrenderer_Scene.prototype.dot__I__I__Ltinyrenderer_Commone_package$Color__V = (function(x, y, color) {
+  var redIndex = ((($imul(this.width$1, y) + x) | 0) << 2);
+  this.img$1.data[redIndex] = color.r$1;
+  this.img$1.data[((1 + redIndex) | 0)] = color.g$1;
+  this.img$1.data[((2 + redIndex) | 0)] = color.b$1;
+  this.img$1.data[((3 + redIndex) | 0)] = color.a$1
 });
 $c_Ltinyrenderer_Scene.prototype.lfCoffs__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__T2 = (function(vec1, vec2) {
   if ((vec1.x$1 !== vec2.x$1)) {

@@ -17,11 +17,11 @@ object App extends js.JSApp {
     val color = Color(129.asInstanceOf[Short], 255.toShort, 255.toShort)
     scene.clear
     // scene.triangle(
-    //     Vec3(0.9, 0.8),
-    //     Vec3(0.95, -0.7),
-    //     Vec3(0.9, -0.6),
+    //     Vec3(0.9, 0.79),
+    //     Vec3(0.5, -0.7),
+    //     Vec3(-0.7, 0.8),
     //     color
-    // )
+    // ) 
     // println("ok") 
     // scene.dot(500, 500, color)
     enginge draw scene 

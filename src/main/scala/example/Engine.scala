@@ -100,61 +100,35 @@ case class Scene( width: Int, height: Int, val low: Vec3, val high: Vec3, img: I
       val buff = vert1
       vert1 = vert2
       vert2 = buff
-    } 
+    }  
+    
+    val (k12, slope12) = lfCoffs( vert1, vert2 ) 
+    val (k13, slope13) = lfCoffs( vert1, vert3 )
+    val (k23, slope23) = lfCoffs( vert2, vert3 )
 
-    // val (k12x, slope12x) = lfCoffs( vert1, vert2 )
-    // val (k13x, slope13x) = lfCoffs( vert1, vert3 )
-    // val (k23x, slope23x) = lfCoffs( vert2, vert3 )
-    // val slope12: Double = if( vert1.x != vert2.x ) ( vert1.y - vert2.y ) / ( vert1.x - vert2.x ) else 1
-    // val slope13: Double = if( vert1.x != vert3.x ) ( vert1.y - vert3.y ) / ( vert1.x - vert3.x ) else 1
-    // val slope23: Double = if( vert2.x != vert3.x ) ( vert2.y - vert3.y ) / ( vert2.x - vert3.x ) else 1
-    // val k12: Double = slope12 * vert1.x - vert1.y
-    // val k13: Double = slope13 * vert1.x - vert1.y
-    // val k23: Double = slope23 * vert2.x - vert2.y 
-
-    val d1 = if ( vert2.y - vert1.y > 0 ) ( vert2.x - vert1.x ) / ( vert2.y - vert1.y ) else 0 
-		val d2 = if ( vert3.y - vert1.y > 0 ) ( vert3.x - vert1.x ) / ( vert3.y - vert1.y ) else 0
-
-		if( d1 > d2) {
+		if ( vert2.x < ( ( vert2.y + k13 ) / slope13 ) ) {
       for( y <- vert1.y.asInstanceOf[Int] to vert2.y.asInstanceOf[Int] )
-					scanLine( y, vert1, vert3, vert1, vert2, color )
+        lineByLF( y, slope13, slope12, k13, k12, color )
       for( y <- vert2.y.asInstanceOf[Int] until vert3.y.asInstanceOf[Int] )
-					scanLine( y, vert1, vert3, vert2, vert3,color )
+        lineByLF( y, slope13, slope23, k13, k23, color )
     } else {
       for( y <- vert1.y.asInstanceOf[Int] to vert2.y.asInstanceOf[Int] ) 
-        scanLine( y, vert1, vert2, vert1, vert3, color )
+        lineByLF( y, slope12, slope13, k12, k13, color )
       for( y <- vert2.y.asInstanceOf[Int] until vert3.y.asInstanceOf[Int] )
-        scanLine( y, vert2, vert3, vert1, vert3, color )
+        lineByLF( y, slope23, slope13, k23, k13, color )
     }
-
-    // val (k12, slope12) = lfCoffs( vert1, vert2 )
-    // val (k13, slope13) = lfCoffs( vert1, vert3 )
-    // val (k23, slope23) = lfCoffs( vert2, vert3 )
-		// if( 
-    //   { if ( vert2.y != vert1.y ) ( ( vert1.x - vert2.x ) / ( vert1.y - vert2.y ) ) else 0 } >
-    //   { if ( vert3.y != vert1.y ) ( ( vert1.x - vert3.x ) / ( vert1.y - vert3.y ) ) else 0 }
-    // ) {
-    //   for( y <- vert1.y.asInstanceOf[Int] to vert2.y.asInstanceOf[Int] )
-    //     a( y, slope13, slope12, k13, k12, color )
-    //   for( y <- vert2.y.asInstanceOf[Int] until vert3.y.asInstanceOf[Int] )
-    //     a( y, slope13, slope23, k13, k23, color )
-    // } else {
-    //   for( y <- vert1.y.asInstanceOf[Int] to vert2.y.asInstanceOf[Int] ) 
-    //     a( y, slope12, slope13, k12, k13, color )
-    //   for( y <- vert2.y.asInstanceOf[Int] until vert3.y.asInstanceOf[Int] )
-    //     a( y, slope23, slope13, k23, k13, color )
-    // }
 	}
   def lfCoffs( vec1: Vec3, vec2: Vec3 ): (Double, Double) =
     if( vec1.x != vec2.x ) {
       val slope = ( vec1.y - vec2.y ) / ( vec1.x - vec2.x )
       (slope * vec1.x - vec1.y, slope)
     } else {
-      ( 0, 1)
+      ( 0, 1 )
     }
-  def a( y: Int, slope1: Double, slope2: Double, k1: Double, k2: Double, color: Color ) {
+  def lineByLF( y: Int, slope1: Double, slope2: Double, k1: Double, k2: Double, color: Color ) {
+    // println(( ( y + k2 ) / slope2 ).asInstanceOf[Int] to ( ( y + k1 ) / slope1 ).asInstanceOf[Int])
     for{
-      x <-  ( ( y + k1 ) / slope1 ).asInstanceOf[Int] to ( ( y + k2 ) / slope2 ).asInstanceOf[Int]
+      x <- ( ( y + k2 ) / slope2 ).asInstanceOf[Int] to ( ( y + k1 ) / slope1 ).asInstanceOf[Int]
     } {
       dot(x, y, color)
     }
