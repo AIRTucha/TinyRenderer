@@ -101,53 +101,43 @@ case class Scene( width: Int, height: Int, val low: Vec3, val high: Vec3, img: I
       vert1 = vert2
       vert2 = buff
     }  
-    
+
+    println(vert1)
+    println(vert2)
+    println(vert3)
+     
     val (k12, slope12) = lfCoffs( vert1, vert2 ) 
     val (k13, slope13) = lfCoffs( vert1, vert3 )
     val (k23, slope23) = lfCoffs( vert2, vert3 )
 
-		if ( vert2.x < ( ( vert2.y + k13 ) / slope13 ) ) {
-      for( y <- vert1.y.asInstanceOf[Int] to vert2.y.asInstanceOf[Int] )
-        lineByLF( y, slope13, slope12, k13, k12, color )
+		if ( vert2.x > ( ( vert2.y + k13 ) / slope13 ) ) {
+      for( y <- vert1.y .asInstanceOf[Int] to vert2.y.asInstanceOf[Int] )
+        lineByLF( y, slope13, slope12, k13, k12, color ) 
       for( y <- vert2.y.asInstanceOf[Int] until vert3.y.asInstanceOf[Int] )
-        lineByLF( y, slope13, slope23, k13, k23, color )
+        lineByLF( y, slope13, slope23, k13, k23, color ) 
     } else {
       for( y <- vert1.y.asInstanceOf[Int] to vert2.y.asInstanceOf[Int] ) 
         lineByLF( y, slope12, slope13, k12, k13, color )
       for( y <- vert2.y.asInstanceOf[Int] until vert3.y.asInstanceOf[Int] )
-        lineByLF( y, slope23, slope13, k23, k13, color )
+        lineByLF( y, slope23, slope13, k23, k13, color ) 
     }
 	}
   def lfCoffs( vec1: Vec3, vec2: Vec3 ): (Double, Double) =
-    if( vec1.x != vec2.x ) {
+    if( vec1.x == vec2.x ) {
+        ( 500, 1 )
+    } else if( vec1.y == vec2.y ) {
+        ( vec1.x, 1 )
+    }
+    else {
       val slope = ( vec1.y - vec2.y ) / ( vec1.x - vec2.x )
       (slope * vec1.x - vec1.y, slope)
-    } else {
-      ( 0, 1 )
     }
   def lineByLF( y: Int, slope1: Double, slope2: Double, k1: Double, k2: Double, color: Color ) {
-    // println(( ( y + k2 ) / slope2 ).asInstanceOf[Int] to ( ( y + k1 ) / slope1 ).asInstanceOf[Int])
-    for{
-      x <- ( ( y + k2 ) / slope2 ).asInstanceOf[Int] to ( ( y + k1 ) / slope1 ).asInstanceOf[Int]
-    } {
-      dot(x, y, color)
-    }
+    println(k1 + " " + slope1 + " " + k2 + " " + slope2)
+    println(( ( y + k1 ) / slope1 ).asInstanceOf[Int] until ( ( y + k2 ) / slope2 ).asInstanceOf[Int])
+    for {
+      x <- ( ( y + k1 ) / slope1 ).asInstanceOf[Int] until ( ( y + k2 ) / slope2 ).asInstanceOf[Int]
+    } dot(x, y, color)
   }
- 	def scanLine( y: Int, vec1: Vec3, vec2: Vec3, vec3: Vec3, vec4: Vec3, color: Color) {
-			val gradient1 = if( vec1.y != vec2.y ) ( y - vec1.y ) / ( vec2.y - vec1.y ) else 1
-			val gradient2 = if( vec3.y != vec4.y ) ( y - vec3.y ) / ( vec4.y - vec3.y ) else 1
-
-			val startX =  interpolate ( vec1.x, vec2.x, gradient1 ).asInstanceOf[Int]
-			val endX =  interpolate ( vec3.x, vec4.x, gradient2 ).asInstanceOf[Int]
-
-			// var startZ = interpolate ( vec1.z, vec2.z, gradient1 )
-			// var endZ = interpolate ( vec1.z, vec2.z, gradient2 )
-			
-			for( x <- startX to endX ) {
-				// val g = ( x - startX ) / ( endX - startX )
-        // val z = interpolate( startZ, endZ, g )
-				dot( x, y, color);
-			}
-		}
 }
 
