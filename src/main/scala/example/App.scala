@@ -4,7 +4,7 @@ import scala.scalajs.js
 import monix.execution.Scheduler.Implicits.global
 import js.annotation.JSExport
 import org.scalajs.dom
-import Commone.{Vec3, Color, Obj, Vertex}
+import Commone.{Vec3, Color, Obj, Vertex, Vert, rotationY}
 import scala.util.{Failure, Success}
 import fr.hmil.roshttp.response.SimpleHttpResponse
 import scala.util.{Try, Failure, Success}
@@ -14,7 +14,7 @@ object App extends js.JSApp {
     val canvas = dom.document.createElement("canvas").asInstanceOf[dom.html.Canvas]
     val enginge = new Engine(canvas)
     val scene = enginge.createScene(Vec3(-1, 1, -1), Vec3(1, -1, 1))
-    val color = Color(129.asInstanceOf[Short], 255.toShort, 255.toShort)
+    val color = Color(255.toShort, 255.toShort, 255.toShort)
     scene.clear
     // scene.triangle(
     //     Vec3(0.9, 0.8),
@@ -55,19 +55,24 @@ object App extends js.JSApp {
                 )
               }
           )
-          println(obj.faces.length)
+          val angle = 0
           for ( ( fst, snd, trd ) <- obj.faces ) {
             scene.triangle(
-              obj.vertices(fst.vertex),
-              obj.vertices(snd.vertex),
-              obj.vertices(trd.vertex),
+              Vert(
+                rotationY( obj.vertices(fst.vertex), angle ),
+                rotationY( obj.normals(fst.normal), angle )
+              ),
+               Vert(
+                rotationY( obj.vertices(snd.vertex), angle ),
+                rotationY( obj.normals(snd.normal), angle )
+              ),
+               Vert(
+                rotationY( obj.vertices(trd.vertex), angle ),
+                rotationY( obj.normals(trd.normal), angle )
+              ),
               color
             )
-            // scene.line( obj.vertices(fst.vertex), obj.vertices(snd.vertex), color )
-            // scene.line( obj.vertices(snd.vertex), obj.vertices(trd.vertex), color )
-            // scene.line( obj.vertices(trd.vertex), obj.vertices(fst.vertex), color )
           }
-          // scene.line(obj.vertices(obj.faces(0)._1.vertex), obj.vertices(obj.faces(0)._2.vertex), color )
           enginge draw scene
         }
         case e: Failure[SimpleHttpResponse] => println("Huston, we got a problem!")
