@@ -4,14 +4,13 @@ import org.scalajs.dom.CanvasRenderingContext2D
 import org.scalajs.dom.html.Canvas
 import org.scalajs.dom.raw.ImageData
 import scala.math.{floor, abs, pow}
-import Commone.{Vec3, Color, interpolate, dotProduct, Vert, normalize}
+import Commone.{Vec3, Color, interpolate, dotProduct, Vert, normalize, crossProduct}
 import scala.collection.mutable.ListBuffer
 
 class Engine( val canvas: Canvas ) {
   canvas.width = 1000;
   canvas.height = 1000;
   val ctx = canvas.getContext("2d").asInstanceOf[CanvasRenderingContext2D]
-  val data = ctx.getImageData(0,0, 1000, 1000)
   def draw( scene: Scene ) = ctx.putImageData(scene.img, 0, 0)
   def createScene( low: Vec3, high: Vec3) = Scene(canvas.width, canvas.height, low, high, ctx.getImageData(0,0, canvas.width, canvas.height))
 }
@@ -19,6 +18,7 @@ case class Scene( width: Int, height: Int, val low: Vec3, val high: Vec3, img: I
   val zBuffer: Array[Array[Double]] = Array.fill(height, width)(-1)
   val lights: ListBuffer[Vec3] = ListBuffer()
   val dataAmount = width * height * 4
+  var b: Double = 0
   def clear = {
     var i = 0
     while(i < dataAmount) {
@@ -43,14 +43,15 @@ case class Scene( width: Int, height: Int, val low: Vec3, val high: Vec3, img: I
     img.data( redIndex + 2 ) = color.b
     img.data( redIndex + 3 ) = color.a
   }
-  def dot( x: Int, y: Int, z: Double, r: Double, g: Double, b: Double, a: Double ) = if( zBuffer(x)(y) < z ) {
-    val redIndex: Int = ( width * y + x ) * 4 
-    img.data( redIndex )     = (z*255).asInstanceOf[Short]//r.asInstanceOf[Short]
-    img.data( redIndex + 1 ) = (z*255).asInstanceOf[Short]//g.asInstanceOf[Short]
-    img.data( redIndex + 2 ) = (z*255).asInstanceOf[Short]//b.asInstanceOf[Short]
-    img.data( redIndex + 3 ) = 255//a.asInstanceOf[Short]
-    zBuffer(x)(y) = z
-  }
+  def dot( x: Int, y: Int, z: Double, r: Double, g: Double, b: Double, a: Double ) = 
+    if( zBuffer(x)(y) < z ) {
+      val redIndex: Int = ( width * y + x ) * 4 
+      img.data( redIndex )     = (z*255).asInstanceOf[Short]//r.asInstanceOf[Short]
+      img.data( redIndex + 1 ) = (z*255).asInstanceOf[Short]//g.asInstanceOf[Short]
+      img.data( redIndex + 2 ) = (z*255).asInstanceOf[Short]//b.asInstanceOf[Short]
+      img.data( redIndex + 3 ) = 255//a.asInstanceOf[Short]
+      zBuffer(x)(y) = z
+    }
   
   def line( vec1: Vec3, vec2: Vec3, color: Color ) = {
     var x1 = (width * ( vec1.x - low.x ) / ( high.x - low.x )).asInstanceOf[Int]
@@ -153,20 +154,24 @@ case class Scene( width: Int, height: Int, val low: Vec3, val high: Vec3, img: I
       val startNormalZ = interpolate ( vec1.normal.z, vec2.normal.z, gradientY1 )
       val endNormalZ = interpolate ( vec3.normal.z, vec4.normal.z, gradientY2 )
       
-      val startZ = interpolate ( vec1.vertex.z, vec2.vertex.z, gradientY1 )
-      val endZ =  interpolate ( vec3.vertex.z, vec4.vertex.z, gradientY2 )
+      val startZ = interpolate ( vec1.vertex.z, vec2.vertex.z, gradientY1 ) 
+      val endZ =  interpolate ( vec3.vertex.z, vec4.vertex.z, gradientY2 ) 
       
-			for( x <- startX to endX ) {
+      b = dotProduct( Vec3( 0, 0, -1), Vec3 (
+          interpolate( startNormalX, endNormalX, 0.5 ), 
+          interpolate( startNormalY, endNormalY, 0.5 ), 
+          interpolate( startNormalZ, endNormalZ, 0.5 )
+        ) )
+			for( x <- startX until endX ) {
 				val gradientX = ( x - startX ) / ( endX - startX )
         val normal = Vec3 (
           interpolate( startNormalX, endNormalX, gradientX ), 
           interpolate( startNormalY, endNormalY, gradientX ), 
-          interpolate( startNormalZ, endNormalZ, gradientX ) 
-        )
+          interpolate( startNormalZ, endNormalZ, gradientX )
+        ) 
         val z = interpolate( startZ, endZ, gradientX )
         val intensity = dotProduct( Vec3( 0, 0, -1), normal)
-				dot( x, y, z, color.r * intensity, color.g * intensity, color.b * intensity, color.a * intensity)
+				dot( x, y, b, color.r * intensity, color.g * intensity, color.b * intensity, color.a * intensity)
 			}
 		}
 }
-

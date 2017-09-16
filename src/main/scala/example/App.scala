@@ -55,7 +55,7 @@ object App extends js.JSApp {
                 )
               }
           )
-          val angle = 0
+          val angle = 3.14
           for ( ( fst, snd, trd ) <- obj.faces ) {
             scene.triangle(
               Vert(
