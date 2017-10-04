@@ -15,10 +15,9 @@ class Engine( val canvas: Canvas ) {
   def createScene( low: Vec3, high: Vec3) = Scene(canvas.width, canvas.height, low, high, ctx.getImageData(0,0, canvas.width, canvas.height))
 }
 case class Scene( width: Int, height: Int, val low: Vec3, val high: Vec3, img: ImageData ) {
-  val zBuffer: Array[Array[Double]] = Array.fill(height, width)(-1)
+  val zBuffer: Array[Array[Double]] = Array.fill(height, width)(-2)
   val lights: ListBuffer[Vec3] = ListBuffer()
   val dataAmount = width * height * 4
-  var b: Double = 0
   def clear = {
     var i = 0
     while(i < dataAmount) {
@@ -45,10 +44,11 @@ case class Scene( width: Int, height: Int, val low: Vec3, val high: Vec3, img: I
   }
   def dot( x: Int, y: Int, z: Double, r: Double, g: Double, b: Double, a: Double ) = 
     if( zBuffer(x)(y) < z ) {
+      val e = z * 255
       val redIndex: Int = ( width * y + x ) * 4 
-      img.data( redIndex )     = (z*255).asInstanceOf[Short]//r.asInstanceOf[Short]
-      img.data( redIndex + 1 ) = (z*255).asInstanceOf[Short]//g.asInstanceOf[Short]
-      img.data( redIndex + 2 ) = (z*255).asInstanceOf[Short]//b.asInstanceOf[Short]
+      img.data( redIndex )     = e.asInstanceOf[Short]
+      img.data( redIndex + 1 ) = e.asInstanceOf[Short]
+      img.data( redIndex + 2 ) = e.asInstanceOf[Short]
       img.data( redIndex + 3 ) = 255//a.asInstanceOf[Short]
       zBuffer(x)(y) = z
     }
@@ -80,9 +80,9 @@ case class Scene( width: Int, height: Int, val low: Vec3, val high: Vec3, img: I
   }
   def triangle(vec1: Vert, vec2: Vert, vec3: Vert, color: Color) = 
     // if(
-    //   dotProduct( Vec3( 0, 0, -1), vec1.normal ) > 0 &&
-    //   dotProduct( Vec3( 0, 0, -1), vec2.normal ) > 0 &&
-    //   dotProduct( Vec3( 0, 0, -1), vec3.normal ) > 0
+    //   dotProduct( Vec3( 0, 0, 1), vec1.normal ) > 0 &&
+    //   dotProduct( Vec3( 0, 0, 1), vec2.normal ) > 0 &&
+    //   dotProduct( Vec3( 0, 0, 1), vec3.normal ) > 0
     // )
      {
       var vert1 = Vert(
@@ -132,12 +132,12 @@ case class Scene( width: Int, height: Int, val low: Vec3, val high: Vec3, img: I
         for( y <- vert1.vertex.y.asInstanceOf[Int] to vert2.vertex.y.asInstanceOf[Int] )
             scanLine( y, vert1, vert3, vert1, vert2, color )
         for( y <- vert2.vertex.y.asInstanceOf[Int] until vert3.vertex.y.asInstanceOf[Int] )
-            scanLine( y, vert1, vert3, vert2, vert3,color )
+            scanLine( y, vert3, vert1, vert3, vert2, color )
       } else {
         for( y <- vert1.vertex.y.asInstanceOf[Int] to vert2.vertex.y.asInstanceOf[Int] ) 
           scanLine( y, vert1, vert2, vert1, vert3, color )
         for( y <- vert2.vertex.y.asInstanceOf[Int] until vert3.vertex.y.asInstanceOf[Int] )
-          scanLine( y, vert2, vert3, vert1, vert3, color )  
+          scanLine( y, vert3, vert2, vert3, vert1, color )  
       }
     }
  	def scanLine( y: Int, vec1: Vert, vec2: Vert, vec3: Vert, vec4: Vert, color: Color ) {
@@ -157,11 +157,6 @@ case class Scene( width: Int, height: Int, val low: Vec3, val high: Vec3, img: I
       val startZ = interpolate ( vec1.vertex.z, vec2.vertex.z, gradientY1 ) 
       val endZ =  interpolate ( vec3.vertex.z, vec4.vertex.z, gradientY2 ) 
       
-      b = dotProduct( Vec3( 0, 0, -1), Vec3 (
-          interpolate( startNormalX, endNormalX, 0.5 ), 
-          interpolate( startNormalY, endNormalY, 0.5 ), 
-          interpolate( startNormalZ, endNormalZ, 0.5 )
-        ) )
 			for( x <- startX until endX ) {
 				val gradientX = ( x - startX ) / ( endX - startX )
         val normal = Vec3 (
@@ -170,8 +165,8 @@ case class Scene( width: Int, height: Int, val low: Vec3, val high: Vec3, img: I
           interpolate( startNormalZ, endNormalZ, gradientX )
         ) 
         val z = interpolate( startZ, endZ, gradientX )
-        val intensity = dotProduct( Vec3( 0, 0, -1), normal)
-				dot( x, y, b, color.r * intensity, color.g * intensity, color.b * intensity, color.a * intensity)
+        val intensity = dotProduct( Vec3( 0, 0.5, 0.7), normal)
+				dot( x, y, z, color.r * intensity, color.g * intensity, color.b * intensity, color.a * intensity)
 			}
 		}
 }

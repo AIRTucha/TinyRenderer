@@ -29,51 +29,83 @@ object App extends js.JSApp {
     Parser.get("obj/african_head/african_head.obj").onComplete({
         case res:Success[SimpleHttpResponse] => {
           val values = res.get.body.split("\n").map( str => str.split(" ") )
-          val obj = Obj(
-            values.withFilter(_(0) == "v") map {
-              value =>
-                Vec3(
-                  value(1).toDouble, 
-                  value(2).toDouble, 
-                  value(3).toDouble
-                ) 
-            },
-            values.withFilter(_(0) == "vn") map {
-              value =>
-                Vec3(
-                  value(2).toDouble, 
-                  value(3).toDouble, 
-                  value(4).toDouble
-                ) 
-            },
-            values.withFilter(_(0) == "f")
-              .map {
-                value => (
-                  value(1).split("/") match { case Array( fst, snd, trd ) => Vertex(fst.toInt - 1, snd.toInt - 1, trd.toInt - 1) },
-                  value(2).split("/") match { case Array( fst, snd, trd ) => Vertex(fst.toInt - 1, snd.toInt - 1, trd.toInt - 1) },
-                  value(3).split("/") match { case Array( fst, snd, trd ) => Vertex(fst.toInt - 1, snd.toInt - 1, trd.toInt - 1) }
-                )
-              }
-          )
-          val angle = 3.14
-          for ( ( fst, snd, trd ) <- obj.faces ) {
+          // val obj = Obj(
+          //   values.withFilter(_(0) == "v") map {
+          //     value =>
+          //       Vec3(
+          //         value(1).toDouble, 
+          //         value(2).toDouble, 
+          //         value(3).toDouble
+          //       ) 
+          //   },
+          //   values.withFilter(_(0) == "vn") map {
+          //     value =>
+          //       Vec3(
+          //         value(2).toDouble, 
+          //         value(3).toDouble, 
+          //         value(4).toDouble
+          //       ) 
+          //   },
+          //   values.withFilter(_(0) == "f")
+          //     .map {
+          //       value => (
+          //         value(1).split("/") match { case Array( fst, snd, trd ) => Vertex(fst.toInt - 1, snd.toInt - 1, trd.toInt - 1) },
+          //         value(2).split("/") match { case Array( fst, snd, trd ) => Vertex(fst.toInt - 1, snd.toInt - 1, trd.toInt - 1) },
+          //         value(3).split("/") match { case Array( fst, snd, trd ) => Vertex(fst.toInt - 1, snd.toInt - 1, trd.toInt - 1) }
+          //       )
+          //     }
+          // )
             scene.triangle(
               Vert(
-                rotationY( obj.vertices(fst.vertex), angle ),
-                rotationY( obj.normals(fst.normal), angle )
+                Vec3(0, 0, 1),
+                Vec3(1, 1, 1)
               ),
                Vert(
-                rotationY( obj.vertices(snd.vertex), angle ),
-                rotationY( obj.normals(snd.normal), angle )
+                Vec3(1, -1, 0),
+                Vec3(1, 1, 1)
               ),
                Vert(
-                rotationY( obj.vertices(trd.vertex), angle ),
-                rotationY( obj.normals(trd.normal), angle )
+                Vec3(1, 1, 0.5),
+                Vec3(1, 1, 1) 
               ),
               color
-            )
-          }
-          enginge draw scene
+            ) 
+          // for ( ( fst, snd, trd ) <- obj.faces ) { 
+          //   scene.triangle(
+          //     Vert(
+          //       obj.vertices(fst.vertex),
+          //       obj.normals(fst.normal)
+          //     ),
+          //      Vert(
+          //       obj.vertices(snd.vertex),
+          //       obj.normals(snd.normal)
+          //     ),
+          //      Vert(
+          //       obj.vertices(trd.vertex),
+          //       obj.normals(trd.normal)
+          //     ),
+          //     color
+          //   )
+          // }
+          // val angle = 0
+          // for ( ( fst, snd, trd ) <- obj.faces ) { 
+          //   scene.triangle(
+          //     Vert(
+          //       rotationY( obj.vertices(fst.vertex), angle ),
+          //       rotationY( obj.normals(fst.normal), angle )
+          //     ),
+          //      Vert(
+          //       rotationY( obj.vertices(snd.vertex), angle ),
+          //       rotationY( obj.normals(snd.normal), angle )
+          //     ),
+          //      Vert(
+          //       rotationY( obj.vertices(trd.vertex), angle ),
+          //       rotationY( obj.normals(trd.normal), angle )
+          //     ),
+          //     color
+          //   )
+          // }
+          enginge draw scene 
         }
         case e: Failure[SimpleHttpResponse] => println("Huston, we got a problem!")
       }) 
