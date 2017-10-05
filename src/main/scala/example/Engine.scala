@@ -46,9 +46,9 @@ case class Scene( width: Int, height: Int, val low: Vec3, val high: Vec3, img: I
     if( zBuffer(x)(y) < z ) {
       val e = z * 255
       val redIndex: Int = ( width * y + x ) * 4 
-      img.data( redIndex )     = e.asInstanceOf[Short]
-      img.data( redIndex + 1 ) = e.asInstanceOf[Short]
-      img.data( redIndex + 2 ) = e.asInstanceOf[Short]
+      img.data( redIndex )     = r.asInstanceOf[Short]
+      img.data( redIndex + 1 ) = g.asInstanceOf[Short]
+      img.data( redIndex + 2 ) = b.asInstanceOf[Short]
       img.data( redIndex + 3 ) = 255//a.asInstanceOf[Short]
       zBuffer(x)(y) = z
     }
@@ -79,11 +79,11 @@ case class Scene( width: Int, height: Int, val low: Vec3, val high: Vec3, img: I
     } while ( !( x1 == x2 && y1 == y1 ) ) 
   }
   def triangle(vec1: Vert, vec2: Vert, vec3: Vert, color: Color) = 
-    // if(
-    //   dotProduct( Vec3( 0, 0, 1), vec1.normal ) > 0 &&
-    //   dotProduct( Vec3( 0, 0, 1), vec2.normal ) > 0 &&
-    //   dotProduct( Vec3( 0, 0, 1), vec3.normal ) > 0
-    // )
+    if(
+      dotProduct( Vec3( 0, 0, 1), vec1.normal ) > 0 ||
+      dotProduct( Vec3( 0, 0, 1), vec2.normal ) > 0 ||
+      dotProduct( Vec3( 0, 0, 1), vec3.normal ) > 0
+    )
      {
       var vert1 = Vert(
         Vec3(
@@ -156,9 +156,9 @@ case class Scene( width: Int, height: Int, val low: Vec3, val high: Vec3, img: I
       
       val startZ = interpolate ( vec1.vertex.z, vec2.vertex.z, gradientY1 ) 
       val endZ =  interpolate ( vec3.vertex.z, vec4.vertex.z, gradientY2 ) 
-      
+
 			for( x <- startX until endX ) {
-				val gradientX = ( x - startX ) / ( endX - startX )
+				val gradientX: Double = ( x.asInstanceOf[Double] - startX ) / ( endX - startX )
         val normal = Vec3 (
           interpolate( startNormalX, endNormalX, gradientX ), 
           interpolate( startNormalY, endNormalY, gradientX ), 

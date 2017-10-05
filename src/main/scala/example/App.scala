@@ -25,68 +25,68 @@ object App extends js.JSApp {
     // println("ok") 
     // scene.dot(500, 500, color)
     enginge draw scene 
-
-    Parser.get("obj/african_head/african_head.obj").onComplete({
+    // "obj/african_head/african_head.obj"
+    Parser.get("obj/diablo3_pose/diablo3_pose.obj").onComplete({
         case res:Success[SimpleHttpResponse] => {
           val values = res.get.body.split("\n").map( str => str.split(" ") )
-          // val obj = Obj(
-          //   values.withFilter(_(0) == "v") map {
-          //     value =>
-          //       Vec3(
-          //         value(1).toDouble, 
-          //         value(2).toDouble, 
-          //         value(3).toDouble
-          //       ) 
-          //   },
-          //   values.withFilter(_(0) == "vn") map {
-          //     value =>
-          //       Vec3(
-          //         value(2).toDouble, 
-          //         value(3).toDouble, 
-          //         value(4).toDouble
-          //       ) 
-          //   },
-          //   values.withFilter(_(0) == "f")
-          //     .map {
-          //       value => (
-          //         value(1).split("/") match { case Array( fst, snd, trd ) => Vertex(fst.toInt - 1, snd.toInt - 1, trd.toInt - 1) },
-          //         value(2).split("/") match { case Array( fst, snd, trd ) => Vertex(fst.toInt - 1, snd.toInt - 1, trd.toInt - 1) },
-          //         value(3).split("/") match { case Array( fst, snd, trd ) => Vertex(fst.toInt - 1, snd.toInt - 1, trd.toInt - 1) }
-          //       )
-          //     }
-          // )
+          val obj = Obj(
+            values.withFilter(_(0) == "v") map {
+              value =>
+                Vec3(
+                  value(1).toDouble, 
+                  value(2).toDouble, 
+                  value(3).toDouble
+                ) 
+            },
+            values.withFilter(_(0) == "vn") map {
+              value =>
+                Vec3(
+                  value(2).toDouble, 
+                  value(3).toDouble, 
+                  value(4).toDouble
+                ) 
+            },
+            values.withFilter(_(0) == "f")
+              .map {
+                value => (
+                  value(1).split("/") match { case Array( fst, snd, trd ) => Vertex(fst.toInt - 1, snd.toInt - 1, trd.toInt - 1) },
+                  value(2).split("/") match { case Array( fst, snd, trd ) => Vertex(fst.toInt - 1, snd.toInt - 1, trd.toInt - 1) },
+                  value(3).split("/") match { case Array( fst, snd, trd ) => Vertex(fst.toInt - 1, snd.toInt - 1, trd.toInt - 1) }
+                )
+              }
+          )
+            // scene.triangle(
+            //   Vert(
+            //     Vec3(0, 0, 0),
+            //     Vec3(0.9, 0.9, 0.9)
+            //   ),
+            //    Vert(
+            //     Vec3(0.9, -0.9, 1),
+            //     Vec3(0.9, 0.9, 0.9)
+            //   ),
+            //    Vert(
+            //     Vec3(0.9, 0.9, 0.5),
+            //     Vec3(0.9, 0.9, 0.9) 
+            //   ),
+            //   color
+            // ) 
+          for ( ( fst, snd, trd ) <- obj.faces ) { 
             scene.triangle(
               Vert(
-                Vec3(0, 0, 1),
-                Vec3(1, 1, 1)
+                obj.vertices(fst.vertex),
+                obj.normals(fst.normal)
               ),
                Vert(
-                Vec3(1, -1, 0),
-                Vec3(1, 1, 1)
+                obj.vertices(snd.vertex),
+                obj.normals(snd.normal)
               ),
                Vert(
-                Vec3(1, 1, 0.5),
-                Vec3(1, 1, 1) 
+                obj.vertices(trd.vertex),
+                obj.normals(trd.normal)
               ),
               color
-            ) 
-          // for ( ( fst, snd, trd ) <- obj.faces ) { 
-          //   scene.triangle(
-          //     Vert(
-          //       obj.vertices(fst.vertex),
-          //       obj.normals(fst.normal)
-          //     ),
-          //      Vert(
-          //       obj.vertices(snd.vertex),
-          //       obj.normals(snd.normal)
-          //     ),
-          //      Vert(
-          //       obj.vertices(trd.vertex),
-          //       obj.normals(trd.normal)
-          //     ),
-          //     color
-          //   )
-          // }
+            )
+          }
           // val angle = 0
           // for ( ( fst, snd, trd ) <- obj.faces ) { 
           //   scene.triangle(
