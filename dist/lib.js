@@ -8676,14 +8676,37 @@ $h_Ltinyrenderer_App$.prototype = $c_Ltinyrenderer_App$.prototype;
 $c_Ltinyrenderer_App$.prototype.init___ = (function() {
   return this
 });
+$c_Ltinyrenderer_App$.prototype.tinyrenderer$App$$$anonfun$main$1__Lorg_scalajs_dom_raw_Event__Lorg_scalajs_dom_raw_HTMLImageElement__V = (function(e, img$1) {
+  var canvas = $m_Lorg_scalajs_dom_package$().document__Lorg_scalajs_dom_raw_HTMLDocument().createElement("canvas");
+  canvas.width = $uI(img$1.width);
+  canvas.height = $uI(img$1.height);
+  var ctx = canvas.getContext("2d");
+  var value = $uI(img$1.width);
+  var value$1 = $uI(img$1.height);
+  ctx.drawImage(img$1, 0, 0, value, value$1);
+  var value$2 = $uI(img$1.width);
+  var value$3 = $uI(img$1.height);
+  var d = ctx.getImageData(0, 0, value$2, value$3);
+  var x = d.data[11];
+  var this$10 = $m_s_Console$();
+  var this$11 = $as_Ljava_io_PrintStream(this$10.outVar$2.v$1);
+  this$11.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"))
+});
 $c_Ltinyrenderer_App$.prototype.main__V = (function() {
   var canvas = $m_Lorg_scalajs_dom_package$().document__Lorg_scalajs_dom_raw_HTMLDocument().createElement("canvas");
+  var img = $m_Lorg_scalajs_dom_package$().document__Lorg_scalajs_dom_raw_HTMLDocument().createElement("img");
+  img.src = "obj/african_head/african_head_diffuse.jpg";
+  img.onload = (function(img$1) {
+    return (function(arg1$2) {
+      $m_Ltinyrenderer_App$().tinyrenderer$App$$$anonfun$main$1__Lorg_scalajs_dom_raw_Event__Lorg_scalajs_dom_raw_HTMLImageElement__V(arg1$2, img$1)
+    })
+  })(img);
   var enginge = new $c_Ltinyrenderer_Engine().init___Lorg_scalajs_dom_raw_HTMLCanvasElement(canvas);
   var scene = enginge.createScene__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Scene(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((-1.0), 1.0, (-1.0)), new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(1.0, (-1.0), 1.0));
   var color = new $c_Ltinyrenderer_Commone_package$Color().init___S__S__S__S(255, 255, 255, $m_Ltinyrenderer_Commone_package$Color$().apply$default$4__S());
   scene.clear__V();
   enginge.draw__Ltinyrenderer_Scene__V(scene);
-  $m_Ltinyrenderer_Parser$().get__T__s_concurrent_Future("obj/diablo3_pose/diablo3_pose.obj").onComplete__F1__s_concurrent_ExecutionContext__V(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, enginge$1, scene$1, color$1) {
+  $m_Ltinyrenderer_Parser$().get__T__s_concurrent_Future("obj/african_head/african_head.obj").onComplete__F1__s_concurrent_ExecutionContext__V(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, enginge$1, scene$1, color$1) {
     return (function(x0$1$2) {
       var x0$1 = $as_s_util_Try(x0$1$2);
       if ($is_s_util_Success(x0$1)) {

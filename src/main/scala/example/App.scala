@@ -1,6 +1,7 @@
 package tinyrenderer
 
 import scala.scalajs.js
+import scala.scalajs.js.typedarray.Uint8Array
 import monix.execution.Scheduler.Implicits.global
 import js.annotation.JSExport
 import org.scalajs.dom
@@ -12,6 +13,19 @@ import scala.util.{Try, Failure, Success}
 object App extends js.JSApp {
   def main(): Unit = {
     val canvas = dom.document.createElement("canvas").asInstanceOf[dom.html.Canvas]
+    val img = dom.document.createElement("img").asInstanceOf[dom.html.Image]
+    img.src = "obj/african_head/african_head_diffuse.jpg"
+    img.onload = (e: dom.Event) => {
+      val canvas = dom.document.createElement("canvas").asInstanceOf[dom.html.Canvas]
+      canvas.width = img.width
+      canvas.height = img.height
+      val ctx = canvas
+        .getContext("2d")
+        ctx.drawImage(img, 0, 0, img.width, img.height)
+      val d = ctx
+        .getImageData( 0, 0, img.width, img.height)
+      println(d.data.asInstanceOf[Uint8Array](11)) 
+    }
     val enginge = new Engine(canvas)
     val scene = enginge.createScene(Vec3(-1, 1, -1), Vec3(1, -1, 1))
     val color = Color(255.toShort, 255.toShort, 255.toShort)
@@ -26,7 +40,7 @@ object App extends js.JSApp {
     // scene.dot(500, 500, color)
     enginge draw scene 
     // "obj/african_head/african_head.obj"
-    Parser.get("obj/diablo3_pose/diablo3_pose.obj").onComplete({
+    Parser.get("obj/african_head/african_head.obj").onComplete({
         case res:Success[SimpleHttpResponse] => {
           val values = res.get.body.split("\n").map( str => str.split(" ") )
           val obj = Obj(

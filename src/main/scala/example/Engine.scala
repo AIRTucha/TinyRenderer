@@ -8,7 +8,7 @@ import Commone.{Vec3, Color, interpolate, dotProduct, Vert, normalize, crossProd
 import scala.collection.mutable.ListBuffer
 
 class Engine( val canvas: Canvas ) {
-  canvas.width = 1000;
+  canvas.width = 1000; 
   canvas.height = 1000;
   val ctx = canvas.getContext("2d").asInstanceOf[CanvasRenderingContext2D]
   def draw( scene: Scene ) = ctx.putImageData(scene.img, 0, 0)
@@ -141,8 +141,8 @@ case class Scene( width: Int, height: Int, val low: Vec3, val high: Vec3, img: I
       }
     }
  	def scanLine( y: Int, vec1: Vert, vec2: Vert, vec3: Vert, vec4: Vert, color: Color ) {
-			val gradientY1 = if( vec1.vertex.y != vec2.vertex.y ) ( y - vec1.vertex.y ) / ( vec2.vertex.y - vec1.vertex.y ) else 1
-			val gradientY2 = if( vec3.vertex.y != vec4.vertex.y ) ( y - vec3.vertex.y ) / ( vec4.vertex.y - vec3.vertex.y ) else 1
+			val gradientY1 = if( vec1.vertex.y != vec2.vertex.y ) ( y.asInstanceOf[Double] - vec1.vertex.y ) / ( vec2.vertex.y - vec1.vertex.y ) else 1
+			val gradientY2 = if( vec3.vertex.y != vec4.vertex.y ) ( y.asInstanceOf[Double] - vec3.vertex.y ) / ( vec4.vertex.y - vec3.vertex.y ) else 1
  
 			val startX =  interpolate ( vec1.vertex.x, vec2.vertex.x, gradientY1 ).asInstanceOf[Int]
 			val endX =  interpolate ( vec3.vertex.x, vec4.vertex.x, gradientY2 ).asInstanceOf[Int]
