@@ -11,7 +11,6 @@ package object Commone {
   case class Vec3(x: Double, y: Double, z: Double = 0)
   case class Vec2(x: Double, y: Double)
   case class Vertex(vertex: Int, texture: Int, normal: Int)
-  case class Obj(vertices: Array[Vec3], normals: Array[Vec3], textures: Array[Vec2], faces: Array[( Vertex, Vertex, Vertex )] )
   case class Vert( vertex: Vec3, normal: Vec3, texture: Vec2 )
   @inline
   def interpolate( minV: Double, maxV: Double, gradient: Double) = {

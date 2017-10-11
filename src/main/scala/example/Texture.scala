@@ -1,12 +1,12 @@
 package tinyrenderer
 
 import scala.concurrent.{ Future, Promise }
-import scala.concurrent.ExecutionContext.Implicits.global
+import monix.execution.Scheduler.Implicits.global
 import scala.scalajs.js.typedarray.Uint8ClampedArray
 import Commone.Color
 import org.scalajs.dom
 
-class Texture(val data: Uint8ClampedArray, val width: Int, val height: Int) {
+class Texture(private val data: Uint8ClampedArray, val width: Int, val height: Int) {
     def get(x: Double, y: Double) = {
         val redIndex: Int = ( (width * y).asInstanceOf[Int] + x.asInstanceOf[Int] ) * 4 
         Color (
