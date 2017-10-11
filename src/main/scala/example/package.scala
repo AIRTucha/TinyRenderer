@@ -1,5 +1,7 @@
 package tinyrenderer
 
+import scala.scalajs.js.typedarray.Uint8ClampedArray
+import org.scalajs.dom
 import scala.math.{ cos, sin, min, max, pow, sqrt }
 import scala.inline
 
@@ -7,8 +9,9 @@ package object Commone {
   def square(x: Int): Int = x * x
   case class Color(r: Short, g: Short, b: Short, a: Short = 255.toShort )
   case class Vec3(x: Double, y: Double, z: Double = 0)
+  case class Vec2(x: Double, y: Double)
   case class Vertex(vertex: Int, texture: Int, normal: Int)
-  case class Obj(vertices: Array[Vec3], normals: Array[Vec3], faces: Array[( Vertex, Vertex, Vertex )] )
+  case class Obj(vertices: Array[Vec3], normals: Array[Vec3], textures: Array[Vec2], faces: Array[( Vertex, Vertex, Vertex )] )
   case class Vert( vertex: Vec3, normal: Vec3 )
   @inline
   def interpolate( minV: Double, maxV: Double, gradient: Double) = {

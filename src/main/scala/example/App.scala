@@ -1,11 +1,13 @@
 package tinyrenderer
 
+import scala.concurrent.{ Future, Promise }
 import scala.scalajs.js
-import scala.scalajs.js.typedarray.Uint8Array
+import scala.scalajs.js.typedarray.Uint8ClampedArray
 import monix.execution.Scheduler.Implicits.global
 import js.annotation.JSExport
 import org.scalajs.dom
-import Commone.{Vec3, Color, Obj, Vertex, Vert, rotationY}
+import Commone.{ Vec3, Vec2, Color, Obj, Vertex, Vert, rotationY }
+import Texture._
 import scala.util.{Failure, Success}
 import fr.hmil.roshttp.response.SimpleHttpResponse
 import scala.util.{Try, Failure, Success}
@@ -13,23 +15,14 @@ import scala.util.{Try, Failure, Success}
 object App extends js.JSApp {
   def main(): Unit = {
     val canvas = dom.document.createElement("canvas").asInstanceOf[dom.html.Canvas]
-    val img = dom.document.createElement("img").asInstanceOf[dom.html.Image]
-    img.src = "obj/african_head/african_head_diffuse.jpg"
-    img.onload = (e: dom.Event) => {
-      val canvas = dom.document.createElement("canvas").asInstanceOf[dom.html.Canvas]
-      canvas.width = img.width
-      canvas.height = img.height
-      val ctx = canvas
-        .getContext("2d")
-        ctx.drawImage(img, 0, 0, img.width, img.height)
-      val d = ctx
-        .getImageData( 0, 0, img.width, img.height)
-      println(d.data.asInstanceOf[Uint8Array](11)) 
-    }
     val enginge = new Engine(canvas)
     val scene = enginge.createScene(Vec3(-1, 1, -1), Vec3(1, -1, 1))
     val color = Color(255.toShort, 255.toShort, 255.toShort)
     scene.clear
+    val tex = Texture("obj/african_head/african_head_diffuse.jpg")
+    tex onSuccess {
+      case r => println(r.get(0.1, 0.1))
+    }
     // scene.triangle(
     //     Vec3(0.9, 0.8),
     //     Vec3(0.95, -0.7),
@@ -60,6 +53,13 @@ object App extends js.JSApp {
                   value(4).toDouble
                 ) 
             },
+            values.withFilter(_(0) == "vt") map {
+              value =>
+                Vec2(
+                  value(2).toDouble, 
+                  value(3).toDouble
+                ) 
+            },
             values.withFilter(_(0) == "f")
               .map {
                 value => (
@@ -69,21 +69,6 @@ object App extends js.JSApp {
                 )
               }
           )
-            // scene.triangle(
-            //   Vert(
-            //     Vec3(0, 0, 0),
-            //     Vec3(0.9, 0.9, 0.9)
-            //   ),
-            //    Vert(
-            //     Vec3(0.9, -0.9, 1),
-            //     Vec3(0.9, 0.9, 0.9)
-            //   ),
-            //    Vert(
-            //     Vec3(0.9, 0.9, 0.5),
-            //     Vec3(0.9, 0.9, 0.9) 
-            //   ),
-            //   color
-            // ) 
           for ( ( fst, snd, trd ) <- obj.faces ) { 
             scene.triangle(
               Vert(
@@ -101,24 +86,6 @@ object App extends js.JSApp {
               color
             )
           }
-          // val angle = 0
-          // for ( ( fst, snd, trd ) <- obj.faces ) { 
-          //   scene.triangle(
-          //     Vert(
-          //       rotationY( obj.vertices(fst.vertex), angle ),
-          //       rotationY( obj.normals(fst.normal), angle )
-          //     ),
-          //      Vert(
-          //       rotationY( obj.vertices(snd.vertex), angle ),
-          //       rotationY( obj.normals(snd.normal), angle )
-          //     ),
-          //      Vert(
-          //       rotationY( obj.vertices(trd.vertex), angle ),
-          //       rotationY( obj.normals(trd.normal), angle )
-          //     ),
-          //     color
-          //   )
-          // }
           enginge draw scene 
         }
         case e: Failure[SimpleHttpResponse] => println("Huston, we got a problem!")

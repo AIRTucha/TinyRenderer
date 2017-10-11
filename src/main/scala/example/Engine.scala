@@ -52,7 +52,6 @@ case class Scene( width: Int, height: Int, val low: Vec3, val high: Vec3, img: I
       img.data( redIndex + 3 ) = 255//a.asInstanceOf[Short]
       zBuffer(x)(y) = z
     }
-  
   def line( vec1: Vec3, vec2: Vec3, color: Color ) = {
     var x1 = (width * ( vec1.x - low.x ) / ( high.x - low.x )).asInstanceOf[Int]
     var y1 = (height * ( vec1.y - low.y ) / ( high.y - low.y )).asInstanceOf[Int] 
