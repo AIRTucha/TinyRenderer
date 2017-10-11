@@ -9045,7 +9045,7 @@ $c_Ltinyrenderer_App$.prototype.main__V = (function() {
               var fst$1 = $as_Ltinyrenderer_Commone_package$Vertex(x$5$1.$$und1$1);
               var snd$1 = $as_Ltinyrenderer_Commone_package$Vertex(x$5$1.$$und2$1);
               var trd$1 = $as_Ltinyrenderer_Commone_package$Vertex(x$5$1.$$und3$1);
-              scene$1$1.triangle__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Color__V(new $c_Ltinyrenderer_Commone_package$Vert().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3(obj$1.vertices$1.get(fst$1.vertex$1), obj$1.normals$1.get(fst$1.normal$1)), new $c_Ltinyrenderer_Commone_package$Vert().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3(obj$1.vertices$1.get(snd$1.vertex$1), obj$1.normals$1.get(snd$1.normal$1)), new $c_Ltinyrenderer_Commone_package$Vert().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3(obj$1.vertices$1.get(trd$1.vertex$1), obj$1.normals$1.get(trd$1.normal$1)), color$1$1)
+              scene$1$1.triangle__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Color__V(new $c_Ltinyrenderer_Commone_package$Vert().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(obj$1.vertices$1.get(fst$1.vertex$1), obj$1.normals$1.get(fst$1.normal$1), obj$1.textures$1.get(fst$1.texture$1)), new $c_Ltinyrenderer_Commone_package$Vert().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(obj$1.vertices$1.get(snd$1.vertex$1), obj$1.normals$1.get(snd$1.normal$1), obj$1.textures$1.get(snd$1.texture$1)), new $c_Ltinyrenderer_Commone_package$Vert().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(obj$1.vertices$1.get(trd$1.vertex$1), obj$1.normals$1.get(trd$1.normal$1), obj$1.textures$1.get(trd$1.texture$1)), color$1$1)
             } else {
               throw new $c_s_MatchError().init___O(x$5$1)
             }
@@ -17912,7 +17912,8 @@ $c_Ltinyrenderer_Commone_package$Vec3.prototype.$classData = $d_Ltinyrenderer_Co
 function $c_Ltinyrenderer_Commone_package$Vert() {
   $c_O.call(this);
   this.vertex$1 = null;
-  this.normal$1 = null
+  this.normal$1 = null;
+  this.texture$1 = null
 }
 $c_Ltinyrenderer_Commone_package$Vert.prototype = new $h_O();
 $c_Ltinyrenderer_Commone_package$Vert.prototype.constructor = $c_Ltinyrenderer_Commone_package$Vert;
@@ -17924,8 +17925,14 @@ $h_Ltinyrenderer_Commone_package$Vert.prototype = $c_Ltinyrenderer_Commone_packa
 $c_Ltinyrenderer_Commone_package$Vert.prototype.productPrefix__T = (function() {
   return "Vert"
 });
+$c_Ltinyrenderer_Commone_package$Vert.prototype.init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2 = (function(vertex, normal, texture) {
+  this.vertex$1 = vertex;
+  this.normal$1 = normal;
+  this.texture$1 = texture;
+  return this
+});
 $c_Ltinyrenderer_Commone_package$Vert.prototype.productArity__I = (function() {
-  return 2
+  return 3
 });
 $c_Ltinyrenderer_Commone_package$Vert.prototype.equals__O__Z = (function(x$1) {
   if ((this === x$1)) {
@@ -17937,7 +17944,14 @@ $c_Ltinyrenderer_Commone_package$Vert.prototype.equals__O__Z = (function(x$1) {
     if (((x === null) ? (x$2 === null) : x.equals__O__Z(x$2))) {
       var x$3 = this.normal$1;
       var x$4 = Vert$1.normal$1;
-      return ((x$3 === null) ? (x$4 === null) : x$3.equals__O__Z(x$4))
+      var jsx$1 = ((x$3 === null) ? (x$4 === null) : x$3.equals__O__Z(x$4))
+    } else {
+      var jsx$1 = false
+    };
+    if (jsx$1) {
+      var x$5 = this.texture$1;
+      var x$6 = Vert$1.texture$1;
+      return ((x$5 === null) ? (x$6 === null) : x$5.equals__O__Z(x$6))
     } else {
       return false
     }
@@ -17955,6 +17969,10 @@ $c_Ltinyrenderer_Commone_package$Vert.prototype.productElement__I__O = (function
       return this.normal$1;
       break
     }
+    case 2: {
+      return this.texture$1;
+      break
+    }
     default: {
       throw new $c_jl_IndexOutOfBoundsException().init___T(("" + x$1))
     }
@@ -17962,11 +17980,6 @@ $c_Ltinyrenderer_Commone_package$Vert.prototype.productElement__I__O = (function
 });
 $c_Ltinyrenderer_Commone_package$Vert.prototype.toString__T = (function() {
   return $m_sr_ScalaRunTime$().$$undtoString__s_Product__T(this)
-});
-$c_Ltinyrenderer_Commone_package$Vert.prototype.init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3 = (function(vertex, normal) {
-  this.vertex$1 = vertex;
-  this.normal$1 = normal;
-  return this
 });
 $c_Ltinyrenderer_Commone_package$Vert.prototype.hashCode__I = (function() {
   var this$2 = $m_s_util_hashing_MurmurHash3$();
@@ -18278,13 +18291,13 @@ $c_Ltinyrenderer_Scene.prototype.toString__T = (function() {
 });
 $c_Ltinyrenderer_Scene.prototype.triangle__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Color__V = (function(vec1, vec2, vec3, color) {
   if (((($m_Ltinyrenderer_Commone_package$().dotProduct__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__D(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.0, 1.0), vec1.normal$1) > 0) || ($m_Ltinyrenderer_Commone_package$().dotProduct__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__D(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.0, 1.0), vec2.normal$1) > 0)) || ($m_Ltinyrenderer_Commone_package$().dotProduct__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__D(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.0, 1.0), vec3.normal$1) > 0))) {
-    var elem = new $c_Ltinyrenderer_Commone_package$Vert().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(((this.width$1 * (vec1.vertex$1.x$1 - this.low$1.x$1)) / (this.high$1.x$1 - this.low$1.x$1)), ((this.height$1 * (vec1.vertex$1.y$1 - this.low$1.y$1)) / (this.high$1.y$1 - this.low$1.y$1)), vec1.vertex$1.z$1), vec1.normal$1);
+    var elem = new $c_Ltinyrenderer_Commone_package$Vert().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(((this.width$1 * (vec1.vertex$1.x$1 - this.low$1.x$1)) / (this.high$1.x$1 - this.low$1.x$1)), ((this.height$1 * (vec1.vertex$1.y$1 - this.low$1.y$1)) / (this.high$1.y$1 - this.low$1.y$1)), vec1.vertex$1.z$1), vec1.normal$1, vec1.texture$1);
     var elem$1 = null;
     elem$1 = elem;
-    var elem$2 = new $c_Ltinyrenderer_Commone_package$Vert().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(((this.width$1 * (vec2.vertex$1.x$1 - this.low$1.x$1)) / (this.high$1.x$1 - this.low$1.x$1)), ((this.height$1 * (vec2.vertex$1.y$1 - this.low$1.y$1)) / (this.high$1.y$1 - this.low$1.y$1)), vec2.vertex$1.z$1), vec2.normal$1);
+    var elem$2 = new $c_Ltinyrenderer_Commone_package$Vert().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(((this.width$1 * (vec2.vertex$1.x$1 - this.low$1.x$1)) / (this.high$1.x$1 - this.low$1.x$1)), ((this.height$1 * (vec2.vertex$1.y$1 - this.low$1.y$1)) / (this.high$1.y$1 - this.low$1.y$1)), vec2.vertex$1.z$1), vec2.normal$1, vec2.texture$1);
     var elem$1$1 = null;
     elem$1$1 = elem$2;
-    var elem$3 = new $c_Ltinyrenderer_Commone_package$Vert().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(((this.width$1 * (vec3.vertex$1.x$1 - this.low$1.x$1)) / (this.high$1.x$1 - this.low$1.x$1)), ((this.height$1 * (vec3.vertex$1.y$1 - this.low$1.y$1)) / (this.high$1.y$1 - this.low$1.y$1)), vec3.vertex$1.z$1), vec3.normal$1);
+    var elem$3 = new $c_Ltinyrenderer_Commone_package$Vert().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(((this.width$1 * (vec3.vertex$1.x$1 - this.low$1.x$1)) / (this.high$1.x$1 - this.low$1.x$1)), ((this.height$1 * (vec3.vertex$1.y$1 - this.low$1.y$1)) / (this.high$1.y$1 - this.low$1.y$1)), vec3.vertex$1.z$1), vec3.normal$1, vec3.texture$1);
     var elem$1$2 = null;
     elem$1$2 = elem$3;
     if (($as_Ltinyrenderer_Commone_package$Vert(elem$1).vertex$1.y$1 > $as_Ltinyrenderer_Commone_package$Vert(elem$1$1).vertex$1.y$1)) {

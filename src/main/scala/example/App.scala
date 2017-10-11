@@ -73,15 +73,18 @@ object App extends js.JSApp {
             scene.triangle(
               Vert(
                 obj.vertices(fst.vertex),
-                obj.normals(fst.normal)
+                obj.normals(fst.normal),
+                obj.textures(fst.texture)
               ),
-               Vert(
+              Vert(
                 obj.vertices(snd.vertex),
-                obj.normals(snd.normal)
+                obj.normals(snd.normal),
+                obj.textures(snd.texture)
               ),
-               Vert(
+              Vert(
                 obj.vertices(trd.vertex),
-                obj.normals(trd.normal)
+                obj.normals(trd.normal),
+                obj.textures(trd.texture)
               ),
               color
             )

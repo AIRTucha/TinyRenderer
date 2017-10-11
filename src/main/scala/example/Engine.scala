@@ -90,7 +90,8 @@ case class Scene( width: Int, height: Int, val low: Vec3, val high: Vec3, img: I
           (height * ( vec1.vertex.y - low.y ) / ( high.y - low.y )),
           vec1.vertex.z
         ),
-        vec1.normal
+        vec1.normal,
+        vec1.texture
       )
       var vert2 = Vert(
         Vec3(
@@ -98,7 +99,8 @@ case class Scene( width: Int, height: Int, val low: Vec3, val high: Vec3, img: I
           (height * ( vec2.vertex.y - low.y ) / ( high.y - low.y )),
           vec2.vertex.z
         ),
-        vec2.normal
+        vec2.normal,
+        vec2.texture
       )
       var vert3 = Vert(
         Vec3(
@@ -106,7 +108,8 @@ case class Scene( width: Int, height: Int, val low: Vec3, val high: Vec3, img: I
           (height * ( vec3.vertex.y - low.y ) / ( high.y - low.y )),
           vec3.vertex.z
         ),
-        vec3.normal
+        vec3.normal,
+        vec3.texture
       )
       if ( vert1.vertex.y > vert2.vertex.y ) {
         val buff = vert1
