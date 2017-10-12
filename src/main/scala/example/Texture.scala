@@ -21,6 +21,7 @@ class Texture(
       data(redIndex + 3).asInstanceOf[Short]
     )
   }
+  //TODO: implement interpolation
   def getSmooth(x: Double, y: Double) = {
     val redIndex: Int = ((width * y).asInstanceOf[Int] + x
       .asInstanceOf[Int]) * 4

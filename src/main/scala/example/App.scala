@@ -20,7 +20,10 @@ object App extends js.JSApp {
     val enginge = new Engine(canvas)
     dom.document.getElementById("main").appendChild(canvas)
     Obj("obj/african_head/african_head.obj") map { obj =>
-      obj.render(enginge)
+
+      val scene = enginge.createScene(Vec3(-1, 1, -1), Vec3(1, -1, 1))
+      obj draw scene
+      enginge render scene
     }
     // val tex = Texture("obj/african_head/african_head_diffuse.jpg")
     // tex onSuccess {
