@@ -3992,37 +3992,6 @@ function $m_Lorg_scalajs_dom_package$() {
   return $n_Lorg_scalajs_dom_package$
 }
 /** @constructor */
-function $c_Ltinyrenderer_Commone_package$() {
-  $c_O.call(this)
-}
-$c_Ltinyrenderer_Commone_package$.prototype = new $h_O();
-$c_Ltinyrenderer_Commone_package$.prototype.constructor = $c_Ltinyrenderer_Commone_package$;
-/** @constructor */
-function $h_Ltinyrenderer_Commone_package$() {
-  /*<skip>*/
-}
-$h_Ltinyrenderer_Commone_package$.prototype = $c_Ltinyrenderer_Commone_package$.prototype;
-$c_Ltinyrenderer_Commone_package$.prototype.init___ = (function() {
-  return this
-});
-$c_Ltinyrenderer_Commone_package$.prototype.dotProduct__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__D = (function(vec1, vec2) {
-  return (((vec1.x$1 * vec2.x$1) + (vec1.y$1 * vec2.y$1)) + (vec1.z$1 * vec2.z$1))
-});
-var $d_Ltinyrenderer_Commone_package$ = new $TypeData().initClass({
-  Ltinyrenderer_Commone_package$: 0
-}, false, "tinyrenderer.Commone.package$", {
-  Ltinyrenderer_Commone_package$: 1,
-  O: 1
-});
-$c_Ltinyrenderer_Commone_package$.prototype.$classData = $d_Ltinyrenderer_Commone_package$;
-var $n_Ltinyrenderer_Commone_package$ = (void 0);
-function $m_Ltinyrenderer_Commone_package$() {
-  if ((!$n_Ltinyrenderer_Commone_package$)) {
-    $n_Ltinyrenderer_Commone_package$ = new $c_Ltinyrenderer_Commone_package$().init___()
-  };
-  return $n_Ltinyrenderer_Commone_package$
-}
-/** @constructor */
 function $c_Ltinyrenderer_Engine() {
   $c_O.call(this);
   this.canvas$1 = null;
@@ -4042,7 +4011,7 @@ $c_Ltinyrenderer_Engine.prototype.init___Lorg_scalajs_dom_raw_HTMLCanvasElement 
   this.ctx$1 = canvas.getContext("2d");
   return this
 });
-$c_Ltinyrenderer_Engine.prototype.createScene__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Scene = (function(low, high) {
+$c_Ltinyrenderer_Engine.prototype.Scene__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Scene = (function(low, high) {
   return new $c_Ltinyrenderer_Scene().init___I__I__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Lorg_scalajs_dom_raw_ImageData($uI(this.canvas$1.width), $uI(this.canvas$1.height), low, high, this.ctx$1.getImageData(0.0, 0.0, $uI(this.canvas$1.width), $uI(this.canvas$1.height)))
 });
 $c_Ltinyrenderer_Engine.prototype.render__Ltinyrenderer_Scene__V = (function(scene) {
@@ -4070,129 +4039,7 @@ function $h_Ltinyrenderer_Obj() {
   /*<skip>*/
 }
 $h_Ltinyrenderer_Obj.prototype = $c_Ltinyrenderer_Obj.prototype;
-$c_Ltinyrenderer_Obj.prototype.init___ALtinyrenderer_Commone_package$Vec3__ALtinyrenderer_Commone_package$Vec3__ALtinyrenderer_Commone_package$Vec2__AT3 = (function(vertices, normals, textures, faces) {
-  this.vertices$1 = vertices;
-  this.normals$1 = normals;
-  this.textures$1 = textures;
-  this.faces$1 = faces;
-  return this
-});
-$c_Ltinyrenderer_Obj.prototype.triangle__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Color__Ltinyrenderer_Scene__V = (function(vec1, vec2, vec3, color, scene) {
-  if (((($m_Ltinyrenderer_Commone_package$().dotProduct__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__D(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.0, 1.0), vec1.normal$1) > 0) || ($m_Ltinyrenderer_Commone_package$().dotProduct__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__D(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.0, 1.0), vec2.normal$1) > 0)) || ($m_Ltinyrenderer_Commone_package$().dotProduct__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__D(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.0, 1.0), vec3.normal$1) > 0))) {
-    var elem = new $c_Ltinyrenderer_Commone_package$Vert().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(((scene.width$1 * (vec1.vertex$1.x$1 - scene.low$1.x$1)) / (scene.high$1.x$1 - scene.low$1.x$1)), ((scene.height$1 * (vec1.vertex$1.y$1 - scene.low$1.y$1)) / (scene.high$1.y$1 - scene.low$1.y$1)), vec1.vertex$1.z$1), vec1.normal$1, vec1.texture$1);
-    var elem$1 = null;
-    elem$1 = elem;
-    var elem$2 = new $c_Ltinyrenderer_Commone_package$Vert().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(((scene.width$1 * (vec2.vertex$1.x$1 - scene.low$1.x$1)) / (scene.high$1.x$1 - scene.low$1.x$1)), ((scene.height$1 * (vec2.vertex$1.y$1 - scene.low$1.y$1)) / (scene.high$1.y$1 - scene.low$1.y$1)), vec2.vertex$1.z$1), vec2.normal$1, vec2.texture$1);
-    var elem$1$1 = null;
-    elem$1$1 = elem$2;
-    var elem$3 = new $c_Ltinyrenderer_Commone_package$Vert().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(((scene.width$1 * (vec3.vertex$1.x$1 - scene.low$1.x$1)) / (scene.high$1.x$1 - scene.low$1.x$1)), ((scene.height$1 * (vec3.vertex$1.y$1 - scene.low$1.y$1)) / (scene.high$1.y$1 - scene.low$1.y$1)), vec3.vertex$1.z$1), vec3.normal$1, vec3.texture$1);
-    var elem$1$2 = null;
-    elem$1$2 = elem$3;
-    if (($as_Ltinyrenderer_Commone_package$Vert(elem$1).vertex$1.y$1 > $as_Ltinyrenderer_Commone_package$Vert(elem$1$1).vertex$1.y$1)) {
-      var buff = $as_Ltinyrenderer_Commone_package$Vert(elem$1);
-      elem$1 = $as_Ltinyrenderer_Commone_package$Vert(elem$1$1);
-      elem$1$1 = buff
-    };
-    if (($as_Ltinyrenderer_Commone_package$Vert(elem$1$1).vertex$1.y$1 > $as_Ltinyrenderer_Commone_package$Vert(elem$1$2).vertex$1.y$1)) {
-      var buff$2 = $as_Ltinyrenderer_Commone_package$Vert(elem$1$1);
-      elem$1$1 = $as_Ltinyrenderer_Commone_package$Vert(elem$1$2);
-      elem$1$2 = buff$2
-    };
-    if (($as_Ltinyrenderer_Commone_package$Vert(elem$1).vertex$1.y$1 > $as_Ltinyrenderer_Commone_package$Vert(elem$1$1).vertex$1.y$1)) {
-      var buff$3 = $as_Ltinyrenderer_Commone_package$Vert(elem$1);
-      elem$1 = $as_Ltinyrenderer_Commone_package$Vert(elem$1$1);
-      elem$1$1 = buff$3
-    };
-    var d1 = ((($as_Ltinyrenderer_Commone_package$Vert(elem$1$1).vertex$1.y$1 - $as_Ltinyrenderer_Commone_package$Vert(elem$1).vertex$1.y$1) > 0) ? (($as_Ltinyrenderer_Commone_package$Vert(elem$1$1).vertex$1.x$1 - $as_Ltinyrenderer_Commone_package$Vert(elem$1).vertex$1.x$1) / ($as_Ltinyrenderer_Commone_package$Vert(elem$1$1).vertex$1.y$1 - $as_Ltinyrenderer_Commone_package$Vert(elem$1).vertex$1.y$1)) : 0.0);
-    var d2 = ((($as_Ltinyrenderer_Commone_package$Vert(elem$1$2).vertex$1.y$1 - $as_Ltinyrenderer_Commone_package$Vert(elem$1).vertex$1.y$1) > 0) ? (($as_Ltinyrenderer_Commone_package$Vert(elem$1$2).vertex$1.x$1 - $as_Ltinyrenderer_Commone_package$Vert(elem$1).vertex$1.x$1) / ($as_Ltinyrenderer_Commone_package$Vert(elem$1$2).vertex$1.y$1 - $as_Ltinyrenderer_Commone_package$Vert(elem$1).vertex$1.y$1)) : 0.0);
-    if ((d1 > d2)) {
-      var x = $doubleToInt($as_Ltinyrenderer_Commone_package$Vert(elem$1).vertex$1.y$1);
-      var end = $doubleToInt($as_Ltinyrenderer_Commone_package$Vert(elem$1$1).vertex$1.y$1);
-      var isEmpty$4 = (x > end);
-      if ((!isEmpty$4)) {
-        var i = x;
-        while (true) {
-          var v1 = i;
-          this.line__I__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Color__Ltinyrenderer_Scene__V(v1, $as_Ltinyrenderer_Commone_package$Vert(elem$1), $as_Ltinyrenderer_Commone_package$Vert(elem$1$2), $as_Ltinyrenderer_Commone_package$Vert(elem$1), $as_Ltinyrenderer_Commone_package$Vert(elem$1$1), color, scene);
-          if ((i === end)) {
-            break
-          };
-          i = ((1 + i) | 0)
-        }
-      };
-      var x$1 = $doubleToInt($as_Ltinyrenderer_Commone_package$Vert(elem$1$1).vertex$1.y$1);
-      var end$1 = $doubleToInt($as_Ltinyrenderer_Commone_package$Vert(elem$1$2).vertex$1.y$1);
-      var isEmpty$4$1 = (x$1 >= end$1);
-      var scala$collection$immutable$Range$$lastElement$4 = (((-1) + end$1) | 0);
-      if ((!isEmpty$4$1)) {
-        var i$1 = x$1;
-        while (true) {
-          var v1$1 = i$1;
-          this.line__I__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Color__Ltinyrenderer_Scene__V(v1$1, $as_Ltinyrenderer_Commone_package$Vert(elem$1$2), $as_Ltinyrenderer_Commone_package$Vert(elem$1), $as_Ltinyrenderer_Commone_package$Vert(elem$1$2), $as_Ltinyrenderer_Commone_package$Vert(elem$1$1), color, scene);
-          if ((i$1 === scala$collection$immutable$Range$$lastElement$4)) {
-            break
-          };
-          i$1 = ((1 + i$1) | 0)
-        }
-      }
-    } else {
-      var x$2 = $doubleToInt($as_Ltinyrenderer_Commone_package$Vert(elem$1).vertex$1.y$1);
-      var end$2 = $doubleToInt($as_Ltinyrenderer_Commone_package$Vert(elem$1$1).vertex$1.y$1);
-      var isEmpty$4$2 = (x$2 > end$2);
-      if ((!isEmpty$4$2)) {
-        var i$2 = x$2;
-        while (true) {
-          var v1$2 = i$2;
-          this.line__I__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Color__Ltinyrenderer_Scene__V(v1$2, $as_Ltinyrenderer_Commone_package$Vert(elem$1), $as_Ltinyrenderer_Commone_package$Vert(elem$1$1), $as_Ltinyrenderer_Commone_package$Vert(elem$1), $as_Ltinyrenderer_Commone_package$Vert(elem$1$2), color, scene);
-          if ((i$2 === end$2)) {
-            break
-          };
-          i$2 = ((1 + i$2) | 0)
-        }
-      };
-      var x$3 = $doubleToInt($as_Ltinyrenderer_Commone_package$Vert(elem$1$1).vertex$1.y$1);
-      var end$3 = $doubleToInt($as_Ltinyrenderer_Commone_package$Vert(elem$1$2).vertex$1.y$1);
-      var isEmpty$4$3 = (x$3 >= end$3);
-      var scala$collection$immutable$Range$$lastElement$4$1 = (((-1) + end$3) | 0);
-      if ((!isEmpty$4$3)) {
-        var i$3 = x$3;
-        while (true) {
-          var v1$3 = i$3;
-          this.line__I__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Color__Ltinyrenderer_Scene__V(v1$3, $as_Ltinyrenderer_Commone_package$Vert(elem$1$2), $as_Ltinyrenderer_Commone_package$Vert(elem$1$1), $as_Ltinyrenderer_Commone_package$Vert(elem$1$2), $as_Ltinyrenderer_Commone_package$Vert(elem$1), color, scene);
-          if ((i$3 === scala$collection$immutable$Range$$lastElement$4$1)) {
-            break
-          };
-          i$3 = ((1 + i$3) | 0)
-        }
-      }
-    }
-  }
-});
-$c_Ltinyrenderer_Obj.prototype.draw__Ltinyrenderer_Scene__V = (function(scene) {
-  var color = new $c_Ltinyrenderer_Commone_package$Color().init___S__S__S__S(255, 255, 255, $m_Ltinyrenderer_Commone_package$Color$().apply$default$4__S());
-  var xs = this.faces$1;
-  var this$2 = new $c_scm_ArrayOps$ofRef().init___AO(xs);
-  var p = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this) {
-    return (function(check$ifrefutable$1$2) {
-      var check$ifrefutable$1 = $as_T3(check$ifrefutable$1$2);
-      return (check$ifrefutable$1 !== null)
-    })
-  })(this));
-  new $c_sc_TraversableLike$WithFilter().init___sc_TraversableLike__F1(this$2, p).foreach__F1__V(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(this$2$1, scene$1, color$1) {
-    return (function(x$1$2) {
-      var x$1 = $as_T3(x$1$2);
-      if ((x$1 !== null)) {
-        var fst = $as_Ltinyrenderer_Commone_package$Vertex(x$1.$$und1$1);
-        var snd = $as_Ltinyrenderer_Commone_package$Vertex(x$1.$$und2$1);
-        var trd = $as_Ltinyrenderer_Commone_package$Vertex(x$1.$$und3$1);
-        this$2$1.triangle__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Color__Ltinyrenderer_Scene__V(new $c_Ltinyrenderer_Commone_package$Vert().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(this$2$1.vertices$1.get(fst.vertex$1), this$2$1.normals$1.get(fst.normal$1), this$2$1.textures$1.get(fst.texture$1)), new $c_Ltinyrenderer_Commone_package$Vert().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(this$2$1.vertices$1.get(snd.vertex$1), this$2$1.normals$1.get(snd.normal$1), this$2$1.textures$1.get(snd.texture$1)), new $c_Ltinyrenderer_Commone_package$Vert().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(this$2$1.vertices$1.get(trd.vertex$1), this$2$1.normals$1.get(trd.normal$1), this$2$1.textures$1.get(trd.texture$1)), color$1, scene$1)
-      } else {
-        throw new $c_s_MatchError().init___O(x$1)
-      }
-    })
-  })(this, scene, color)))
-});
-$c_Ltinyrenderer_Obj.prototype.line__I__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Vert__Ltinyrenderer_Commone_package$Color__Ltinyrenderer_Scene__V = (function(y, vec1, vec2, vec3, vec4, color, scene) {
+$c_Ltinyrenderer_Obj.prototype.line__I__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Color__Ltinyrenderer_Scene__V = (function(y, vec1, vec2, vec3, vec4, color, scene) {
   var gradientY1 = ((vec1.vertex$1.y$1 !== vec2.vertex$1.y$1) ? ((y - vec1.vertex$1.y$1) / (vec2.vertex$1.y$1 - vec1.vertex$1.y$1)) : 1.0);
   var gradientY2 = ((vec3.vertex$1.y$1 !== vec4.vertex$1.y$1) ? ((y - vec3.vertex$1.y$1) / (vec4.vertex$1.y$1 - vec3.vertex$1.y$1)) : 1.0);
   var minV = vec1.vertex$1.x$1;
@@ -4250,7 +4097,8 @@ $c_Ltinyrenderer_Obj.prototype.line__I__Ltinyrenderer_Commone_package$Vert__Ltin
       var normal = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((startNormalX + ((endNormalX - startNormalX) * jsx$2)), (startNormalY + ((endNormalY - startNormalY) * jsx$1)), (startNormalZ + ((endNormalZ - startNormalZ) * $uD($g.Math.max(0.0, y$13)))));
       var y$14 = $uD($g.Math.min(gradientX, 1.0));
       var z = (startZ + ((endZ - startZ) * $uD($g.Math.max(0.0, y$14))));
-      var intensity = $m_Ltinyrenderer_Commone_package$().dotProduct__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__D(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.5, 0.7), normal);
+      var vec1$1 = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.5, 0.7);
+      var intensity = (((vec1$1.x$1 * normal.x$1) + (vec1$1.y$1 * normal.y$1)) + (vec1$1.z$1 * normal.z$1));
       scene.dot__I__I__D__D__D__D__D__V(v1, y, z, (color.r$1 * intensity), (color.g$1 * intensity), (color.b$1 * intensity), (color.a$1 * intensity));
       if ((i === scala$collection$immutable$Range$$lastElement$4)) {
         break
@@ -4258,6 +4106,144 @@ $c_Ltinyrenderer_Obj.prototype.line__I__Ltinyrenderer_Commone_package$Vert__Ltin
       i = ((1 + i) | 0)
     }
   }
+});
+$c_Ltinyrenderer_Obj.prototype.init___ALtinyrenderer_Commone_package$Vec3__ALtinyrenderer_Commone_package$Vec3__ALtinyrenderer_Commone_package$Vec2__AT3 = (function(vertices, normals, textures, faces) {
+  this.vertices$1 = vertices;
+  this.normals$1 = normals;
+  this.textures$1 = textures;
+  this.faces$1 = faces;
+  return this
+});
+$c_Ltinyrenderer_Obj.prototype.triangle__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Color__Ltinyrenderer_Scene__V = (function(vec1, vec2, vec3, color, scene) {
+  var vec1$1 = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.0, 1.0);
+  var vec2$1 = vec1.normal$1;
+  if (((((vec1$1.x$1 * vec2$1.x$1) + (vec1$1.y$1 * vec2$1.y$1)) + (vec1$1.z$1 * vec2$1.z$1)) > 0)) {
+    var jsx$2 = true
+  } else {
+    var vec1$2 = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.0, 1.0);
+    var vec2$2 = vec2.normal$1;
+    var jsx$2 = ((((vec1$2.x$1 * vec2$2.x$1) + (vec1$2.y$1 * vec2$2.y$1)) + (vec1$2.z$1 * vec2$2.z$1)) > 0)
+  };
+  if (jsx$2) {
+    var jsx$1 = true
+  } else {
+    var vec1$3 = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.0, 1.0);
+    var vec2$3 = vec3.normal$1;
+    var jsx$1 = ((((vec1$3.x$1 * vec2$3.x$1) + (vec1$3.y$1 * vec2$3.y$1)) + (vec1$3.z$1 * vec2$3.z$1)) > 0)
+  };
+  if (jsx$1) {
+    var elem = new $c_Ltinyrenderer_Commone_package$Vertex().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(((scene.width$1 * (vec1.vertex$1.x$1 - scene.low$1.x$1)) / (scene.high$1.x$1 - scene.low$1.x$1)), ((scene.height$1 * (vec1.vertex$1.y$1 - scene.low$1.y$1)) / (scene.high$1.y$1 - scene.low$1.y$1)), vec1.vertex$1.z$1), vec1.normal$1, vec1.texture$1);
+    var elem$1 = null;
+    elem$1 = elem;
+    var elem$2 = new $c_Ltinyrenderer_Commone_package$Vertex().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(((scene.width$1 * (vec2.vertex$1.x$1 - scene.low$1.x$1)) / (scene.high$1.x$1 - scene.low$1.x$1)), ((scene.height$1 * (vec2.vertex$1.y$1 - scene.low$1.y$1)) / (scene.high$1.y$1 - scene.low$1.y$1)), vec2.vertex$1.z$1), vec2.normal$1, vec2.texture$1);
+    var elem$1$1 = null;
+    elem$1$1 = elem$2;
+    var elem$3 = new $c_Ltinyrenderer_Commone_package$Vertex().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(((scene.width$1 * (vec3.vertex$1.x$1 - scene.low$1.x$1)) / (scene.high$1.x$1 - scene.low$1.x$1)), ((scene.height$1 * (vec3.vertex$1.y$1 - scene.low$1.y$1)) / (scene.high$1.y$1 - scene.low$1.y$1)), vec3.vertex$1.z$1), vec3.normal$1, vec3.texture$1);
+    var elem$1$2 = null;
+    elem$1$2 = elem$3;
+    if (($as_Ltinyrenderer_Commone_package$Vertex(elem$1).vertex$1.y$1 > $as_Ltinyrenderer_Commone_package$Vertex(elem$1$1).vertex$1.y$1)) {
+      var buff = $as_Ltinyrenderer_Commone_package$Vertex(elem$1);
+      elem$1 = $as_Ltinyrenderer_Commone_package$Vertex(elem$1$1);
+      elem$1$1 = buff
+    };
+    if (($as_Ltinyrenderer_Commone_package$Vertex(elem$1$1).vertex$1.y$1 > $as_Ltinyrenderer_Commone_package$Vertex(elem$1$2).vertex$1.y$1)) {
+      var buff$2 = $as_Ltinyrenderer_Commone_package$Vertex(elem$1$1);
+      elem$1$1 = $as_Ltinyrenderer_Commone_package$Vertex(elem$1$2);
+      elem$1$2 = buff$2
+    };
+    if (($as_Ltinyrenderer_Commone_package$Vertex(elem$1).vertex$1.y$1 > $as_Ltinyrenderer_Commone_package$Vertex(elem$1$1).vertex$1.y$1)) {
+      var buff$3 = $as_Ltinyrenderer_Commone_package$Vertex(elem$1);
+      elem$1 = $as_Ltinyrenderer_Commone_package$Vertex(elem$1$1);
+      elem$1$1 = buff$3
+    };
+    var d1 = ((($as_Ltinyrenderer_Commone_package$Vertex(elem$1$1).vertex$1.y$1 - $as_Ltinyrenderer_Commone_package$Vertex(elem$1).vertex$1.y$1) > 0) ? (($as_Ltinyrenderer_Commone_package$Vertex(elem$1$1).vertex$1.x$1 - $as_Ltinyrenderer_Commone_package$Vertex(elem$1).vertex$1.x$1) / ($as_Ltinyrenderer_Commone_package$Vertex(elem$1$1).vertex$1.y$1 - $as_Ltinyrenderer_Commone_package$Vertex(elem$1).vertex$1.y$1)) : 0.0);
+    var d2 = ((($as_Ltinyrenderer_Commone_package$Vertex(elem$1$2).vertex$1.y$1 - $as_Ltinyrenderer_Commone_package$Vertex(elem$1).vertex$1.y$1) > 0) ? (($as_Ltinyrenderer_Commone_package$Vertex(elem$1$2).vertex$1.x$1 - $as_Ltinyrenderer_Commone_package$Vertex(elem$1).vertex$1.x$1) / ($as_Ltinyrenderer_Commone_package$Vertex(elem$1$2).vertex$1.y$1 - $as_Ltinyrenderer_Commone_package$Vertex(elem$1).vertex$1.y$1)) : 0.0);
+    if ((d1 > d2)) {
+      var x = $doubleToInt($as_Ltinyrenderer_Commone_package$Vertex(elem$1).vertex$1.y$1);
+      var end = $doubleToInt($as_Ltinyrenderer_Commone_package$Vertex(elem$1$1).vertex$1.y$1);
+      var isEmpty$4 = (x > end);
+      if ((!isEmpty$4)) {
+        var i = x;
+        while (true) {
+          var v1 = i;
+          this.line__I__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Color__Ltinyrenderer_Scene__V(v1, $as_Ltinyrenderer_Commone_package$Vertex(elem$1), $as_Ltinyrenderer_Commone_package$Vertex(elem$1$2), $as_Ltinyrenderer_Commone_package$Vertex(elem$1), $as_Ltinyrenderer_Commone_package$Vertex(elem$1$1), color, scene);
+          if ((i === end)) {
+            break
+          };
+          i = ((1 + i) | 0)
+        }
+      };
+      var x$1 = $doubleToInt($as_Ltinyrenderer_Commone_package$Vertex(elem$1$1).vertex$1.y$1);
+      var end$1 = $doubleToInt($as_Ltinyrenderer_Commone_package$Vertex(elem$1$2).vertex$1.y$1);
+      var isEmpty$4$1 = (x$1 >= end$1);
+      var scala$collection$immutable$Range$$lastElement$4 = (((-1) + end$1) | 0);
+      if ((!isEmpty$4$1)) {
+        var i$1 = x$1;
+        while (true) {
+          var v1$1 = i$1;
+          this.line__I__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Color__Ltinyrenderer_Scene__V(v1$1, $as_Ltinyrenderer_Commone_package$Vertex(elem$1$2), $as_Ltinyrenderer_Commone_package$Vertex(elem$1), $as_Ltinyrenderer_Commone_package$Vertex(elem$1$2), $as_Ltinyrenderer_Commone_package$Vertex(elem$1$1), color, scene);
+          if ((i$1 === scala$collection$immutable$Range$$lastElement$4)) {
+            break
+          };
+          i$1 = ((1 + i$1) | 0)
+        }
+      }
+    } else {
+      var x$2 = $doubleToInt($as_Ltinyrenderer_Commone_package$Vertex(elem$1).vertex$1.y$1);
+      var end$2 = $doubleToInt($as_Ltinyrenderer_Commone_package$Vertex(elem$1$1).vertex$1.y$1);
+      var isEmpty$4$2 = (x$2 > end$2);
+      if ((!isEmpty$4$2)) {
+        var i$2 = x$2;
+        while (true) {
+          var v1$2 = i$2;
+          this.line__I__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Color__Ltinyrenderer_Scene__V(v1$2, $as_Ltinyrenderer_Commone_package$Vertex(elem$1), $as_Ltinyrenderer_Commone_package$Vertex(elem$1$1), $as_Ltinyrenderer_Commone_package$Vertex(elem$1), $as_Ltinyrenderer_Commone_package$Vertex(elem$1$2), color, scene);
+          if ((i$2 === end$2)) {
+            break
+          };
+          i$2 = ((1 + i$2) | 0)
+        }
+      };
+      var x$3 = $doubleToInt($as_Ltinyrenderer_Commone_package$Vertex(elem$1$1).vertex$1.y$1);
+      var end$3 = $doubleToInt($as_Ltinyrenderer_Commone_package$Vertex(elem$1$2).vertex$1.y$1);
+      var isEmpty$4$3 = (x$3 >= end$3);
+      var scala$collection$immutable$Range$$lastElement$4$1 = (((-1) + end$3) | 0);
+      if ((!isEmpty$4$3)) {
+        var i$3 = x$3;
+        while (true) {
+          var v1$3 = i$3;
+          this.line__I__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Color__Ltinyrenderer_Scene__V(v1$3, $as_Ltinyrenderer_Commone_package$Vertex(elem$1$2), $as_Ltinyrenderer_Commone_package$Vertex(elem$1$1), $as_Ltinyrenderer_Commone_package$Vertex(elem$1$2), $as_Ltinyrenderer_Commone_package$Vertex(elem$1), color, scene);
+          if ((i$3 === scala$collection$immutable$Range$$lastElement$4$1)) {
+            break
+          };
+          i$3 = ((1 + i$3) | 0)
+        }
+      }
+    }
+  }
+});
+$c_Ltinyrenderer_Obj.prototype.draw__Ltinyrenderer_Scene__V = (function(scene) {
+  var color = new $c_Ltinyrenderer_Commone_package$Color().init___I__I__I__I(255, 255, 255, 255);
+  var xs = this.faces$1;
+  var this$2 = new $c_scm_ArrayOps$ofRef().init___AO(xs);
+  var p = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this) {
+    return (function(check$ifrefutable$1$2) {
+      var check$ifrefutable$1 = $as_T3(check$ifrefutable$1$2);
+      return (check$ifrefutable$1 !== null)
+    })
+  })(this));
+  new $c_sc_TraversableLike$WithFilter().init___sc_TraversableLike__F1(this$2, p).foreach__F1__V(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(this$2$1, scene$1, color$1) {
+    return (function(x$1$2) {
+      var x$1 = $as_T3(x$1$2);
+      if ((x$1 !== null)) {
+        var fst = $as_Ltinyrenderer_Commone_package$Indeces(x$1.$$und1$1);
+        var snd = $as_Ltinyrenderer_Commone_package$Indeces(x$1.$$und2$1);
+        var trd = $as_Ltinyrenderer_Commone_package$Indeces(x$1.$$und3$1);
+        this$2$1.triangle__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Color__Ltinyrenderer_Scene__V(new $c_Ltinyrenderer_Commone_package$Vertex().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(this$2$1.vertices$1.get(fst.vertex$1), this$2$1.normals$1.get(fst.normal$1), this$2$1.textures$1.get(fst.texture$1)), new $c_Ltinyrenderer_Commone_package$Vertex().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(this$2$1.vertices$1.get(snd.vertex$1), this$2$1.normals$1.get(snd.normal$1), this$2$1.textures$1.get(snd.texture$1)), new $c_Ltinyrenderer_Commone_package$Vertex().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(this$2$1.vertices$1.get(trd.vertex$1), this$2$1.normals$1.get(trd.normal$1), this$2$1.textures$1.get(trd.texture$1)), color$1, scene$1)
+      } else {
+        throw new $c_s_MatchError().init___O(x$1)
+      }
+    })
+  })(this, scene, color)))
 });
 function $is_Ltinyrenderer_Obj(obj) {
   return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltinyrenderer_Obj)))
@@ -4459,7 +4445,7 @@ $c_Ltinyrenderer_Obj$.prototype.apply__T__s_concurrent_Future = (function(url) {
               var this$70 = new $c_sci_StringOps().init___T(trd);
               var this$72 = $m_jl_Integer$();
               var $$this$10 = this$70.repr$1;
-              var jsx$7 = new $c_Ltinyrenderer_Commone_package$Vertex().init___I__I__I((((-1) + jsx$9) | 0), (((-1) + jsx$8) | 0), (((-1) + this$72.parseInt__T__I__I($$this$10, 10)) | 0));
+              var jsx$7 = new $c_Ltinyrenderer_Commone_package$Indeces().init___I__I__I((((-1) + jsx$9) | 0), (((-1) + jsx$8) | 0), (((-1) + this$72.parseInt__T__I__I($$this$10, 10)) | 0));
               break matchEnd4
             };
             throw new $c_s_MatchError().init___O(x1$1)
@@ -4484,7 +4470,7 @@ $c_Ltinyrenderer_Obj$.prototype.apply__T__s_concurrent_Future = (function(url) {
               var this$83 = new $c_sci_StringOps().init___T(trd$2);
               var this$85 = $m_jl_Integer$();
               var $$this$13 = this$83.repr$1;
-              var jsx$4 = new $c_Ltinyrenderer_Commone_package$Vertex().init___I__I__I((((-1) + jsx$6) | 0), (((-1) + jsx$5) | 0), (((-1) + this$85.parseInt__T__I__I($$this$13, 10)) | 0));
+              var jsx$4 = new $c_Ltinyrenderer_Commone_package$Indeces().init___I__I__I((((-1) + jsx$6) | 0), (((-1) + jsx$5) | 0), (((-1) + this$85.parseInt__T__I__I($$this$13, 10)) | 0));
               break matchEnd4$2
             };
             throw new $c_s_MatchError().init___O(x1$2)
@@ -4509,7 +4495,7 @@ $c_Ltinyrenderer_Obj$.prototype.apply__T__s_concurrent_Future = (function(url) {
               var this$96 = new $c_sci_StringOps().init___T(trd$3);
               var this$98 = $m_jl_Integer$();
               var $$this$16 = this$96.repr$1;
-              var jsx$1 = new $c_Ltinyrenderer_Commone_package$Vertex().init___I__I__I((((-1) + jsx$3) | 0), (((-1) + jsx$2) | 0), (((-1) + this$98.parseInt__T__I__I($$this$16, 10)) | 0));
+              var jsx$1 = new $c_Ltinyrenderer_Commone_package$Indeces().init___I__I__I((((-1) + jsx$3) | 0), (((-1) + jsx$2) | 0), (((-1) + this$98.parseInt__T__I__I($$this$16, 10)) | 0));
               break matchEnd4$3
             };
             throw new $c_s_MatchError().init___O(x1$3)
@@ -4542,6 +4528,69 @@ function $m_Ltinyrenderer_Obj$() {
   };
   return $n_Ltinyrenderer_Obj$
 }
+/** @constructor */
+function $c_Ltinyrenderer_Scene() {
+  $c_O.call(this);
+  this.width$1 = 0;
+  this.height$1 = 0;
+  this.low$1 = null;
+  this.high$1 = null;
+  this.img$1 = null;
+  this.zBuffer$1 = null;
+  this.lights$1 = null;
+  this.dataAmount$1 = 0
+}
+$c_Ltinyrenderer_Scene.prototype = new $h_O();
+$c_Ltinyrenderer_Scene.prototype.constructor = $c_Ltinyrenderer_Scene;
+/** @constructor */
+function $h_Ltinyrenderer_Scene() {
+  /*<skip>*/
+}
+$h_Ltinyrenderer_Scene.prototype = $c_Ltinyrenderer_Scene.prototype;
+$c_Ltinyrenderer_Scene.prototype.init___I__I__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Lorg_scalajs_dom_raw_ImageData = (function(width, height, low, high, img) {
+  this.width$1 = width;
+  this.height$1 = height;
+  this.low$1 = low;
+  this.high$1 = high;
+  this.img$1 = img;
+  var elems$2 = null;
+  elems$2 = [];
+  var i = 0;
+  while ((i < height)) {
+    var arg1 = i;
+    var elems$2$1 = null;
+    elems$2$1 = [];
+    var i$1 = 0;
+    while ((i$1 < width)) {
+      elems$2$1.push((-2.0));
+      i$1 = ((1 + i$1) | 0)
+    };
+    var elem = $makeNativeArrayWrapper($d_D.getArrayOf(), elems$2$1);
+    elems$2.push(elem);
+    i = ((1 + i) | 0)
+  };
+  this.zBuffer$1 = $makeNativeArrayWrapper($d_D.getArrayOf().getArrayOf(), elems$2);
+  this.lights$1 = $as_scm_ListBuffer($m_scm_ListBuffer$().apply__sc_Seq__sc_GenTraversable($m_sci_Nil$()));
+  this.dataAmount$1 = ($imul(width, height) << 2);
+  return this
+});
+$c_Ltinyrenderer_Scene.prototype.dot__I__I__D__D__D__D__D__V = (function(x, y, z, r, g, b, a) {
+  if ((this.zBuffer$1.get(x).get(y) < z)) {
+    var redIndex = ((($imul(this.width$1, y) + x) | 0) << 2);
+    this.img$1.data[redIndex] = ((r << 16) >> 16);
+    this.img$1.data[((1 + redIndex) | 0)] = ((g << 16) >> 16);
+    this.img$1.data[((2 + redIndex) | 0)] = ((b << 16) >> 16);
+    this.img$1.data[((3 + redIndex) | 0)] = 255;
+    this.zBuffer$1.get(x).set(y, z)
+  }
+});
+var $d_Ltinyrenderer_Scene = new $TypeData().initClass({
+  Ltinyrenderer_Scene: 0
+}, false, "tinyrenderer.Scene", {
+  Ltinyrenderer_Scene: 1,
+  O: 1
+});
+$c_Ltinyrenderer_Scene.prototype.$classData = $d_Ltinyrenderer_Scene;
 /** @constructor */
 function $c_jl_Class() {
   $c_O.call(this);
@@ -9098,7 +9147,7 @@ $c_Ltinyrenderer_App$.prototype.main__V = (function() {
   $m_Ltinyrenderer_Obj$().apply__T__s_concurrent_Future("obj/african_head/african_head.obj").map__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, enginge$1) {
     return (function(obj$2) {
       var obj = $as_Ltinyrenderer_Obj(obj$2);
-      var scene = enginge$1.createScene__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Scene(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((-1.0), 1.0, (-1.0)), new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(1.0, (-1.0), 1.0));
+      var scene = enginge$1.Scene__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Scene(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((-1.0), 1.0, (-1.0)), new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(1.0, (-1.0), 1.0));
       obj.draw__Ltinyrenderer_Scene__V(scene);
       enginge$1.render__Ltinyrenderer_Scene__V(scene)
     })
@@ -11258,17 +11307,6 @@ $h_sr_AbstractFunction2.prototype = $c_sr_AbstractFunction2.prototype;
 $c_sr_AbstractFunction2.prototype.toString__T = (function() {
   return "<function2>"
 });
-/** @constructor */
-function $c_sr_AbstractFunction4() {
-  $c_O.call(this)
-}
-$c_sr_AbstractFunction4.prototype = new $h_O();
-$c_sr_AbstractFunction4.prototype.constructor = $c_sr_AbstractFunction4;
-/** @constructor */
-function $h_sr_AbstractFunction4() {
-  /*<skip>*/
-}
-$h_sr_AbstractFunction4.prototype = $c_sr_AbstractFunction4.prototype;
 /** @constructor */
 function $c_sr_BooleanRef() {
   $c_O.call(this);
@@ -17561,7 +17599,7 @@ $c_Ltinyrenderer_Commone_package$Color.prototype.productElement__I__O = (functio
 $c_Ltinyrenderer_Commone_package$Color.prototype.toString__T = (function() {
   return $m_sr_ScalaRunTime$().$$undtoString__s_Product__T(this)
 });
-$c_Ltinyrenderer_Commone_package$Color.prototype.init___S__S__S__S = (function(r, g, b, a) {
+$c_Ltinyrenderer_Commone_package$Color.prototype.init___I__I__I__I = (function(r, g, b, a) {
   this.r$1 = r;
   this.g$1 = g;
   this.b$1 = b;
@@ -17603,43 +17641,96 @@ var $d_Ltinyrenderer_Commone_package$Color = new $TypeData().initClass({
 });
 $c_Ltinyrenderer_Commone_package$Color.prototype.$classData = $d_Ltinyrenderer_Commone_package$Color;
 /** @constructor */
-function $c_Ltinyrenderer_Commone_package$Color$() {
-  $c_sr_AbstractFunction4.call(this)
+function $c_Ltinyrenderer_Commone_package$Indeces() {
+  $c_O.call(this);
+  this.vertex$1 = 0;
+  this.texture$1 = 0;
+  this.normal$1 = 0
 }
-$c_Ltinyrenderer_Commone_package$Color$.prototype = new $h_sr_AbstractFunction4();
-$c_Ltinyrenderer_Commone_package$Color$.prototype.constructor = $c_Ltinyrenderer_Commone_package$Color$;
+$c_Ltinyrenderer_Commone_package$Indeces.prototype = new $h_O();
+$c_Ltinyrenderer_Commone_package$Indeces.prototype.constructor = $c_Ltinyrenderer_Commone_package$Indeces;
 /** @constructor */
-function $h_Ltinyrenderer_Commone_package$Color$() {
+function $h_Ltinyrenderer_Commone_package$Indeces() {
   /*<skip>*/
 }
-$h_Ltinyrenderer_Commone_package$Color$.prototype = $c_Ltinyrenderer_Commone_package$Color$.prototype;
-$c_Ltinyrenderer_Commone_package$Color$.prototype.init___ = (function() {
+$h_Ltinyrenderer_Commone_package$Indeces.prototype = $c_Ltinyrenderer_Commone_package$Indeces.prototype;
+$c_Ltinyrenderer_Commone_package$Indeces.prototype.productPrefix__T = (function() {
+  return "Indeces"
+});
+$c_Ltinyrenderer_Commone_package$Indeces.prototype.productArity__I = (function() {
+  return 3
+});
+$c_Ltinyrenderer_Commone_package$Indeces.prototype.equals__O__Z = (function(x$1) {
+  if ((this === x$1)) {
+    return true
+  } else if ($is_Ltinyrenderer_Commone_package$Indeces(x$1)) {
+    var Indeces$1 = $as_Ltinyrenderer_Commone_package$Indeces(x$1);
+    return (((this.vertex$1 === Indeces$1.vertex$1) && (this.texture$1 === Indeces$1.texture$1)) && (this.normal$1 === Indeces$1.normal$1))
+  } else {
+    return false
+  }
+});
+$c_Ltinyrenderer_Commone_package$Indeces.prototype.init___I__I__I = (function(vertex, texture, normal) {
+  this.vertex$1 = vertex;
+  this.texture$1 = texture;
+  this.normal$1 = normal;
   return this
 });
-$c_Ltinyrenderer_Commone_package$Color$.prototype.toString__T = (function() {
-  return "Color"
+$c_Ltinyrenderer_Commone_package$Indeces.prototype.productElement__I__O = (function(x$1) {
+  switch (x$1) {
+    case 0: {
+      return this.vertex$1;
+      break
+    }
+    case 1: {
+      return this.texture$1;
+      break
+    }
+    case 2: {
+      return this.normal$1;
+      break
+    }
+    default: {
+      throw new $c_jl_IndexOutOfBoundsException().init___T(("" + x$1))
+    }
+  }
 });
-$c_Ltinyrenderer_Commone_package$Color$.prototype.apply$default$4__S = (function() {
-  return 255
+$c_Ltinyrenderer_Commone_package$Indeces.prototype.toString__T = (function() {
+  return $m_sr_ScalaRunTime$().$$undtoString__s_Product__T(this)
 });
-var $d_Ltinyrenderer_Commone_package$Color$ = new $TypeData().initClass({
-  Ltinyrenderer_Commone_package$Color$: 0
-}, false, "tinyrenderer.Commone.package$Color$", {
-  Ltinyrenderer_Commone_package$Color$: 1,
-  sr_AbstractFunction4: 1,
+$c_Ltinyrenderer_Commone_package$Indeces.prototype.hashCode__I = (function() {
+  var acc = (-889275714);
+  acc = $m_sr_Statics$().mix__I__I__I(acc, this.vertex$1);
+  acc = $m_sr_Statics$().mix__I__I__I(acc, this.texture$1);
+  acc = $m_sr_Statics$().mix__I__I__I(acc, this.normal$1);
+  return $m_sr_Statics$().finalizeHash__I__I__I(acc, 3)
+});
+$c_Ltinyrenderer_Commone_package$Indeces.prototype.productIterator__sc_Iterator = (function() {
+  return new $c_sr_ScalaRunTime$$anon$1().init___s_Product(this)
+});
+function $is_Ltinyrenderer_Commone_package$Indeces(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltinyrenderer_Commone_package$Indeces)))
+}
+function $as_Ltinyrenderer_Commone_package$Indeces(obj) {
+  return (($is_Ltinyrenderer_Commone_package$Indeces(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "tinyrenderer.Commone.package$Indeces"))
+}
+function $isArrayOf_Ltinyrenderer_Commone_package$Indeces(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltinyrenderer_Commone_package$Indeces)))
+}
+function $asArrayOf_Ltinyrenderer_Commone_package$Indeces(obj, depth) {
+  return (($isArrayOf_Ltinyrenderer_Commone_package$Indeces(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ltinyrenderer.Commone.package$Indeces;", depth))
+}
+var $d_Ltinyrenderer_Commone_package$Indeces = new $TypeData().initClass({
+  Ltinyrenderer_Commone_package$Indeces: 0
+}, false, "tinyrenderer.Commone.package$Indeces", {
+  Ltinyrenderer_Commone_package$Indeces: 1,
   O: 1,
-  F4: 1,
+  s_Product: 1,
+  s_Equals: 1,
   s_Serializable: 1,
   Ljava_io_Serializable: 1
 });
-$c_Ltinyrenderer_Commone_package$Color$.prototype.$classData = $d_Ltinyrenderer_Commone_package$Color$;
-var $n_Ltinyrenderer_Commone_package$Color$ = (void 0);
-function $m_Ltinyrenderer_Commone_package$Color$() {
-  if ((!$n_Ltinyrenderer_Commone_package$Color$)) {
-    $n_Ltinyrenderer_Commone_package$Color$ = new $c_Ltinyrenderer_Commone_package$Color$().init___()
-  };
-  return $n_Ltinyrenderer_Commone_package$Color$
-}
+$c_Ltinyrenderer_Commone_package$Indeces.prototype.$classData = $d_Ltinyrenderer_Commone_package$Indeces;
 /** @constructor */
 function $c_Ltinyrenderer_Commone_package$Vec2() {
   $c_O.call(this);
@@ -17816,114 +17907,11 @@ var $d_Ltinyrenderer_Commone_package$Vec3 = new $TypeData().initClass({
 });
 $c_Ltinyrenderer_Commone_package$Vec3.prototype.$classData = $d_Ltinyrenderer_Commone_package$Vec3;
 /** @constructor */
-function $c_Ltinyrenderer_Commone_package$Vert() {
+function $c_Ltinyrenderer_Commone_package$Vertex() {
   $c_O.call(this);
   this.vertex$1 = null;
   this.normal$1 = null;
   this.texture$1 = null
-}
-$c_Ltinyrenderer_Commone_package$Vert.prototype = new $h_O();
-$c_Ltinyrenderer_Commone_package$Vert.prototype.constructor = $c_Ltinyrenderer_Commone_package$Vert;
-/** @constructor */
-function $h_Ltinyrenderer_Commone_package$Vert() {
-  /*<skip>*/
-}
-$h_Ltinyrenderer_Commone_package$Vert.prototype = $c_Ltinyrenderer_Commone_package$Vert.prototype;
-$c_Ltinyrenderer_Commone_package$Vert.prototype.productPrefix__T = (function() {
-  return "Vert"
-});
-$c_Ltinyrenderer_Commone_package$Vert.prototype.init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2 = (function(vertex, normal, texture) {
-  this.vertex$1 = vertex;
-  this.normal$1 = normal;
-  this.texture$1 = texture;
-  return this
-});
-$c_Ltinyrenderer_Commone_package$Vert.prototype.productArity__I = (function() {
-  return 3
-});
-$c_Ltinyrenderer_Commone_package$Vert.prototype.equals__O__Z = (function(x$1) {
-  if ((this === x$1)) {
-    return true
-  } else if ($is_Ltinyrenderer_Commone_package$Vert(x$1)) {
-    var Vert$1 = $as_Ltinyrenderer_Commone_package$Vert(x$1);
-    var x = this.vertex$1;
-    var x$2 = Vert$1.vertex$1;
-    if (((x === null) ? (x$2 === null) : x.equals__O__Z(x$2))) {
-      var x$3 = this.normal$1;
-      var x$4 = Vert$1.normal$1;
-      var jsx$1 = ((x$3 === null) ? (x$4 === null) : x$3.equals__O__Z(x$4))
-    } else {
-      var jsx$1 = false
-    };
-    if (jsx$1) {
-      var x$5 = this.texture$1;
-      var x$6 = Vert$1.texture$1;
-      return ((x$5 === null) ? (x$6 === null) : x$5.equals__O__Z(x$6))
-    } else {
-      return false
-    }
-  } else {
-    return false
-  }
-});
-$c_Ltinyrenderer_Commone_package$Vert.prototype.productElement__I__O = (function(x$1) {
-  switch (x$1) {
-    case 0: {
-      return this.vertex$1;
-      break
-    }
-    case 1: {
-      return this.normal$1;
-      break
-    }
-    case 2: {
-      return this.texture$1;
-      break
-    }
-    default: {
-      throw new $c_jl_IndexOutOfBoundsException().init___T(("" + x$1))
-    }
-  }
-});
-$c_Ltinyrenderer_Commone_package$Vert.prototype.toString__T = (function() {
-  return $m_sr_ScalaRunTime$().$$undtoString__s_Product__T(this)
-});
-$c_Ltinyrenderer_Commone_package$Vert.prototype.hashCode__I = (function() {
-  var this$2 = $m_s_util_hashing_MurmurHash3$();
-  return this$2.productHash__s_Product__I__I(this, (-889275714))
-});
-$c_Ltinyrenderer_Commone_package$Vert.prototype.productIterator__sc_Iterator = (function() {
-  return new $c_sr_ScalaRunTime$$anon$1().init___s_Product(this)
-});
-function $is_Ltinyrenderer_Commone_package$Vert(obj) {
-  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltinyrenderer_Commone_package$Vert)))
-}
-function $as_Ltinyrenderer_Commone_package$Vert(obj) {
-  return (($is_Ltinyrenderer_Commone_package$Vert(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "tinyrenderer.Commone.package$Vert"))
-}
-function $isArrayOf_Ltinyrenderer_Commone_package$Vert(obj, depth) {
-  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltinyrenderer_Commone_package$Vert)))
-}
-function $asArrayOf_Ltinyrenderer_Commone_package$Vert(obj, depth) {
-  return (($isArrayOf_Ltinyrenderer_Commone_package$Vert(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ltinyrenderer.Commone.package$Vert;", depth))
-}
-var $d_Ltinyrenderer_Commone_package$Vert = new $TypeData().initClass({
-  Ltinyrenderer_Commone_package$Vert: 0
-}, false, "tinyrenderer.Commone.package$Vert", {
-  Ltinyrenderer_Commone_package$Vert: 1,
-  O: 1,
-  s_Product: 1,
-  s_Equals: 1,
-  s_Serializable: 1,
-  Ljava_io_Serializable: 1
-});
-$c_Ltinyrenderer_Commone_package$Vert.prototype.$classData = $d_Ltinyrenderer_Commone_package$Vert;
-/** @constructor */
-function $c_Ltinyrenderer_Commone_package$Vertex() {
-  $c_O.call(this);
-  this.vertex$1 = 0;
-  this.texture$1 = 0;
-  this.normal$1 = 0
 }
 $c_Ltinyrenderer_Commone_package$Vertex.prototype = new $h_O();
 $c_Ltinyrenderer_Commone_package$Vertex.prototype.constructor = $c_Ltinyrenderer_Commone_package$Vertex;
@@ -17935,6 +17923,12 @@ $h_Ltinyrenderer_Commone_package$Vertex.prototype = $c_Ltinyrenderer_Commone_pac
 $c_Ltinyrenderer_Commone_package$Vertex.prototype.productPrefix__T = (function() {
   return "Vertex"
 });
+$c_Ltinyrenderer_Commone_package$Vertex.prototype.init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2 = (function(vertex, normal, texture) {
+  this.vertex$1 = vertex;
+  this.normal$1 = normal;
+  this.texture$1 = texture;
+  return this
+});
 $c_Ltinyrenderer_Commone_package$Vertex.prototype.productArity__I = (function() {
   return 3
 });
@@ -17943,16 +17937,25 @@ $c_Ltinyrenderer_Commone_package$Vertex.prototype.equals__O__Z = (function(x$1) 
     return true
   } else if ($is_Ltinyrenderer_Commone_package$Vertex(x$1)) {
     var Vertex$1 = $as_Ltinyrenderer_Commone_package$Vertex(x$1);
-    return (((this.vertex$1 === Vertex$1.vertex$1) && (this.texture$1 === Vertex$1.texture$1)) && (this.normal$1 === Vertex$1.normal$1))
+    var x = this.vertex$1;
+    var x$2 = Vertex$1.vertex$1;
+    if (((x === null) ? (x$2 === null) : x.equals__O__Z(x$2))) {
+      var x$3 = this.normal$1;
+      var x$4 = Vertex$1.normal$1;
+      var jsx$1 = ((x$3 === null) ? (x$4 === null) : x$3.equals__O__Z(x$4))
+    } else {
+      var jsx$1 = false
+    };
+    if (jsx$1) {
+      var x$5 = this.texture$1;
+      var x$6 = Vertex$1.texture$1;
+      return ((x$5 === null) ? (x$6 === null) : x$5.equals__O__Z(x$6))
+    } else {
+      return false
+    }
   } else {
     return false
   }
-});
-$c_Ltinyrenderer_Commone_package$Vertex.prototype.init___I__I__I = (function(vertex, texture, normal) {
-  this.vertex$1 = vertex;
-  this.texture$1 = texture;
-  this.normal$1 = normal;
-  return this
 });
 $c_Ltinyrenderer_Commone_package$Vertex.prototype.productElement__I__O = (function(x$1) {
   switch (x$1) {
@@ -17961,11 +17964,11 @@ $c_Ltinyrenderer_Commone_package$Vertex.prototype.productElement__I__O = (functi
       break
     }
     case 1: {
-      return this.texture$1;
+      return this.normal$1;
       break
     }
     case 2: {
-      return this.normal$1;
+      return this.texture$1;
       break
     }
     default: {
@@ -17977,11 +17980,8 @@ $c_Ltinyrenderer_Commone_package$Vertex.prototype.toString__T = (function() {
   return $m_sr_ScalaRunTime$().$$undtoString__s_Product__T(this)
 });
 $c_Ltinyrenderer_Commone_package$Vertex.prototype.hashCode__I = (function() {
-  var acc = (-889275714);
-  acc = $m_sr_Statics$().mix__I__I__I(acc, this.vertex$1);
-  acc = $m_sr_Statics$().mix__I__I__I(acc, this.texture$1);
-  acc = $m_sr_Statics$().mix__I__I__I(acc, this.normal$1);
-  return $m_sr_Statics$().finalizeHash__I__I__I(acc, 3)
+  var this$2 = $m_s_util_hashing_MurmurHash3$();
+  return this$2.productHash__s_Product__I__I(this, (-889275714))
 });
 $c_Ltinyrenderer_Commone_package$Vertex.prototype.productIterator__sc_Iterator = (function() {
   return new $c_sr_ScalaRunTime$$anon$1().init___s_Product(this)
@@ -18009,161 +18009,6 @@ var $d_Ltinyrenderer_Commone_package$Vertex = new $TypeData().initClass({
   Ljava_io_Serializable: 1
 });
 $c_Ltinyrenderer_Commone_package$Vertex.prototype.$classData = $d_Ltinyrenderer_Commone_package$Vertex;
-/** @constructor */
-function $c_Ltinyrenderer_Scene() {
-  $c_O.call(this);
-  this.width$1 = 0;
-  this.height$1 = 0;
-  this.low$1 = null;
-  this.high$1 = null;
-  this.img$1 = null;
-  this.zBuffer$1 = null;
-  this.lights$1 = null;
-  this.dataAmount$1 = 0
-}
-$c_Ltinyrenderer_Scene.prototype = new $h_O();
-$c_Ltinyrenderer_Scene.prototype.constructor = $c_Ltinyrenderer_Scene;
-/** @constructor */
-function $h_Ltinyrenderer_Scene() {
-  /*<skip>*/
-}
-$h_Ltinyrenderer_Scene.prototype = $c_Ltinyrenderer_Scene.prototype;
-$c_Ltinyrenderer_Scene.prototype.init___I__I__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Lorg_scalajs_dom_raw_ImageData = (function(width, height, low, high, img) {
-  this.width$1 = width;
-  this.height$1 = height;
-  this.low$1 = low;
-  this.high$1 = high;
-  this.img$1 = img;
-  var elems$2 = null;
-  elems$2 = [];
-  var i = 0;
-  while ((i < height)) {
-    var arg1 = i;
-    var elems$2$1 = null;
-    elems$2$1 = [];
-    var i$1 = 0;
-    while ((i$1 < width)) {
-      elems$2$1.push((-2.0));
-      i$1 = ((1 + i$1) | 0)
-    };
-    var elem = $makeNativeArrayWrapper($d_D.getArrayOf(), elems$2$1);
-    elems$2.push(elem);
-    i = ((1 + i) | 0)
-  };
-  this.zBuffer$1 = $makeNativeArrayWrapper($d_D.getArrayOf().getArrayOf(), elems$2);
-  this.lights$1 = $as_scm_ListBuffer($m_scm_ListBuffer$().apply__sc_Seq__sc_GenTraversable($m_sci_Nil$()));
-  this.dataAmount$1 = ($imul(width, height) << 2);
-  return this
-});
-$c_Ltinyrenderer_Scene.prototype.dot__I__I__D__D__D__D__D__V = (function(x, y, z, r, g, b, a) {
-  if ((this.zBuffer$1.get(x).get(y) < z)) {
-    var redIndex = ((($imul(this.width$1, y) + x) | 0) << 2);
-    this.img$1.data[redIndex] = ((r << 16) >> 16);
-    this.img$1.data[((1 + redIndex) | 0)] = ((g << 16) >> 16);
-    this.img$1.data[((2 + redIndex) | 0)] = ((b << 16) >> 16);
-    this.img$1.data[((3 + redIndex) | 0)] = 255;
-    this.zBuffer$1.get(x).set(y, z)
-  }
-});
-$c_Ltinyrenderer_Scene.prototype.productPrefix__T = (function() {
-  return "Scene"
-});
-$c_Ltinyrenderer_Scene.prototype.productArity__I = (function() {
-  return 5
-});
-$c_Ltinyrenderer_Scene.prototype.equals__O__Z = (function(x$1) {
-  if ((this === x$1)) {
-    return true
-  } else if ($is_Ltinyrenderer_Scene(x$1)) {
-    var Scene$1 = $as_Ltinyrenderer_Scene(x$1);
-    if (((this.width$1 === Scene$1.width$1) && (this.height$1 === Scene$1.height$1))) {
-      var x = this.low$1;
-      var x$2 = Scene$1.low$1;
-      var jsx$2 = ((x === null) ? (x$2 === null) : x.equals__O__Z(x$2))
-    } else {
-      var jsx$2 = false
-    };
-    if (jsx$2) {
-      var x$3 = this.high$1;
-      var x$4 = Scene$1.high$1;
-      var jsx$1 = ((x$3 === null) ? (x$4 === null) : x$3.equals__O__Z(x$4))
-    } else {
-      var jsx$1 = false
-    };
-    if (jsx$1) {
-      return $m_sr_BoxesRunTime$().equals__O__O__Z(this.img$1, Scene$1.img$1)
-    } else {
-      return false
-    }
-  } else {
-    return false
-  }
-});
-$c_Ltinyrenderer_Scene.prototype.productElement__I__O = (function(x$1) {
-  switch (x$1) {
-    case 0: {
-      return this.width$1;
-      break
-    }
-    case 1: {
-      return this.height$1;
-      break
-    }
-    case 2: {
-      return this.low$1;
-      break
-    }
-    case 3: {
-      return this.high$1;
-      break
-    }
-    case 4: {
-      return this.img$1;
-      break
-    }
-    default: {
-      throw new $c_jl_IndexOutOfBoundsException().init___T(("" + x$1))
-    }
-  }
-});
-$c_Ltinyrenderer_Scene.prototype.toString__T = (function() {
-  return $m_sr_ScalaRunTime$().$$undtoString__s_Product__T(this)
-});
-$c_Ltinyrenderer_Scene.prototype.hashCode__I = (function() {
-  var acc = (-889275714);
-  acc = $m_sr_Statics$().mix__I__I__I(acc, this.width$1);
-  acc = $m_sr_Statics$().mix__I__I__I(acc, this.height$1);
-  acc = $m_sr_Statics$().mix__I__I__I(acc, $m_sr_Statics$().anyHash__O__I(this.low$1));
-  acc = $m_sr_Statics$().mix__I__I__I(acc, $m_sr_Statics$().anyHash__O__I(this.high$1));
-  acc = $m_sr_Statics$().mix__I__I__I(acc, $m_sr_Statics$().anyHash__O__I(this.img$1));
-  return $m_sr_Statics$().finalizeHash__I__I__I(acc, 5)
-});
-$c_Ltinyrenderer_Scene.prototype.productIterator__sc_Iterator = (function() {
-  return new $c_sr_ScalaRunTime$$anon$1().init___s_Product(this)
-});
-function $is_Ltinyrenderer_Scene(obj) {
-  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltinyrenderer_Scene)))
-}
-function $as_Ltinyrenderer_Scene(obj) {
-  return (($is_Ltinyrenderer_Scene(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "tinyrenderer.Scene"))
-}
-function $isArrayOf_Ltinyrenderer_Scene(obj, depth) {
-  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltinyrenderer_Scene)))
-}
-function $asArrayOf_Ltinyrenderer_Scene(obj, depth) {
-  return (($isArrayOf_Ltinyrenderer_Scene(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ltinyrenderer.Scene;", depth))
-}
-var $d_Ltinyrenderer_Scene = new $TypeData().initClass({
-  Ltinyrenderer_Scene: 0
-}, false, "tinyrenderer.Scene", {
-  Ltinyrenderer_Scene: 1,
-  O: 1,
-  s_Product: 1,
-  s_Equals: 1,
-  s_Serializable: 1,
-  Ljava_io_Serializable: 1
-});
-$c_Ltinyrenderer_Scene.prototype.$classData = $d_Ltinyrenderer_Scene;
 /** @constructor */
 function $c_jl_ArithmeticException() {
   $c_jl_RuntimeException.call(this)

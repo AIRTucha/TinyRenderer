@@ -5,7 +5,7 @@ import monix.execution.Scheduler.Implicits.global
 import scala.scalajs.js.typedarray.Uint8ClampedArray
 import Commone.Color
 import org.scalajs.dom
-
+//"obj/african_head/african_head_diffuse.jpg"
 class Texture(
     private val data: Uint8ClampedArray,
     val width: Int,

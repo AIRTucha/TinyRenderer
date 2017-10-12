@@ -1,7 +1,7 @@
 package tinyrenderer
 
 import scala.concurrent.{Future, Promise}
-import Commone.{Vec3, Vec2, Color, Vertex, Vert, rotationY}
+import Commone.{Vec3, Vec2, Color, Indeces, Vertex, rotationY}
 import fr.hmil.roshttp.response.SimpleHttpResponse
 import fr.hmil.roshttp.HttpRequest
 import monix.execution.Scheduler.Implicits.global
@@ -12,32 +12,31 @@ import Commone.{
   Color,
   interpolate,
   dotProduct,
-  Vert,
+  Vertex,
   normalize,
   crossProduct
 }
-
 class Obj(
     val vertices: Array[Vec3],
     val normals: Array[Vec3],
     val textures: Array[Vec2],
-    val faces: Array[(Vertex, Vertex, Vertex)]
+    val faces: Array[(Indeces, Indeces, Indeces)]
 ) {
   def draw(scene: Scene) = {
-    val color = Color(255.toShort, 255.toShort, 255.toShort)
-    for ((fst, snd, trd) <- faces) {
+    val color = Color( 255, 255, 255 )
+    for ( (fst, snd, trd) <- faces) {
       triangle(
-        Vert(
+        Vertex(
           vertices(fst.vertex),
           normals(fst.normal),
           textures(fst.texture)
         ),
-        Vert(
+        Vertex(
           vertices(snd.vertex),
           normals(snd.normal),
           textures(snd.texture)
         ),
-        Vert(
+        Vertex(
           vertices(trd.vertex),
           normals(trd.normal),
           textures(trd.texture)
@@ -47,13 +46,13 @@ class Obj(
       )
     }
   }
-  def triangle(vec1: Vert, vec2: Vert, vec3: Vert, color: Color, scene: Scene) =
+  def triangle(vec1: Vertex, vec2: Vertex, vec3: Vertex, color: Color, scene: Scene) =
     if (
       dotProduct(Vec3(0, 0, 1), vec1.normal) > 0 ||
       dotProduct(Vec3(0, 0, 1), vec2.normal) > 0 ||
       dotProduct(Vec3(0, 0, 1), vec3.normal) > 0
     ) {
-      var vert1 = Vert(
+      var vert1 = Vertex(
         Vec3(
           (scene.width * (vec1.vertex.x - scene.low.x) / (scene.high.x - scene.low.x)),
           (scene.height * (vec1.vertex.y - scene.low.y) / (scene.high.y - scene.low.y)),
@@ -62,7 +61,7 @@ class Obj(
         vec1.normal,
         vec1.texture
       )
-      var vert2 = Vert(
+      var vert2 = Vertex(
         Vec3(
           (scene.width * (vec2.vertex.x - scene.low.x) / (scene.high.x - scene.low.x)),
           (scene.height * (vec2.vertex.y - scene.low.y) / (scene.high.y - scene.low.y)),
@@ -71,7 +70,7 @@ class Obj(
         vec2.normal,
         vec2.texture
       )
-      var vert3 = Vert(
+      var vert3 = Vertex(
         Vec3(
           (scene.width * (vec3.vertex.x - scene.low.x) / (scene.high.x - scene.low.x)),
           (scene.height * (vec3.vertex.y - scene.low.y) / (scene.high.y - scene.low.y)),
@@ -119,10 +118,10 @@ class Obj(
     }
   def line(
     y: Int,
-    vec1: Vert,
-    vec2: Vert,
-    vec3: Vert,
-    vec4: Vert,
+    vec1: Vertex,
+    vec2: Vertex,
+    vec3: Vertex,
+    vec4: Vertex,
     color: Color,
     scene: Scene
   ) {
@@ -201,15 +200,15 @@ object Obj {
             value => (
               value(1).split("/") match {
                 case Array(fst, snd, trd) =>
-                  Vertex(fst.toInt - 1, snd.toInt - 1, trd.toInt - 1)
+                  Indeces(fst.toInt - 1, snd.toInt - 1, trd.toInt - 1)
               },
               value(2).split("/") match {
                 case Array(fst, snd, trd) =>
-                  Vertex(fst.toInt - 1, snd.toInt - 1, trd.toInt - 1)
+                  Indeces(fst.toInt - 1, snd.toInt - 1, trd.toInt - 1)
               },
               value(3).split("/") match {
                 case Array(fst, snd, trd) =>
-                  Vertex(fst.toInt - 1, snd.toInt - 1, trd.toInt - 1)
+                  Indeces(fst.toInt - 1, snd.toInt - 1, trd.toInt - 1)
               }
             )
           }
