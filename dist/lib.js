@@ -3628,6 +3628,52 @@ $h_Lmonix_execution_FutureUtils$.prototype = $c_Lmonix_execution_FutureUtils$.pr
 $c_Lmonix_execution_FutureUtils$.prototype.init___ = (function() {
   return this
 });
+$c_Lmonix_execution_FutureUtils$.prototype.transformWith__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future = (function(source, f, ec) {
+  var p = new $c_s_concurrent_impl_Promise$DefaultPromise().init___();
+  source.onComplete__F1__s_concurrent_ExecutionContext__V(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, source$1, f$1, p$1) {
+    return (function(result$2) {
+      var result = $as_s_util_Try(result$2);
+      try {
+        var fb = $as_s_concurrent_Future(f$1.apply__O__O(result))
+      } catch (e) {
+        var e$2 = $m_sjsr_package$().wrapJavaScriptException__O__jl_Throwable(e);
+        if ((e$2 !== null)) {
+          matchEnd8: {
+            var fb;
+            var o11 = $m_Lmonix_execution_misc_NonFatal$().unapply__jl_Throwable__s_Option(e$2);
+            if ((!o11.isEmpty__Z())) {
+              var t = $as_jl_Throwable(o11.get__O());
+              var fb = $m_s_concurrent_Future$().failed__jl_Throwable__s_concurrent_Future(t);
+              break matchEnd8
+            };
+            throw $m_sjsr_package$().unwrapJavaScriptException__jl_Throwable__O(e$2)
+          }
+        } else {
+          var fb;
+          throw e
+        }
+      };
+      if ((fb === source$1)) {
+        return $f_s_concurrent_Promise__complete__s_util_Try__s_concurrent_Promise(p$1, result)
+      } else {
+        var x1 = fb.value__s_Option();
+        if ($is_s_Some(x1)) {
+          var x2 = $as_s_Some(x1);
+          var value = $as_s_util_Try(x2.value$2);
+          return $f_s_concurrent_Promise__complete__s_util_Try__s_concurrent_Promise(p$1, value)
+        } else {
+          var x = $m_s_None$();
+          if ((x === x1)) {
+            return $f_s_concurrent_Promise__tryCompleteWith__s_concurrent_Future__s_concurrent_Promise(p$1, fb)
+          } else {
+            throw new $c_s_MatchError().init___O(x1)
+          }
+        }
+      }
+    })
+  })(this, source, f, p)), ec);
+  return p
+});
 $c_Lmonix_execution_FutureUtils$.prototype.transform__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future = (function(source, f, ec) {
   var p = new $c_s_concurrent_impl_Promise$DefaultPromise().init___();
   source.onComplete__F1__s_concurrent_ExecutionContext__V(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, f$1, p$1) {
@@ -4030,7 +4076,8 @@ function $c_Ltinyrenderer_Obj() {
   this.vertices$1 = null;
   this.normals$1 = null;
   this.textures$1 = null;
-  this.faces$1 = null
+  this.faces$1 = null;
+  this.deffuse$1 = null
 }
 $c_Ltinyrenderer_Obj.prototype = new $h_O();
 $c_Ltinyrenderer_Obj.prototype.constructor = $c_Ltinyrenderer_Obj;
@@ -4106,13 +4153,6 @@ $c_Ltinyrenderer_Obj.prototype.line__I__Ltinyrenderer_Commone_package$Vertex__Lt
       i = ((1 + i) | 0)
     }
   }
-});
-$c_Ltinyrenderer_Obj.prototype.init___ALtinyrenderer_Commone_package$Vec3__ALtinyrenderer_Commone_package$Vec3__ALtinyrenderer_Commone_package$Vec2__AT3 = (function(vertices, normals, textures, faces) {
-  this.vertices$1 = vertices;
-  this.normals$1 = normals;
-  this.textures$1 = textures;
-  this.faces$1 = faces;
-  return this
 });
 $c_Ltinyrenderer_Obj.prototype.triangle__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Color__Ltinyrenderer_Scene__V = (function(vec1, vec2, vec3, color, scene) {
   var vec1$1 = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.0, 1.0);
@@ -4245,6 +4285,14 @@ $c_Ltinyrenderer_Obj.prototype.draw__Ltinyrenderer_Scene__V = (function(scene) {
     })
   })(this, scene, color)))
 });
+$c_Ltinyrenderer_Obj.prototype.init___ALtinyrenderer_Commone_package$Vec3__ALtinyrenderer_Commone_package$Vec3__ALtinyrenderer_Commone_package$Vec2__AT3__Ltinyrenderer_Texture = (function(vertices, normals, textures, faces, deffuse) {
+  this.vertices$1 = vertices;
+  this.normals$1 = normals;
+  this.textures$1 = textures;
+  this.faces$1 = faces;
+  this.deffuse$1 = deffuse;
+  return this
+});
 function $is_Ltinyrenderer_Obj(obj) {
   return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltinyrenderer_Obj)))
 }
@@ -4278,6 +4326,176 @@ $h_Ltinyrenderer_Obj$.prototype = $c_Ltinyrenderer_Obj$.prototype;
 $c_Ltinyrenderer_Obj$.prototype.init___ = (function() {
   return this
 });
+$c_Ltinyrenderer_Obj$.prototype.parseF__AAT__AT3 = (function(data) {
+  var this$2 = new $c_scm_ArrayOps$ofRef().init___AO(data);
+  var p = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this) {
+    return (function(x$7$2) {
+      var x$7 = $asArrayOf_T(x$7$2, 1);
+      return (x$7.get(0) === "f")
+    })
+  })(this));
+  var this$44 = new $c_sc_TraversableLike$WithFilter().init___sc_TraversableLike__F1(this$2, p);
+  var f = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(this$2$1) {
+    return (function(value$2) {
+      var value = $asArrayOf_T(value$2, 1);
+      var thiz = value.get(1);
+      var x1 = $m_sjsr_RuntimeString$().split__T__T__I__AT(thiz, "/", 0);
+      matchEnd4: {
+        var jsx$7;
+        var o7 = $m_s_Array$().unapplySeq__O__s_Option(x1);
+        if (((!o7.isEmpty__Z()) && ((o7.get__O() !== null) && ($as_sc_SeqLike(o7.get__O()).lengthCompare__I__I(3) === 0)))) {
+          var fst = $as_T($as_sc_SeqLike(o7.get__O()).apply__I__O(0));
+          var snd = $as_T($as_sc_SeqLike(o7.get__O()).apply__I__O(1));
+          var trd = $as_T($as_sc_SeqLike(o7.get__O()).apply__I__O(2));
+          var this$5 = new $c_sci_StringOps().init___T(fst);
+          var this$7 = $m_jl_Integer$();
+          var $$this = this$5.repr$1;
+          var jsx$9 = this$7.parseInt__T__I__I($$this, 10);
+          var this$9 = new $c_sci_StringOps().init___T(snd);
+          var this$11 = $m_jl_Integer$();
+          var $$this$1 = this$9.repr$1;
+          var jsx$8 = this$11.parseInt__T__I__I($$this$1, 10);
+          var this$13 = new $c_sci_StringOps().init___T(trd);
+          var this$15 = $m_jl_Integer$();
+          var $$this$2 = this$13.repr$1;
+          var jsx$7 = new $c_Ltinyrenderer_Commone_package$Indeces().init___I__I__I((((-1) + jsx$9) | 0), (((-1) + jsx$8) | 0), (((-1) + this$15.parseInt__T__I__I($$this$2, 10)) | 0));
+          break matchEnd4
+        };
+        throw new $c_s_MatchError().init___O(x1)
+      };
+      var thiz$1 = value.get(2);
+      var x1$2 = $m_sjsr_RuntimeString$().split__T__T__I__AT(thiz$1, "/", 0);
+      matchEnd4$2: {
+        var jsx$4;
+        var o7$2 = $m_s_Array$().unapplySeq__O__s_Option(x1$2);
+        if (((!o7$2.isEmpty__Z()) && ((o7$2.get__O() !== null) && ($as_sc_SeqLike(o7$2.get__O()).lengthCompare__I__I(3) === 0)))) {
+          var fst$2 = $as_T($as_sc_SeqLike(o7$2.get__O()).apply__I__O(0));
+          var snd$2 = $as_T($as_sc_SeqLike(o7$2.get__O()).apply__I__O(1));
+          var trd$2 = $as_T($as_sc_SeqLike(o7$2.get__O()).apply__I__O(2));
+          var this$18 = new $c_sci_StringOps().init___T(fst$2);
+          var this$20 = $m_jl_Integer$();
+          var $$this$3 = this$18.repr$1;
+          var jsx$6 = this$20.parseInt__T__I__I($$this$3, 10);
+          var this$22 = new $c_sci_StringOps().init___T(snd$2);
+          var this$24 = $m_jl_Integer$();
+          var $$this$4 = this$22.repr$1;
+          var jsx$5 = this$24.parseInt__T__I__I($$this$4, 10);
+          var this$26 = new $c_sci_StringOps().init___T(trd$2);
+          var this$28 = $m_jl_Integer$();
+          var $$this$5 = this$26.repr$1;
+          var jsx$4 = new $c_Ltinyrenderer_Commone_package$Indeces().init___I__I__I((((-1) + jsx$6) | 0), (((-1) + jsx$5) | 0), (((-1) + this$28.parseInt__T__I__I($$this$5, 10)) | 0));
+          break matchEnd4$2
+        };
+        throw new $c_s_MatchError().init___O(x1$2)
+      };
+      var thiz$2 = value.get(3);
+      var x1$3 = $m_sjsr_RuntimeString$().split__T__T__I__AT(thiz$2, "/", 0);
+      matchEnd4$3: {
+        var jsx$1;
+        var o7$3 = $m_s_Array$().unapplySeq__O__s_Option(x1$3);
+        if (((!o7$3.isEmpty__Z()) && ((o7$3.get__O() !== null) && ($as_sc_SeqLike(o7$3.get__O()).lengthCompare__I__I(3) === 0)))) {
+          var fst$3 = $as_T($as_sc_SeqLike(o7$3.get__O()).apply__I__O(0));
+          var snd$3 = $as_T($as_sc_SeqLike(o7$3.get__O()).apply__I__O(1));
+          var trd$3 = $as_T($as_sc_SeqLike(o7$3.get__O()).apply__I__O(2));
+          var this$31 = new $c_sci_StringOps().init___T(fst$3);
+          var this$33 = $m_jl_Integer$();
+          var $$this$6 = this$31.repr$1;
+          var jsx$3 = this$33.parseInt__T__I__I($$this$6, 10);
+          var this$35 = new $c_sci_StringOps().init___T(snd$3);
+          var this$37 = $m_jl_Integer$();
+          var $$this$7 = this$35.repr$1;
+          var jsx$2 = this$37.parseInt__T__I__I($$this$7, 10);
+          var this$39 = new $c_sci_StringOps().init___T(trd$3);
+          var this$41 = $m_jl_Integer$();
+          var $$this$8 = this$39.repr$1;
+          var jsx$1 = new $c_Ltinyrenderer_Commone_package$Indeces().init___I__I__I((((-1) + jsx$3) | 0), (((-1) + jsx$2) | 0), (((-1) + this$41.parseInt__T__I__I($$this$8, 10)) | 0));
+          break matchEnd4$3
+        };
+        throw new $c_s_MatchError().init___O(x1$3)
+      };
+      return new $c_T3().init___O__O__O(jsx$7, jsx$4, jsx$1)
+    })
+  })(this));
+  this$44.$$outer$1.repr__O();
+  var b = new $c_scm_ArrayBuilder$generic().init___jl_Class($d_T3.getClassOf());
+  this$44.$$outer$1.foreach__F1__V(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this$1, f$1, b$1) {
+    return (function(x$2) {
+      return ($uZ($this$1.p$1.apply__O__O(x$2)) ? b$1.$$plus$eq__O__scm_Builder(f$1.apply__O__O(x$2)) : (void 0))
+    })
+  })(this$44, f, b)));
+  return $asArrayOf_T3(b.result__O(), 1)
+});
+$c_Ltinyrenderer_Obj$.prototype.parseV__AAT__ALtinyrenderer_Commone_package$Vec3 = (function(data) {
+  var this$2 = new $c_scm_ArrayOps$ofRef().init___AO(data);
+  var p = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this) {
+    return (function(x$4$2) {
+      var x$4 = $asArrayOf_T(x$4$2, 1);
+      return (x$4.get(0) === "v")
+    })
+  })(this));
+  var this$14 = new $c_sc_TraversableLike$WithFilter().init___sc_TraversableLike__F1(this$2, p);
+  var f = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(this$2$1) {
+    return (function(value$2) {
+      var value = $asArrayOf_T(value$2, 1);
+      var x = value.get(1);
+      var this$4 = new $c_sci_StringOps().init___T(x);
+      var jsx$5 = $m_jl_Double$();
+      var $$this = this$4.repr$1;
+      var jsx$4 = jsx$5.parseDouble__T__D($$this);
+      var x$1 = value.get(2);
+      var this$7 = new $c_sci_StringOps().init___T(x$1);
+      var jsx$3 = $m_jl_Double$();
+      var $$this$1 = this$7.repr$1;
+      var jsx$2 = jsx$3.parseDouble__T__D($$this$1);
+      var x$2 = value.get(3);
+      var this$10 = new $c_sci_StringOps().init___T(x$2);
+      var jsx$1 = $m_jl_Double$();
+      var $$this$2 = this$10.repr$1;
+      return new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(jsx$4, jsx$2, jsx$1.parseDouble__T__D($$this$2))
+    })
+  })(this));
+  this$14.$$outer$1.repr__O();
+  var b = new $c_scm_ArrayBuilder$generic().init___jl_Class($d_Ltinyrenderer_Commone_package$Vec3.getClassOf());
+  this$14.$$outer$1.foreach__F1__V(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this$1, f$1, b$1) {
+    return (function(x$2$1) {
+      return ($uZ($this$1.p$1.apply__O__O(x$2$1)) ? b$1.$$plus$eq__O__scm_Builder(f$1.apply__O__O(x$2$1)) : (void 0))
+    })
+  })(this$14, f, b)));
+  return $asArrayOf_Ltinyrenderer_Commone_package$Vec3(b.result__O(), 1)
+});
+$c_Ltinyrenderer_Obj$.prototype.parseVT__AAT__ALtinyrenderer_Commone_package$Vec2 = (function(data) {
+  var this$2 = new $c_scm_ArrayOps$ofRef().init___AO(data);
+  var p = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this) {
+    return (function(x$6$2) {
+      var x$6 = $asArrayOf_T(x$6$2, 1);
+      return (x$6.get(0) === "vt")
+    })
+  })(this));
+  var this$11 = new $c_sc_TraversableLike$WithFilter().init___sc_TraversableLike__F1(this$2, p);
+  var f = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(this$2$1) {
+    return (function(value$2) {
+      var value = $asArrayOf_T(value$2, 1);
+      var x = value.get(2);
+      var this$4 = new $c_sci_StringOps().init___T(x);
+      var jsx$3 = $m_jl_Double$();
+      var $$this = this$4.repr$1;
+      var jsx$2 = jsx$3.parseDouble__T__D($$this);
+      var x$1 = value.get(3);
+      var this$7 = new $c_sci_StringOps().init___T(x$1);
+      var jsx$1 = $m_jl_Double$();
+      var $$this$1 = this$7.repr$1;
+      return new $c_Ltinyrenderer_Commone_package$Vec2().init___D__D(jsx$2, jsx$1.parseDouble__T__D($$this$1))
+    })
+  })(this));
+  this$11.$$outer$1.repr__O();
+  var b = new $c_scm_ArrayBuilder$generic().init___jl_Class($d_Ltinyrenderer_Commone_package$Vec2.getClassOf());
+  this$11.$$outer$1.foreach__F1__V(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this$1, f$1, b$1) {
+    return (function(x$2) {
+      return ($uZ($this$1.p$1.apply__O__O(x$2)) ? b$1.$$plus$eq__O__scm_Builder(f$1.apply__O__O(x$2)) : (void 0))
+    })
+  })(this$11, f, b)));
+  return $asArrayOf_Ltinyrenderer_Commone_package$Vec2(b.result__O(), 1)
+});
 $c_Ltinyrenderer_Obj$.prototype.get__T__s_concurrent_Future = (function(url) {
   var this$1 = $m_Lfr_hmil_roshttp_HttpRequest$();
   var url$1 = new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["", "/", ""])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([$as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().location.href), url]));
@@ -4285,11 +4503,49 @@ $c_Ltinyrenderer_Obj$.prototype.get__T__s_concurrent_Future = (function(url) {
   var scheduler = $m_Lmonix_execution_Scheduler$().Implicits__Lmonix_execution_schedulers_SchedulerCompanionImpl$Implicits$().global__Lmonix_execution_Scheduler();
   return this$2.$$undsend__p1__Lfr_hmil_roshttp_response_HttpResponseFactory__Lmonix_execution_Scheduler__s_concurrent_Future($m_Lfr_hmil_roshttp_response_SimpleHttpResponse$(), scheduler)
 });
+$c_Ltinyrenderer_Obj$.prototype.parseVN__AAT__ALtinyrenderer_Commone_package$Vec3 = (function(data) {
+  var this$2 = new $c_scm_ArrayOps$ofRef().init___AO(data);
+  var p = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this) {
+    return (function(x$5$2) {
+      var x$5 = $asArrayOf_T(x$5$2, 1);
+      return (x$5.get(0) === "vn")
+    })
+  })(this));
+  var this$14 = new $c_sc_TraversableLike$WithFilter().init___sc_TraversableLike__F1(this$2, p);
+  var f = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(this$2$1) {
+    return (function(value$2) {
+      var value = $asArrayOf_T(value$2, 1);
+      var x = value.get(2);
+      var this$4 = new $c_sci_StringOps().init___T(x);
+      var jsx$5 = $m_jl_Double$();
+      var $$this = this$4.repr$1;
+      var jsx$4 = jsx$5.parseDouble__T__D($$this);
+      var x$1 = value.get(3);
+      var this$7 = new $c_sci_StringOps().init___T(x$1);
+      var jsx$3 = $m_jl_Double$();
+      var $$this$1 = this$7.repr$1;
+      var jsx$2 = jsx$3.parseDouble__T__D($$this$1);
+      var x$2 = value.get(4);
+      var this$10 = new $c_sci_StringOps().init___T(x$2);
+      var jsx$1 = $m_jl_Double$();
+      var $$this$2 = this$10.repr$1;
+      return new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(jsx$4, jsx$2, jsx$1.parseDouble__T__D($$this$2))
+    })
+  })(this));
+  this$14.$$outer$1.repr__O();
+  var b = new $c_scm_ArrayBuilder$generic().init___jl_Class($d_Ltinyrenderer_Commone_package$Vec3.getClassOf());
+  this$14.$$outer$1.foreach__F1__V(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this$1, f$1, b$1) {
+    return (function(x$2$1) {
+      return ($uZ($this$1.p$1.apply__O__O(x$2$1)) ? b$1.$$plus$eq__O__scm_Builder(f$1.apply__O__O(x$2$1)) : (void 0))
+    })
+  })(this$14, f, b)));
+  return $asArrayOf_Ltinyrenderer_Commone_package$Vec3(b.result__O(), 1)
+});
 $c_Ltinyrenderer_Obj$.prototype.apply__T__s_concurrent_Future = (function(url) {
   return this.get__T__s_concurrent_Future("obj/african_head/african_head.obj").map__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this) {
-    return (function(res$2) {
-      var res = $as_Lfr_hmil_roshttp_response_SimpleHttpResponse(res$2);
-      var thiz = res.body$1;
+    return (function(x$2$2) {
+      var x$2 = $as_Lfr_hmil_roshttp_response_SimpleHttpResponse(x$2$2);
+      var thiz = x$2.body$1;
       var xs = $m_sjsr_RuntimeString$().split__T__T__I__AT(thiz, "\n", 0);
       var elems$2 = null;
       elems$2 = [];
@@ -4304,213 +4560,23 @@ $c_Ltinyrenderer_Obj$.prototype.apply__T__s_concurrent_Future = (function(url) {
       while ((i < len)) {
         var index = i;
         var arg1 = xs.get(index);
-        var str = $as_T(arg1);
-        var elem = $m_sjsr_RuntimeString$().split__T__T__I__AT(str, " ", 0);
+        var x$3 = $as_T(arg1);
+        var elem = $m_sjsr_RuntimeString$().split__T__T__I__AT(x$3, " ", 0);
         var unboxedElem = ((elem === null) ? null : elem);
         elems$2.push(unboxedElem);
         i = ((1 + i) | 0)
       };
-      var values = $makeNativeArrayWrapper($d_T.getArrayOf().getArrayOf(), elems$2);
-      var this$14 = new $c_scm_ArrayOps$ofRef().init___AO(values);
-      var p = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(this$2$1) {
-        return (function(x$2$2) {
-          var x$2 = $asArrayOf_T(x$2$2, 1);
-          return (x$2.get(0) === "v")
+      return $makeNativeArrayWrapper($d_T.getArrayOf().getArrayOf(), elems$2)
+    })
+  })(this)), $m_Lmonix_execution_Scheduler$().Implicits__Lmonix_execution_schedulers_SchedulerCompanionImpl$Implicits$().global__Lmonix_execution_Scheduler()).flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(this$2$1) {
+    return (function(obj$2) {
+      var obj = $asArrayOf_T(obj$2, 2);
+      return $m_Ltinyrenderer_Texture$().apply__T__s_concurrent_Future("obj/african_head/african_head_diffuse.jpg").map__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this$1, obj$1) {
+        return (function(deffuse$2) {
+          var deffuse = $as_Ltinyrenderer_Texture(deffuse$2);
+          return new $c_Ltinyrenderer_Obj().init___ALtinyrenderer_Commone_package$Vec3__ALtinyrenderer_Commone_package$Vec3__ALtinyrenderer_Commone_package$Vec2__AT3__Ltinyrenderer_Texture($this$1.parseV__AAT__ALtinyrenderer_Commone_package$Vec3(obj$1), $this$1.parseVN__AAT__ALtinyrenderer_Commone_package$Vec3(obj$1), $this$1.parseVT__AAT__ALtinyrenderer_Commone_package$Vec2(obj$1), $this$1.parseF__AAT__AT3(obj$1), deffuse)
         })
-      })($this));
-      var this$26 = new $c_sc_TraversableLike$WithFilter().init___sc_TraversableLike__F1(this$14, p);
-      var f = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(this$3$1) {
-        return (function(value$2) {
-          var value = $asArrayOf_T(value$2, 1);
-          var x = value.get(1);
-          var this$16 = new $c_sci_StringOps().init___T(x);
-          var jsx$25 = $m_jl_Double$();
-          var $$this = this$16.repr$1;
-          var jsx$24 = jsx$25.parseDouble__T__D($$this);
-          var x$1 = value.get(2);
-          var this$19 = new $c_sci_StringOps().init___T(x$1);
-          var jsx$23 = $m_jl_Double$();
-          var $$this$1 = this$19.repr$1;
-          var jsx$22 = jsx$23.parseDouble__T__D($$this$1);
-          var x$3 = value.get(3);
-          var this$22 = new $c_sci_StringOps().init___T(x$3);
-          var jsx$21 = $m_jl_Double$();
-          var $$this$2 = this$22.repr$1;
-          return new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(jsx$24, jsx$22, jsx$21.parseDouble__T__D($$this$2))
-        })
-      })($this));
-      this$26.$$outer$1.repr__O();
-      var b = new $c_scm_ArrayBuilder$generic().init___jl_Class($d_Ltinyrenderer_Commone_package$Vec3.getClassOf());
-      this$26.$$outer$1.foreach__F1__V(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this$1, f$1, b$1) {
-        return (function(x$2$1) {
-          return ($uZ($this$1.p$1.apply__O__O(x$2$1)) ? b$1.$$plus$eq__O__scm_Builder(f$1.apply__O__O(x$2$1)) : (void 0))
-        })
-      })(this$26, f, b)));
-      var jsx$20 = $asArrayOf_Ltinyrenderer_Commone_package$Vec3(b.result__O(), 1);
-      var this$30 = new $c_scm_ArrayOps$ofRef().init___AO(values);
-      var p$1 = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(this$4$1) {
-        return (function(x$3$2) {
-          var x$3$1 = $asArrayOf_T(x$3$2, 1);
-          return (x$3$1.get(0) === "vn")
-        })
-      })($this));
-      var this$42 = new $c_sc_TraversableLike$WithFilter().init___sc_TraversableLike__F1(this$30, p$1);
-      var f$2 = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(this$5$1) {
-        return (function(value$3$2) {
-          var value$3 = $asArrayOf_T(value$3$2, 1);
-          var x$4 = value$3.get(2);
-          var this$32 = new $c_sci_StringOps().init___T(x$4);
-          var jsx$19 = $m_jl_Double$();
-          var $$this$3 = this$32.repr$1;
-          var jsx$18 = jsx$19.parseDouble__T__D($$this$3);
-          var x$5 = value$3.get(3);
-          var this$35 = new $c_sci_StringOps().init___T(x$5);
-          var jsx$17 = $m_jl_Double$();
-          var $$this$4 = this$35.repr$1;
-          var jsx$16 = jsx$17.parseDouble__T__D($$this$4);
-          var x$6 = value$3.get(4);
-          var this$38 = new $c_sci_StringOps().init___T(x$6);
-          var jsx$15 = $m_jl_Double$();
-          var $$this$5 = this$38.repr$1;
-          return new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(jsx$18, jsx$16, jsx$15.parseDouble__T__D($$this$5))
-        })
-      })($this));
-      this$42.$$outer$1.repr__O();
-      var b$2 = new $c_scm_ArrayBuilder$generic().init___jl_Class($d_Ltinyrenderer_Commone_package$Vec3.getClassOf());
-      this$42.$$outer$1.foreach__F1__V(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this$2, f$3, b$3) {
-        return (function(x$2$3) {
-          return ($uZ($this$2.p$1.apply__O__O(x$2$3)) ? b$3.$$plus$eq__O__scm_Builder(f$3.apply__O__O(x$2$3)) : (void 0))
-        })
-      })(this$42, f$2, b$2)));
-      var jsx$14 = $asArrayOf_Ltinyrenderer_Commone_package$Vec3(b$2.result__O(), 1);
-      var this$46 = new $c_scm_ArrayOps$ofRef().init___AO(values);
-      var p$2 = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(this$6$1) {
-        return (function(x$4$2) {
-          var x$4$1 = $asArrayOf_T(x$4$2, 1);
-          return (x$4$1.get(0) === "vt")
-        })
-      })($this));
-      var this$55 = new $c_sc_TraversableLike$WithFilter().init___sc_TraversableLike__F1(this$46, p$2);
-      var f$4 = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(this$7$1) {
-        return (function(value$4$2) {
-          var value$4 = $asArrayOf_T(value$4$2, 1);
-          var x$7 = value$4.get(2);
-          var this$48 = new $c_sci_StringOps().init___T(x$7);
-          var jsx$13 = $m_jl_Double$();
-          var $$this$6 = this$48.repr$1;
-          var jsx$12 = jsx$13.parseDouble__T__D($$this$6);
-          var x$8 = value$4.get(3);
-          var this$51 = new $c_sci_StringOps().init___T(x$8);
-          var jsx$11 = $m_jl_Double$();
-          var $$this$7 = this$51.repr$1;
-          return new $c_Ltinyrenderer_Commone_package$Vec2().init___D__D(jsx$12, jsx$11.parseDouble__T__D($$this$7))
-        })
-      })($this));
-      this$55.$$outer$1.repr__O();
-      var b$4 = new $c_scm_ArrayBuilder$generic().init___jl_Class($d_Ltinyrenderer_Commone_package$Vec2.getClassOf());
-      this$55.$$outer$1.foreach__F1__V(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this$3, f$5, b$5) {
-        return (function(x$2$4) {
-          return ($uZ($this$3.p$1.apply__O__O(x$2$4)) ? b$5.$$plus$eq__O__scm_Builder(f$5.apply__O__O(x$2$4)) : (void 0))
-        })
-      })(this$55, f$4, b$4)));
-      var jsx$10 = $asArrayOf_Ltinyrenderer_Commone_package$Vec2(b$4.result__O(), 1);
-      var this$59 = new $c_scm_ArrayOps$ofRef().init___AO(values);
-      var p$3 = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(this$8$1) {
-        return (function(x$5$2) {
-          var x$5$1 = $asArrayOf_T(x$5$2, 1);
-          return (x$5$1.get(0) === "f")
-        })
-      })($this));
-      var this$101 = new $c_sc_TraversableLike$WithFilter().init___sc_TraversableLike__F1(this$59, p$3);
-      var f$6 = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(this$9$1) {
-        return (function(value$5$2) {
-          var value$5 = $asArrayOf_T(value$5$2, 1);
-          var thiz$1 = value$5.get(1);
-          var x1$1 = $m_sjsr_RuntimeString$().split__T__T__I__AT(thiz$1, "/", 0);
-          matchEnd4: {
-            var jsx$7;
-            var o7 = $m_s_Array$().unapplySeq__O__s_Option(x1$1);
-            if (((!o7.isEmpty__Z()) && ((o7.get__O() !== null) && ($as_sc_SeqLike(o7.get__O()).lengthCompare__I__I(3) === 0)))) {
-              var fst = $as_T($as_sc_SeqLike(o7.get__O()).apply__I__O(0));
-              var snd = $as_T($as_sc_SeqLike(o7.get__O()).apply__I__O(1));
-              var trd = $as_T($as_sc_SeqLike(o7.get__O()).apply__I__O(2));
-              var this$62 = new $c_sci_StringOps().init___T(fst);
-              var this$64 = $m_jl_Integer$();
-              var $$this$8 = this$62.repr$1;
-              var jsx$9 = this$64.parseInt__T__I__I($$this$8, 10);
-              var this$66 = new $c_sci_StringOps().init___T(snd);
-              var this$68 = $m_jl_Integer$();
-              var $$this$9 = this$66.repr$1;
-              var jsx$8 = this$68.parseInt__T__I__I($$this$9, 10);
-              var this$70 = new $c_sci_StringOps().init___T(trd);
-              var this$72 = $m_jl_Integer$();
-              var $$this$10 = this$70.repr$1;
-              var jsx$7 = new $c_Ltinyrenderer_Commone_package$Indeces().init___I__I__I((((-1) + jsx$9) | 0), (((-1) + jsx$8) | 0), (((-1) + this$72.parseInt__T__I__I($$this$10, 10)) | 0));
-              break matchEnd4
-            };
-            throw new $c_s_MatchError().init___O(x1$1)
-          };
-          var thiz$2 = value$5.get(2);
-          var x1$2 = $m_sjsr_RuntimeString$().split__T__T__I__AT(thiz$2, "/", 0);
-          matchEnd4$2: {
-            var jsx$4;
-            var o7$2 = $m_s_Array$().unapplySeq__O__s_Option(x1$2);
-            if (((!o7$2.isEmpty__Z()) && ((o7$2.get__O() !== null) && ($as_sc_SeqLike(o7$2.get__O()).lengthCompare__I__I(3) === 0)))) {
-              var fst$2 = $as_T($as_sc_SeqLike(o7$2.get__O()).apply__I__O(0));
-              var snd$2 = $as_T($as_sc_SeqLike(o7$2.get__O()).apply__I__O(1));
-              var trd$2 = $as_T($as_sc_SeqLike(o7$2.get__O()).apply__I__O(2));
-              var this$75 = new $c_sci_StringOps().init___T(fst$2);
-              var this$77 = $m_jl_Integer$();
-              var $$this$11 = this$75.repr$1;
-              var jsx$6 = this$77.parseInt__T__I__I($$this$11, 10);
-              var this$79 = new $c_sci_StringOps().init___T(snd$2);
-              var this$81 = $m_jl_Integer$();
-              var $$this$12 = this$79.repr$1;
-              var jsx$5 = this$81.parseInt__T__I__I($$this$12, 10);
-              var this$83 = new $c_sci_StringOps().init___T(trd$2);
-              var this$85 = $m_jl_Integer$();
-              var $$this$13 = this$83.repr$1;
-              var jsx$4 = new $c_Ltinyrenderer_Commone_package$Indeces().init___I__I__I((((-1) + jsx$6) | 0), (((-1) + jsx$5) | 0), (((-1) + this$85.parseInt__T__I__I($$this$13, 10)) | 0));
-              break matchEnd4$2
-            };
-            throw new $c_s_MatchError().init___O(x1$2)
-          };
-          var thiz$3 = value$5.get(3);
-          var x1$3 = $m_sjsr_RuntimeString$().split__T__T__I__AT(thiz$3, "/", 0);
-          matchEnd4$3: {
-            var jsx$1;
-            var o7$3 = $m_s_Array$().unapplySeq__O__s_Option(x1$3);
-            if (((!o7$3.isEmpty__Z()) && ((o7$3.get__O() !== null) && ($as_sc_SeqLike(o7$3.get__O()).lengthCompare__I__I(3) === 0)))) {
-              var fst$3 = $as_T($as_sc_SeqLike(o7$3.get__O()).apply__I__O(0));
-              var snd$3 = $as_T($as_sc_SeqLike(o7$3.get__O()).apply__I__O(1));
-              var trd$3 = $as_T($as_sc_SeqLike(o7$3.get__O()).apply__I__O(2));
-              var this$88 = new $c_sci_StringOps().init___T(fst$3);
-              var this$90 = $m_jl_Integer$();
-              var $$this$14 = this$88.repr$1;
-              var jsx$3 = this$90.parseInt__T__I__I($$this$14, 10);
-              var this$92 = new $c_sci_StringOps().init___T(snd$3);
-              var this$94 = $m_jl_Integer$();
-              var $$this$15 = this$92.repr$1;
-              var jsx$2 = this$94.parseInt__T__I__I($$this$15, 10);
-              var this$96 = new $c_sci_StringOps().init___T(trd$3);
-              var this$98 = $m_jl_Integer$();
-              var $$this$16 = this$96.repr$1;
-              var jsx$1 = new $c_Ltinyrenderer_Commone_package$Indeces().init___I__I__I((((-1) + jsx$3) | 0), (((-1) + jsx$2) | 0), (((-1) + this$98.parseInt__T__I__I($$this$16, 10)) | 0));
-              break matchEnd4$3
-            };
-            throw new $c_s_MatchError().init___O(x1$3)
-          };
-          return new $c_T3().init___O__O__O(jsx$7, jsx$4, jsx$1)
-        })
-      })($this));
-      this$101.$$outer$1.repr__O();
-      var b$6 = new $c_scm_ArrayBuilder$generic().init___jl_Class($d_T3.getClassOf());
-      this$101.$$outer$1.foreach__F1__V(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this$4, f$7, b$7) {
-        return (function(x$2$5) {
-          return ($uZ($this$4.p$1.apply__O__O(x$2$5)) ? b$7.$$plus$eq__O__scm_Builder(f$7.apply__O__O(x$2$5)) : (void 0))
-        })
-      })(this$101, f$6, b$6)));
-      return new $c_Ltinyrenderer_Obj().init___ALtinyrenderer_Commone_package$Vec3__ALtinyrenderer_Commone_package$Vec3__ALtinyrenderer_Commone_package$Vec2__AT3(jsx$20, jsx$14, jsx$10, $asArrayOf_T3(b$6.result__O(), 1))
+      })(this$2$1, obj)), $m_Lmonix_execution_Scheduler$().Implicits__Lmonix_execution_schedulers_SchedulerCompanionImpl$Implicits$().global__Lmonix_execution_Scheduler())
     })
   })(this)), $m_Lmonix_execution_Scheduler$().Implicits__Lmonix_execution_schedulers_SchedulerCompanionImpl$Implicits$().global__Lmonix_execution_Scheduler())
 });
@@ -4591,6 +4657,102 @@ var $d_Ltinyrenderer_Scene = new $TypeData().initClass({
   O: 1
 });
 $c_Ltinyrenderer_Scene.prototype.$classData = $d_Ltinyrenderer_Scene;
+/** @constructor */
+function $c_Ltinyrenderer_Texture() {
+  $c_O.call(this);
+  this.data$1 = null;
+  this.width$1 = 0;
+  this.height$1 = 0
+}
+$c_Ltinyrenderer_Texture.prototype = new $h_O();
+$c_Ltinyrenderer_Texture.prototype.constructor = $c_Ltinyrenderer_Texture;
+/** @constructor */
+function $h_Ltinyrenderer_Texture() {
+  /*<skip>*/
+}
+$h_Ltinyrenderer_Texture.prototype = $c_Ltinyrenderer_Texture.prototype;
+$c_Ltinyrenderer_Texture.prototype.init___sjs_js_typedarray_Uint8ClampedArray__I__I = (function(data, width, height) {
+  this.data$1 = data;
+  this.width$1 = width;
+  this.height$1 = height;
+  return this
+});
+function $is_Ltinyrenderer_Texture(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltinyrenderer_Texture)))
+}
+function $as_Ltinyrenderer_Texture(obj) {
+  return (($is_Ltinyrenderer_Texture(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "tinyrenderer.Texture"))
+}
+function $isArrayOf_Ltinyrenderer_Texture(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltinyrenderer_Texture)))
+}
+function $asArrayOf_Ltinyrenderer_Texture(obj, depth) {
+  return (($isArrayOf_Ltinyrenderer_Texture(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ltinyrenderer.Texture;", depth))
+}
+var $d_Ltinyrenderer_Texture = new $TypeData().initClass({
+  Ltinyrenderer_Texture: 0
+}, false, "tinyrenderer.Texture", {
+  Ltinyrenderer_Texture: 1,
+  O: 1
+});
+$c_Ltinyrenderer_Texture.prototype.$classData = $d_Ltinyrenderer_Texture;
+/** @constructor */
+function $c_Ltinyrenderer_Texture$() {
+  $c_O.call(this);
+  this.img$1 = null
+}
+$c_Ltinyrenderer_Texture$.prototype = new $h_O();
+$c_Ltinyrenderer_Texture$.prototype.constructor = $c_Ltinyrenderer_Texture$;
+/** @constructor */
+function $h_Ltinyrenderer_Texture$() {
+  /*<skip>*/
+}
+$h_Ltinyrenderer_Texture$.prototype = $c_Ltinyrenderer_Texture$.prototype;
+$c_Ltinyrenderer_Texture$.prototype.init___ = (function() {
+  $n_Ltinyrenderer_Texture$ = this;
+  this.img$1 = $m_Lorg_scalajs_dom_package$().document__Lorg_scalajs_dom_raw_HTMLDocument().createElement("img");
+  return this
+});
+$c_Ltinyrenderer_Texture$.prototype.tinyrenderer$Texture$$$anonfun$apply$1__Lorg_scalajs_dom_raw_Event__s_concurrent_Promise__s_concurrent_Promise = (function(e, promise$1) {
+  var canvas = $m_Lorg_scalajs_dom_package$().document__Lorg_scalajs_dom_raw_HTMLDocument().createElement("canvas");
+  canvas.width = $uI(this.img$1.width);
+  canvas.height = $uI(this.img$1.height);
+  var ctx = canvas.getContext("2d");
+  var jsx$1 = this.img$1;
+  var value = $uI(this.img$1.width);
+  var value$1 = $uI(this.img$1.height);
+  ctx.drawImage(jsx$1, 0, 0, value, value$1);
+  var value$2 = $uI(this.img$1.width);
+  var value$3 = $uI(this.img$1.height);
+  var jsx$3 = ctx.getImageData(0, 0, value$2, value$3);
+  var jsx$2 = jsx$3.data;
+  var value$4 = new $c_Ltinyrenderer_Texture().init___sjs_js_typedarray_Uint8ClampedArray__I__I(jsx$2, $uI(this.img$1.width), $uI(this.img$1.height));
+  return $f_s_concurrent_Promise__success__O__s_concurrent_Promise(promise$1, value$4)
+});
+$c_Ltinyrenderer_Texture$.prototype.apply__T__s_concurrent_Future = (function(url) {
+  var promise = new $c_s_concurrent_impl_Promise$DefaultPromise().init___();
+  this.img$1.src = url;
+  this.img$1.onload = (function(promise$1) {
+    return (function(arg1$2) {
+      return $m_Ltinyrenderer_Texture$().tinyrenderer$Texture$$$anonfun$apply$1__Lorg_scalajs_dom_raw_Event__s_concurrent_Promise__s_concurrent_Promise(arg1$2, promise$1)
+    })
+  })(promise);
+  return promise
+});
+var $d_Ltinyrenderer_Texture$ = new $TypeData().initClass({
+  Ltinyrenderer_Texture$: 0
+}, false, "tinyrenderer.Texture$", {
+  Ltinyrenderer_Texture$: 1,
+  O: 1
+});
+$c_Ltinyrenderer_Texture$.prototype.$classData = $d_Ltinyrenderer_Texture$;
+var $n_Ltinyrenderer_Texture$ = (void 0);
+function $m_Ltinyrenderer_Texture$() {
+  if ((!$n_Ltinyrenderer_Texture$)) {
+    $n_Ltinyrenderer_Texture$ = new $c_Ltinyrenderer_Texture$().init___()
+  };
+  return $n_Ltinyrenderer_Texture$
+}
 /** @constructor */
 function $c_jl_Class() {
   $c_O.call(this);
@@ -5067,6 +5229,22 @@ function $m_s_concurrent_ExecutionContext$() {
   };
   return $n_s_concurrent_ExecutionContext$
 }
+function $f_s_concurrent_Future__flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future($thiz, f, executor) {
+  return $thiz.transformWith__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, f$1) {
+    return (function(x0$5$2) {
+      var x0$5 = $as_s_util_Try(x0$5$2);
+      if ($is_s_util_Success(x0$5)) {
+        var x2 = $as_s_util_Success(x0$5);
+        var s = x2.value$2;
+        return $as_s_concurrent_Future(f$1.apply__O__O(s))
+      } else if ($is_s_util_Failure(x0$5)) {
+        return $this
+      } else {
+        throw new $c_s_MatchError().init___O(x0$5)
+      }
+    })
+  })($thiz, f)), executor)
+}
 function $f_s_concurrent_Future__andThen__s_PartialFunction__s_concurrent_ExecutionContext__s_concurrent_Future($thiz, pf, executor) {
   return $thiz.transform__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, pf$1, executor$1) {
     return (function(result$2) {
@@ -5106,6 +5284,18 @@ function $f_s_concurrent_Future__map__F1__s_concurrent_ExecutionContext__s_concu
     })
   })($thiz, f)), executor)
 }
+function $is_s_concurrent_Future(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.s_concurrent_Future)))
+}
+function $as_s_concurrent_Future(obj) {
+  return (($is_s_concurrent_Future(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "scala.concurrent.Future"))
+}
+function $isArrayOf_s_concurrent_Future(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.s_concurrent_Future)))
+}
+function $asArrayOf_s_concurrent_Future(obj, depth) {
+  return (($isArrayOf_s_concurrent_Future(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lscala.concurrent.Future;", depth))
+}
 /** @constructor */
 function $c_s_concurrent_Future$() {
   $c_O.call(this);
@@ -5139,6 +5329,10 @@ $c_s_concurrent_Future$.prototype.successful__O__s_concurrent_Future = (function
   var this$1 = $m_s_concurrent_Promise$().successful__O__s_concurrent_Promise(result);
   return this$1
 });
+$c_s_concurrent_Future$.prototype.failed__jl_Throwable__s_concurrent_Future = (function(exception) {
+  var this$1 = $m_s_concurrent_Promise$().failed__jl_Throwable__s_concurrent_Promise(exception);
+  return this$1
+});
 var $d_s_concurrent_Future$ = new $TypeData().initClass({
   s_concurrent_Future$: 0
 }, false, "scala.concurrent.Future$", {
@@ -5170,6 +5364,10 @@ $c_s_concurrent_Promise$.prototype.init___ = (function() {
 $c_s_concurrent_Promise$.prototype.successful__O__s_concurrent_Promise = (function(result) {
   var result$1 = new $c_s_util_Success().init___O(result);
   return $m_s_concurrent_impl_Promise$KeptPromise$().apply__s_util_Try__s_concurrent_Promise(result$1)
+});
+$c_s_concurrent_Promise$.prototype.failed__jl_Throwable__s_concurrent_Promise = (function(exception) {
+  var result = new $c_s_util_Failure().init___jl_Throwable(exception);
+  return $m_s_concurrent_impl_Promise$KeptPromise$().apply__s_util_Try__s_concurrent_Promise(result)
 });
 var $d_s_concurrent_Promise$ = new $TypeData().initClass({
   s_concurrent_Promise$: 0
@@ -13618,6 +13816,39 @@ var $d_s_concurrent_impl_CallbackRunnable = new $TypeData().initClass({
   s_concurrent_OnCompleteRunnable: 1
 });
 $c_s_concurrent_impl_CallbackRunnable.prototype.$classData = $d_s_concurrent_impl_CallbackRunnable;
+function $f_s_concurrent_impl_Promise__transformWith__F1__s_concurrent_ExecutionContext__s_concurrent_Future($thiz, f, executor) {
+  var p = new $c_s_concurrent_impl_Promise$DefaultPromise().init___();
+  $thiz.onComplete__F1__s_concurrent_ExecutionContext__V(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, f$1, p$1) {
+    return (function(v$2) {
+      var v = $as_s_util_Try(v$2);
+      try {
+        var x1 = $as_s_concurrent_Future(f$1.apply__O__O(v));
+        if ((x1 === $this)) {
+          return $f_s_concurrent_Promise__complete__s_util_Try__s_concurrent_Promise(p$1, v)
+        } else if ($is_s_concurrent_impl_Promise$DefaultPromise(x1)) {
+          var x2 = $as_s_concurrent_impl_Promise$DefaultPromise(x1);
+          x2.link__p2__s_concurrent_impl_Promise$DefaultPromise__V(p$1.compressedRoot__p2__s_concurrent_impl_Promise$DefaultPromise());
+          return (void 0)
+        } else {
+          return $f_s_concurrent_Promise__tryCompleteWith__s_concurrent_Future__s_concurrent_Promise(p$1, x1)
+        }
+      } catch (e) {
+        var e$2 = $m_sjsr_package$().wrapJavaScriptException__O__jl_Throwable(e);
+        if ((e$2 !== null)) {
+          var o11 = $m_s_util_control_NonFatal$().unapply__jl_Throwable__s_Option(e$2);
+          if ((!o11.isEmpty__Z())) {
+            var t = $as_jl_Throwable(o11.get__O());
+            return $f_s_concurrent_Promise__failure__jl_Throwable__s_concurrent_Promise(p$1, t)
+          };
+          throw $m_sjsr_package$().unwrapJavaScriptException__jl_Throwable__O(e$2)
+        } else {
+          throw e
+        }
+      }
+    })
+  })($thiz, f, p)), executor);
+  return p
+}
 function $f_s_concurrent_impl_Promise__toString__T($thiz) {
   var x1 = $thiz.value__s_Option();
   if ($is_s_Some(x1)) {
@@ -17137,6 +17368,9 @@ function $h_Lmonix_execution_Ack() {
   /*<skip>*/
 }
 $h_Lmonix_execution_Ack.prototype = $c_Lmonix_execution_Ack.prototype;
+$c_Lmonix_execution_Ack.prototype.flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future = (function(f, executor) {
+  return $f_s_concurrent_Future__flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this, f, executor)
+});
 $c_Lmonix_execution_Ack.prototype.andThen__s_PartialFunction__s_concurrent_ExecutionContext__s_concurrent_Future = (function(pf, executor) {
   return $f_s_concurrent_Future__andThen__s_PartialFunction__s_concurrent_ExecutionContext__s_concurrent_Future(this, pf, executor)
 });
@@ -17186,6 +17420,11 @@ var $d_Lmonix_execution_Cancelable$$anon$1 = new $TypeData().initClass({
   Lmonix_execution_Cancelable$IsDummy: 1
 });
 $c_Lmonix_execution_Cancelable$$anon$1.prototype.$classData = $d_Lmonix_execution_Cancelable$$anon$1;
+function $f_Lmonix_execution_CancelableFuture__flatMap__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture($thiz, f, executor) {
+  $m_Lmonix_execution_CancelableFuture$();
+  var underlying = $f_s_concurrent_Future__flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future($thiz, f, executor);
+  return new $c_Lmonix_execution_CancelableFuture$Implementation().init___s_concurrent_Future__Lmonix_execution_Cancelable(underlying, $thiz)
+}
 function $f_Lmonix_execution_CancelableFuture__andThen__s_PartialFunction__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture($thiz, pf, executor) {
   $m_Lmonix_execution_CancelableFuture$();
   var underlying = $f_s_concurrent_Future__andThen__s_PartialFunction__s_concurrent_ExecutionContext__s_concurrent_Future($thiz, pf, executor);
@@ -17199,6 +17438,11 @@ function $f_Lmonix_execution_CancelableFuture__map__F1__s_concurrent_ExecutionCo
 function $f_Lmonix_execution_CancelableFuture__transform__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture($thiz, f, executor) {
   $m_Lmonix_execution_CancelableFuture$();
   var underlying = $m_Lmonix_execution_FutureUtils$().transform__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future($thiz, f, executor);
+  return new $c_Lmonix_execution_CancelableFuture$Implementation().init___s_concurrent_Future__Lmonix_execution_Cancelable(underlying, $thiz)
+}
+function $f_Lmonix_execution_CancelableFuture__transformWith__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture($thiz, f, executor) {
+  $m_Lmonix_execution_CancelableFuture$();
+  var underlying = $m_Lmonix_execution_FutureUtils$().transformWith__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future($thiz, f, executor);
   return new $c_Lmonix_execution_CancelableFuture$Implementation().init___s_concurrent_Future__Lmonix_execution_Cancelable(underlying, $thiz)
 }
 /** @constructor */
@@ -21260,8 +21504,14 @@ $c_s_concurrent_impl_Promise$KeptPromise$Failed.prototype.init___s_util_Failure 
 $c_s_concurrent_impl_Promise$KeptPromise$Failed.prototype.tryComplete__s_util_Try__Z = (function(value) {
   return false
 });
+$c_s_concurrent_impl_Promise$KeptPromise$Failed.prototype.transformWith__F1__s_concurrent_ExecutionContext__s_concurrent_Future = (function(f, executor) {
+  return $f_s_concurrent_impl_Promise__transformWith__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this, f, executor)
+});
 $c_s_concurrent_impl_Promise$KeptPromise$Failed.prototype.toString__T = (function() {
   return $f_s_concurrent_impl_Promise__toString__T(this)
+});
+$c_s_concurrent_impl_Promise$KeptPromise$Failed.prototype.flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future = (function(f, executor) {
+  return this
 });
 $c_s_concurrent_impl_Promise$KeptPromise$Failed.prototype.onComplete__F1__s_concurrent_ExecutionContext__V = (function(func, executor) {
   $f_s_concurrent_impl_Promise$KeptPromise$Kept__onComplete__F1__s_concurrent_ExecutionContext__V(this, func, executor)
@@ -21311,8 +21561,14 @@ $h_s_concurrent_impl_Promise$KeptPromise$Successful.prototype = $c_s_concurrent_
 $c_s_concurrent_impl_Promise$KeptPromise$Successful.prototype.tryComplete__s_util_Try__Z = (function(value) {
   return false
 });
+$c_s_concurrent_impl_Promise$KeptPromise$Successful.prototype.transformWith__F1__s_concurrent_ExecutionContext__s_concurrent_Future = (function(f, executor) {
+  return $f_s_concurrent_impl_Promise__transformWith__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this, f, executor)
+});
 $c_s_concurrent_impl_Promise$KeptPromise$Successful.prototype.toString__T = (function() {
   return $f_s_concurrent_impl_Promise__toString__T(this)
+});
+$c_s_concurrent_impl_Promise$KeptPromise$Successful.prototype.flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future = (function(f, executor) {
+  return $f_s_concurrent_Future__flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this, f, executor)
 });
 $c_s_concurrent_impl_Promise$KeptPromise$Successful.prototype.init___s_util_Success = (function(result) {
   this.result$1 = result;
@@ -22368,6 +22624,15 @@ function $h_Lmonix_execution_CancelableFuture$Implementation() {
   /*<skip>*/
 }
 $h_Lmonix_execution_CancelableFuture$Implementation.prototype = $c_Lmonix_execution_CancelableFuture$Implementation.prototype;
+$c_Lmonix_execution_CancelableFuture$Implementation.prototype.transformWith__F1__s_concurrent_ExecutionContext__s_concurrent_Future = (function(f, executor) {
+  return this.transformWith__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture(f, executor)
+});
+$c_Lmonix_execution_CancelableFuture$Implementation.prototype.flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future = (function(f, executor) {
+  return this.flatMap__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture(f, executor)
+});
+$c_Lmonix_execution_CancelableFuture$Implementation.prototype.flatMap__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture = (function(f, executor) {
+  return new $c_Lmonix_execution_CancelableFuture$Implementation().init___s_concurrent_Future__Lmonix_execution_Cancelable(this.underlying$1.flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future(f, executor), this.cancelable$1)
+});
 $c_Lmonix_execution_CancelableFuture$Implementation.prototype.onComplete__F1__s_concurrent_ExecutionContext__V = (function(f, executor) {
   this.underlying$1.onComplete__F1__s_concurrent_ExecutionContext__V(f, executor)
 });
@@ -22391,6 +22656,9 @@ $c_Lmonix_execution_CancelableFuture$Implementation.prototype.map__F1__s_concurr
 });
 $c_Lmonix_execution_CancelableFuture$Implementation.prototype.transform__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture = (function(f, executor) {
   return new $c_Lmonix_execution_CancelableFuture$Implementation().init___s_concurrent_Future__Lmonix_execution_Cancelable($m_Lmonix_execution_FutureUtils$().transform__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this.underlying$1, f, executor), this.cancelable$1)
+});
+$c_Lmonix_execution_CancelableFuture$Implementation.prototype.transformWith__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture = (function(f, executor) {
+  return new $c_Lmonix_execution_CancelableFuture$Implementation().init___s_concurrent_Future__Lmonix_execution_Cancelable($m_Lmonix_execution_FutureUtils$().transformWith__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this.underlying$1, f, executor), this.cancelable$1)
 });
 $c_Lmonix_execution_CancelableFuture$Implementation.prototype.init___s_concurrent_Future__Lmonix_execution_Cancelable = (function(underlying, cancelable) {
   this.underlying$1 = underlying;
@@ -22429,6 +22697,12 @@ function $h_Lmonix_execution_CancelableFuture$Now() {
   /*<skip>*/
 }
 $h_Lmonix_execution_CancelableFuture$Now.prototype = $c_Lmonix_execution_CancelableFuture$Now.prototype;
+$c_Lmonix_execution_CancelableFuture$Now.prototype.transformWith__F1__s_concurrent_ExecutionContext__s_concurrent_Future = (function(f, executor) {
+  return $f_Lmonix_execution_CancelableFuture__transformWith__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture(this, f, executor)
+});
+$c_Lmonix_execution_CancelableFuture$Now.prototype.flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future = (function(f, executor) {
+  return $f_Lmonix_execution_CancelableFuture__flatMap__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture(this, f, executor)
+});
 $c_Lmonix_execution_CancelableFuture$Now.prototype.onComplete__F1__s_concurrent_ExecutionContext__V = (function(f, executor) {
   executor.execute__jl_Runnable__V(new $c_Lmonix_execution_CancelableFuture$Now$$anon$1().init___Lmonix_execution_CancelableFuture$Now__F1(this, f))
 });
@@ -23564,6 +23838,51 @@ $c_s_concurrent_impl_Promise$DefaultPromise.prototype.tryComplete__s_util_Try__Z
     return false
   }
 });
+$c_s_concurrent_impl_Promise$DefaultPromise.prototype.transformWith__F1__s_concurrent_ExecutionContext__s_concurrent_Future = (function(f, executor) {
+  return $f_s_concurrent_impl_Promise__transformWith__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this, f, executor)
+});
+$c_s_concurrent_impl_Promise$DefaultPromise.prototype.link__p2__s_concurrent_impl_Promise$DefaultPromise__V = (function(target) {
+  var _$this = this;
+  _link: while (true) {
+    if ((_$this !== target)) {
+      var x1 = _$this.value$1;
+      matchEnd6: {
+        if ($is_s_util_Try(x1)) {
+          var x2 = $as_s_util_Try(x1);
+          if ((!target.tryComplete__s_util_Try__Z(x2))) {
+            throw new $c_jl_IllegalStateException().init___T("Cannot link completed promises together")
+          };
+          break matchEnd6
+        };
+        if ($is_s_concurrent_impl_Promise$DefaultPromise(x1)) {
+          var x3 = $as_s_concurrent_impl_Promise$DefaultPromise(x1);
+          _$this = _$this.compressedRoot__p2__s_concurrent_impl_Promise$DefaultPromise__s_concurrent_impl_Promise$DefaultPromise(x3);
+          continue _link
+        };
+        if ($is_sci_List(x1)) {
+          var x4 = $as_sci_List(x1);
+          if (_$this.compareAndSet__O__O__Z(x4, target)) {
+            if ($f_sc_TraversableOnce__nonEmpty__Z(x4)) {
+              var these = x4;
+              while ((!these.isEmpty__Z())) {
+                var arg1 = these.head__O();
+                var x$2 = $as_s_concurrent_impl_CallbackRunnable(arg1);
+                target.dispatchOrAddCallback__p2__s_concurrent_impl_CallbackRunnable__V(x$2);
+                var this$1 = these;
+                these = this$1.tail__sci_List()
+              };
+              break matchEnd6
+            } else {
+              break matchEnd6
+            }
+          }
+        };
+        continue _link
+      }
+    };
+    break
+  }
+});
 $c_s_concurrent_impl_Promise$DefaultPromise.prototype.toString__T = (function() {
   return $f_s_concurrent_impl_Promise__toString__T(this)
 });
@@ -23579,6 +23898,18 @@ $c_s_concurrent_impl_Promise$DefaultPromise.prototype.root__p2__s_concurrent_imp
       return _$this
     }
   }
+});
+$c_s_concurrent_impl_Promise$DefaultPromise.prototype.compressedRoot__p2__s_concurrent_impl_Promise$DefaultPromise = (function() {
+  var x1 = this.value$1;
+  if ($is_s_concurrent_impl_Promise$DefaultPromise(x1)) {
+    var x2 = $as_s_concurrent_impl_Promise$DefaultPromise(x1);
+    return this.compressedRoot__p2__s_concurrent_impl_Promise$DefaultPromise__s_concurrent_impl_Promise$DefaultPromise(x2)
+  } else {
+    return this
+  }
+});
+$c_s_concurrent_impl_Promise$DefaultPromise.prototype.flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future = (function(f, executor) {
+  return $f_s_concurrent_Future__flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this, f, executor)
 });
 $c_s_concurrent_impl_Promise$DefaultPromise.prototype.tryCompleteAndGetListeners__p2__s_util_Try__sci_List = (function(v) {
   var _$this = this;
@@ -25274,6 +25605,9 @@ $c_Lmonix_execution_Ack$Continue$.prototype.productArity__I = (function() {
 $c_Lmonix_execution_Ack$Continue$.prototype.productElement__I__O = (function(x$1) {
   throw new $c_jl_IndexOutOfBoundsException().init___T(("" + x$1))
 });
+$c_Lmonix_execution_Ack$Continue$.prototype.transformWith__F1__s_concurrent_ExecutionContext__s_concurrent_Future = (function(f, executor) {
+  return $m_Lmonix_execution_FutureUtils$().transformWith__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this, f, executor)
+});
 $c_Lmonix_execution_Ack$Continue$.prototype.toString__T = (function() {
   return "Continue"
 });
@@ -25344,6 +25678,9 @@ $c_Lmonix_execution_Ack$Stop$.prototype.productArity__I = (function() {
 });
 $c_Lmonix_execution_Ack$Stop$.prototype.productElement__I__O = (function(x$1) {
   throw new $c_jl_IndexOutOfBoundsException().init___T(("" + x$1))
+});
+$c_Lmonix_execution_Ack$Stop$.prototype.transformWith__F1__s_concurrent_ExecutionContext__s_concurrent_Future = (function(f, executor) {
+  return $m_Lmonix_execution_FutureUtils$().transformWith__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this, f, executor)
 });
 $c_Lmonix_execution_Ack$Stop$.prototype.toString__T = (function() {
   return "Stop"

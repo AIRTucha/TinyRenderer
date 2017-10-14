@@ -20,7 +20,8 @@ class Obj(
     val vertices: Array[Vec3],
     val normals: Array[Vec3],
     val textures: Array[Vec2],
-    val faces: Array[(Indeces, Indeces, Indeces)]
+    val faces: Array[(Indeces, Indeces, Indeces)],
+    val deffuse: Texture
 ) {
   def draw(scene: Scene) = {
     val color = Color( 255, 255, 255 )
@@ -171,49 +172,60 @@ class Obj(
 }
 object Obj {
   def apply(url: String): Future[Obj] = {
-    get("obj/african_head/african_head.obj") map { res: SimpleHttpResponse =>
-      val values = res.body.split("\n").map(str => str.split(" "))
-      new Obj(
-        values.withFilter(_(0) == "v") map { value =>
-          Vec3(
-            value(1).toDouble,
-            value(2).toDouble,
-            value(3).toDouble
-          )
-        },
-        values.withFilter(_(0) == "vn") map { value =>
-          Vec3(
-            value(2).toDouble,
-            value(3).toDouble,
-            value(4).toDouble
-          )
-        },
-        values.withFilter(_(0) == "vt") map { value =>
-          Vec2(
-            value(2).toDouble,
-            value(3).toDouble
-          )
-        },
-        values
-          .withFilter(_(0) == "f")
-          .map { 
-            value => (
-              value(1).split("/") match {
-                case Array(fst, snd, trd) =>
-                  Indeces(fst.toInt - 1, snd.toInt - 1, trd.toInt - 1)
-              },
-              value(2).split("/") match {
-                case Array(fst, snd, trd) =>
-                  Indeces(fst.toInt - 1, snd.toInt - 1, trd.toInt - 1)
-              },
-              value(3).split("/") match {
-                case Array(fst, snd, trd) =>
-                  Indeces(fst.toInt - 1, snd.toInt - 1, trd.toInt - 1)
-              }
-            )
-          }
-      )
-    }
+    for {
+      obj <- get("obj/african_head/african_head.obj") map { _.body.split("\n").map( _.split(" ") ) } 
+      deffuse <- Texture("obj/african_head/african_head_diffuse.jpg")
+    } yield new Obj(
+      parseV(obj),
+      parseVN(obj),
+      parseVT(obj),
+      parseF(obj),
+      deffuse
+    )
   }
   def get(url: String) = HttpRequest(s"${dom.window.location.href}/${url}").send
+  def parseV(data: Array[Array[String]]) = data
+    .withFilter(_(0) == "v")
+    .map{ value =>
+      Vec3(
+        value(1).toDouble,
+        value(2).toDouble,
+        value(3).toDouble
+      )
+    }
+  def parseVN(data: Array[Array[String]]) = data
+    .withFilter(_(0) == "vn")
+    .map{ value =>
+      Vec3(
+        value(2).toDouble,
+        value(3).toDouble,
+        value(4).toDouble
+      )
+    }
+  def parseVT(data: Array[Array[String]]) = data
+    .withFilter(_(0) == "vt")
+    .map{ value =>
+      Vec2(
+        value(2).toDouble,
+        value(3).toDouble
+      )
+    }
+  def parseF(data: Array[Array[String]]) = data
+    .withFilter(_(0) == "f")
+    .map { 
+      value => (
+        value(1).split("/") match {
+          case Array(fst, snd, trd) =>
+            Indeces(fst.toInt - 1, snd.toInt - 1, trd.toInt - 1)
+        },
+        value(2).split("/") match {
+          case Array(fst, snd, trd) =>
+            Indeces(fst.toInt - 1, snd.toInt - 1, trd.toInt - 1)
+        },
+        value(3).split("/") match {
+          case Array(fst, snd, trd) =>
+            Indeces(fst.toInt - 1, snd.toInt - 1, trd.toInt - 1)
+        }
+      )
+    }
 }
