@@ -4086,75 +4086,7 @@ function $h_Ltinyrenderer_Obj() {
   /*<skip>*/
 }
 $h_Ltinyrenderer_Obj.prototype = $c_Ltinyrenderer_Obj.prototype;
-$c_Ltinyrenderer_Obj.prototype.line__I__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Color__Ltinyrenderer_Scene__V = (function(y, vec1, vec2, vec3, vec4, color, scene) {
-  var gradientY1 = ((vec1.vertex$1.y$1 !== vec2.vertex$1.y$1) ? ((y - vec1.vertex$1.y$1) / (vec2.vertex$1.y$1 - vec1.vertex$1.y$1)) : 1.0);
-  var gradientY2 = ((vec3.vertex$1.y$1 !== vec4.vertex$1.y$1) ? ((y - vec3.vertex$1.y$1) / (vec4.vertex$1.y$1 - vec3.vertex$1.y$1)) : 1.0);
-  var minV = vec1.vertex$1.x$1;
-  var maxV = vec2.vertex$1.x$1;
-  var y$1 = $uD($g.Math.min(gradientY1, 1.0));
-  var startX = $doubleToInt((minV + ((maxV - minV) * $uD($g.Math.max(0.0, y$1)))));
-  var minV$1 = vec3.vertex$1.x$1;
-  var maxV$1 = vec4.vertex$1.x$1;
-  var y$2 = $uD($g.Math.min(gradientY2, 1.0));
-  var endX = $doubleToInt((minV$1 + ((maxV$1 - minV$1) * $uD($g.Math.max(0.0, y$2)))));
-  var minV$2 = vec1.normal$1.x$1;
-  var maxV$2 = vec2.normal$1.x$1;
-  var y$3 = $uD($g.Math.min(gradientY1, 1.0));
-  var startNormalX = (minV$2 + ((maxV$2 - minV$2) * $uD($g.Math.max(0.0, y$3))));
-  var minV$3 = vec3.normal$1.x$1;
-  var maxV$3 = vec4.normal$1.x$1;
-  var y$4 = $uD($g.Math.min(gradientY2, 1.0));
-  var endNormalX = (minV$3 + ((maxV$3 - minV$3) * $uD($g.Math.max(0.0, y$4))));
-  var minV$4 = vec1.normal$1.y$1;
-  var maxV$4 = vec2.normal$1.y$1;
-  var y$5 = $uD($g.Math.min(gradientY1, 1.0));
-  var startNormalY = (minV$4 + ((maxV$4 - minV$4) * $uD($g.Math.max(0.0, y$5))));
-  var minV$5 = vec3.normal$1.y$1;
-  var maxV$5 = vec4.normal$1.y$1;
-  var y$6 = $uD($g.Math.min(gradientY2, 1.0));
-  var endNormalY = (minV$5 + ((maxV$5 - minV$5) * $uD($g.Math.max(0.0, y$6))));
-  var minV$6 = vec1.normal$1.z$1;
-  var maxV$6 = vec2.normal$1.z$1;
-  var y$7 = $uD($g.Math.min(gradientY1, 1.0));
-  var startNormalZ = (minV$6 + ((maxV$6 - minV$6) * $uD($g.Math.max(0.0, y$7))));
-  var minV$7 = vec3.normal$1.z$1;
-  var maxV$7 = vec4.normal$1.z$1;
-  var y$8 = $uD($g.Math.min(gradientY2, 1.0));
-  var endNormalZ = (minV$7 + ((maxV$7 - minV$7) * $uD($g.Math.max(0.0, y$8))));
-  var minV$8 = vec1.vertex$1.z$1;
-  var maxV$8 = vec2.vertex$1.z$1;
-  var y$9 = $uD($g.Math.min(gradientY1, 1.0));
-  var startZ = (minV$8 + ((maxV$8 - minV$8) * $uD($g.Math.max(0.0, y$9))));
-  var minV$9 = vec3.vertex$1.z$1;
-  var maxV$9 = vec4.vertex$1.z$1;
-  var y$10 = $uD($g.Math.min(gradientY2, 1.0));
-  var endZ = (minV$9 + ((maxV$9 - minV$9) * $uD($g.Math.max(0.0, y$10))));
-  var isEmpty$4 = (startX >= endX);
-  var scala$collection$immutable$Range$$lastElement$4 = (((-1) + endX) | 0);
-  if ((!isEmpty$4)) {
-    var i = startX;
-    while (true) {
-      var v1 = i;
-      var gradientX = ((v1 - startX) / ((endX - startX) | 0));
-      var y$11 = $uD($g.Math.min(gradientX, 1.0));
-      var jsx$2 = $uD($g.Math.max(0.0, y$11));
-      var y$12 = $uD($g.Math.min(gradientX, 1.0));
-      var jsx$1 = $uD($g.Math.max(0.0, y$12));
-      var y$13 = $uD($g.Math.min(gradientX, 1.0));
-      var normal = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((startNormalX + ((endNormalX - startNormalX) * jsx$2)), (startNormalY + ((endNormalY - startNormalY) * jsx$1)), (startNormalZ + ((endNormalZ - startNormalZ) * $uD($g.Math.max(0.0, y$13)))));
-      var y$14 = $uD($g.Math.min(gradientX, 1.0));
-      var z = (startZ + ((endZ - startZ) * $uD($g.Math.max(0.0, y$14))));
-      var vec1$1 = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.5, 0.7);
-      var intensity = (((vec1$1.x$1 * normal.x$1) + (vec1$1.y$1 * normal.y$1)) + (vec1$1.z$1 * normal.z$1));
-      scene.dot__I__I__D__D__D__D__D__V(v1, y, z, (color.r$1 * intensity), (color.g$1 * intensity), (color.b$1 * intensity), (color.a$1 * intensity));
-      if ((i === scala$collection$immutable$Range$$lastElement$4)) {
-        break
-      };
-      i = ((1 + i) | 0)
-    }
-  }
-});
-$c_Ltinyrenderer_Obj.prototype.triangle__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Color__Ltinyrenderer_Scene__V = (function(vec1, vec2, vec3, color, scene) {
+$c_Ltinyrenderer_Obj.prototype.triangle__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Scene__V = (function(vec1, vec2, vec3, scene) {
   var vec1$1 = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.0, 1.0);
   var vec2$1 = vec1.normal$1;
   if (((((vec1$1.x$1 * vec2$1.x$1) + (vec1$1.y$1 * vec2$1.y$1)) + (vec1$1.z$1 * vec2$1.z$1)) > 0)) {
@@ -4172,15 +4104,12 @@ $c_Ltinyrenderer_Obj.prototype.triangle__Ltinyrenderer_Commone_package$Vertex__L
     var jsx$1 = ((((vec1$3.x$1 * vec2$3.x$1) + (vec1$3.y$1 * vec2$3.y$1)) + (vec1$3.z$1 * vec2$3.z$1)) > 0)
   };
   if (jsx$1) {
-    var elem = new $c_Ltinyrenderer_Commone_package$Vertex().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(((scene.width$1 * (vec1.vertex$1.x$1 - scene.low$1.x$1)) / (scene.high$1.x$1 - scene.low$1.x$1)), ((scene.height$1 * (vec1.vertex$1.y$1 - scene.low$1.y$1)) / (scene.high$1.y$1 - scene.low$1.y$1)), vec1.vertex$1.z$1), vec1.normal$1, vec1.texture$1);
     var elem$1 = null;
-    elem$1 = elem;
-    var elem$2 = new $c_Ltinyrenderer_Commone_package$Vertex().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(((scene.width$1 * (vec2.vertex$1.x$1 - scene.low$1.x$1)) / (scene.high$1.x$1 - scene.low$1.x$1)), ((scene.height$1 * (vec2.vertex$1.y$1 - scene.low$1.y$1)) / (scene.high$1.y$1 - scene.low$1.y$1)), vec2.vertex$1.z$1), vec2.normal$1, vec2.texture$1);
+    elem$1 = vec1;
     var elem$1$1 = null;
-    elem$1$1 = elem$2;
-    var elem$3 = new $c_Ltinyrenderer_Commone_package$Vertex().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(((scene.width$1 * (vec3.vertex$1.x$1 - scene.low$1.x$1)) / (scene.high$1.x$1 - scene.low$1.x$1)), ((scene.height$1 * (vec3.vertex$1.y$1 - scene.low$1.y$1)) / (scene.high$1.y$1 - scene.low$1.y$1)), vec3.vertex$1.z$1), vec3.normal$1, vec3.texture$1);
+    elem$1$1 = vec2;
     var elem$1$2 = null;
-    elem$1$2 = elem$3;
+    elem$1$2 = vec3;
     if (($as_Ltinyrenderer_Commone_package$Vertex(elem$1).vertex$1.y$1 > $as_Ltinyrenderer_Commone_package$Vertex(elem$1$1).vertex$1.y$1)) {
       var buff = $as_Ltinyrenderer_Commone_package$Vertex(elem$1);
       elem$1 = $as_Ltinyrenderer_Commone_package$Vertex(elem$1$1);
@@ -4206,7 +4135,7 @@ $c_Ltinyrenderer_Obj.prototype.triangle__Ltinyrenderer_Commone_package$Vertex__L
         var i = x;
         while (true) {
           var v1 = i;
-          this.line__I__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Color__Ltinyrenderer_Scene__V(v1, $as_Ltinyrenderer_Commone_package$Vertex(elem$1), $as_Ltinyrenderer_Commone_package$Vertex(elem$1$2), $as_Ltinyrenderer_Commone_package$Vertex(elem$1), $as_Ltinyrenderer_Commone_package$Vertex(elem$1$1), color, scene);
+          this.line__I__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Scene__V(v1, $as_Ltinyrenderer_Commone_package$Vertex(elem$1), $as_Ltinyrenderer_Commone_package$Vertex(elem$1$2), $as_Ltinyrenderer_Commone_package$Vertex(elem$1), $as_Ltinyrenderer_Commone_package$Vertex(elem$1$1), scene);
           if ((i === end)) {
             break
           };
@@ -4221,7 +4150,7 @@ $c_Ltinyrenderer_Obj.prototype.triangle__Ltinyrenderer_Commone_package$Vertex__L
         var i$1 = x$1;
         while (true) {
           var v1$1 = i$1;
-          this.line__I__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Color__Ltinyrenderer_Scene__V(v1$1, $as_Ltinyrenderer_Commone_package$Vertex(elem$1$2), $as_Ltinyrenderer_Commone_package$Vertex(elem$1), $as_Ltinyrenderer_Commone_package$Vertex(elem$1$2), $as_Ltinyrenderer_Commone_package$Vertex(elem$1$1), color, scene);
+          this.line__I__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Scene__V(v1$1, $as_Ltinyrenderer_Commone_package$Vertex(elem$1$2), $as_Ltinyrenderer_Commone_package$Vertex(elem$1), $as_Ltinyrenderer_Commone_package$Vertex(elem$1$2), $as_Ltinyrenderer_Commone_package$Vertex(elem$1$1), scene);
           if ((i$1 === scala$collection$immutable$Range$$lastElement$4)) {
             break
           };
@@ -4236,7 +4165,7 @@ $c_Ltinyrenderer_Obj.prototype.triangle__Ltinyrenderer_Commone_package$Vertex__L
         var i$2 = x$2;
         while (true) {
           var v1$2 = i$2;
-          this.line__I__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Color__Ltinyrenderer_Scene__V(v1$2, $as_Ltinyrenderer_Commone_package$Vertex(elem$1), $as_Ltinyrenderer_Commone_package$Vertex(elem$1$1), $as_Ltinyrenderer_Commone_package$Vertex(elem$1), $as_Ltinyrenderer_Commone_package$Vertex(elem$1$2), color, scene);
+          this.line__I__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Scene__V(v1$2, $as_Ltinyrenderer_Commone_package$Vertex(elem$1), $as_Ltinyrenderer_Commone_package$Vertex(elem$1$1), $as_Ltinyrenderer_Commone_package$Vertex(elem$1), $as_Ltinyrenderer_Commone_package$Vertex(elem$1$2), scene);
           if ((i$2 === end$2)) {
             break
           };
@@ -4251,7 +4180,7 @@ $c_Ltinyrenderer_Obj.prototype.triangle__Ltinyrenderer_Commone_package$Vertex__L
         var i$3 = x$3;
         while (true) {
           var v1$3 = i$3;
-          this.line__I__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Color__Ltinyrenderer_Scene__V(v1$3, $as_Ltinyrenderer_Commone_package$Vertex(elem$1$2), $as_Ltinyrenderer_Commone_package$Vertex(elem$1$1), $as_Ltinyrenderer_Commone_package$Vertex(elem$1$2), $as_Ltinyrenderer_Commone_package$Vertex(elem$1), color, scene);
+          this.line__I__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Scene__V(v1$3, $as_Ltinyrenderer_Commone_package$Vertex(elem$1$2), $as_Ltinyrenderer_Commone_package$Vertex(elem$1$1), $as_Ltinyrenderer_Commone_package$Vertex(elem$1$2), $as_Ltinyrenderer_Commone_package$Vertex(elem$1), scene);
           if ((i$3 === scala$collection$immutable$Range$$lastElement$4$1)) {
             break
           };
@@ -4261,29 +4190,97 @@ $c_Ltinyrenderer_Obj.prototype.triangle__Ltinyrenderer_Commone_package$Vertex__L
     }
   }
 });
-$c_Ltinyrenderer_Obj.prototype.draw__Ltinyrenderer_Scene__V = (function(scene) {
-  var color = new $c_Ltinyrenderer_Commone_package$Color().init___I__I__I__I(255, 255, 255, 255);
-  var xs = this.faces$1;
-  var this$2 = new $c_scm_ArrayOps$ofRef().init___AO(xs);
-  var p = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this) {
-    return (function(check$ifrefutable$1$2) {
-      var check$ifrefutable$1 = $as_T3(check$ifrefutable$1$2);
-      return (check$ifrefutable$1 !== null)
-    })
-  })(this));
-  new $c_sc_TraversableLike$WithFilter().init___sc_TraversableLike__F1(this$2, p).foreach__F1__V(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(this$2$1, scene$1, color$1) {
-    return (function(x$1$2) {
-      var x$1 = $as_T3(x$1$2);
-      if ((x$1 !== null)) {
-        var fst = $as_Ltinyrenderer_Commone_package$Indeces(x$1.$$und1$1);
-        var snd = $as_Ltinyrenderer_Commone_package$Indeces(x$1.$$und2$1);
-        var trd = $as_Ltinyrenderer_Commone_package$Indeces(x$1.$$und3$1);
-        this$2$1.triangle__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Color__Ltinyrenderer_Scene__V(new $c_Ltinyrenderer_Commone_package$Vertex().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(this$2$1.vertices$1.get(fst.vertex$1), this$2$1.normals$1.get(fst.normal$1), this$2$1.textures$1.get(fst.texture$1)), new $c_Ltinyrenderer_Commone_package$Vertex().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(this$2$1.vertices$1.get(snd.vertex$1), this$2$1.normals$1.get(snd.normal$1), this$2$1.textures$1.get(snd.texture$1)), new $c_Ltinyrenderer_Commone_package$Vertex().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(this$2$1.vertices$1.get(trd.vertex$1), this$2$1.normals$1.get(trd.normal$1), this$2$1.textures$1.get(trd.texture$1)), color$1, scene$1)
-      } else {
-        throw new $c_s_MatchError().init___O(x$1)
-      }
-    })
-  })(this, scene, color)))
+$c_Ltinyrenderer_Obj.prototype.line__I__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Scene__V = (function(y, vec1, vec2, vec3, vec4, scene) {
+  var gradientY12 = ((vec1.vertex$1.y$1 !== vec2.vertex$1.y$1) ? ((y - vec1.vertex$1.y$1) / (vec2.vertex$1.y$1 - vec1.vertex$1.y$1)) : 1.0);
+  var gradientY34 = ((vec3.vertex$1.y$1 !== vec4.vertex$1.y$1) ? ((y - vec3.vertex$1.y$1) / (vec4.vertex$1.y$1 - vec3.vertex$1.y$1)) : 1.0);
+  var minV = vec1.vertex$1.x$1;
+  var maxV = vec2.vertex$1.x$1;
+  var y$1 = $uD($g.Math.min(gradientY12, 1.0));
+  var startX = $doubleToInt((minV + ((maxV - minV) * $uD($g.Math.max(0.0, y$1)))));
+  var minV$1 = vec3.vertex$1.x$1;
+  var maxV$1 = vec4.vertex$1.x$1;
+  var y$2 = $uD($g.Math.min(gradientY34, 1.0));
+  var endX = $doubleToInt((minV$1 + ((maxV$1 - minV$1) * $uD($g.Math.max(0.0, y$2)))));
+  var minV$2 = vec1.vertex$1.z$1;
+  var maxV$2 = vec2.vertex$1.z$1;
+  var y$3 = $uD($g.Math.min(gradientY12, 1.0));
+  var startZ = (minV$2 + ((maxV$2 - minV$2) * $uD($g.Math.max(0.0, y$3))));
+  var minV$3 = vec3.vertex$1.z$1;
+  var maxV$3 = vec4.vertex$1.z$1;
+  var y$4 = $uD($g.Math.min(gradientY34, 1.0));
+  var endZ = (minV$3 + ((maxV$3 - minV$3) * $uD($g.Math.max(0.0, y$4))));
+  var minV$4 = vec1.normal$1.x$1;
+  var maxV$4 = vec2.normal$1.x$1;
+  var y$5 = $uD($g.Math.min(gradientY12, 1.0));
+  var startNormalX = (minV$4 + ((maxV$4 - minV$4) * $uD($g.Math.max(0.0, y$5))));
+  var minV$5 = vec3.normal$1.x$1;
+  var maxV$5 = vec4.normal$1.x$1;
+  var y$6 = $uD($g.Math.min(gradientY34, 1.0));
+  var endNormalX = (minV$5 + ((maxV$5 - minV$5) * $uD($g.Math.max(0.0, y$6))));
+  var minV$6 = vec1.normal$1.y$1;
+  var maxV$6 = vec2.normal$1.y$1;
+  var y$7 = $uD($g.Math.min(gradientY12, 1.0));
+  var startNormalY = (minV$6 + ((maxV$6 - minV$6) * $uD($g.Math.max(0.0, y$7))));
+  var minV$7 = vec3.normal$1.y$1;
+  var maxV$7 = vec4.normal$1.y$1;
+  var y$8 = $uD($g.Math.min(gradientY34, 1.0));
+  var endNormalY = (minV$7 + ((maxV$7 - minV$7) * $uD($g.Math.max(0.0, y$8))));
+  var minV$8 = vec1.normal$1.z$1;
+  var maxV$8 = vec2.normal$1.z$1;
+  var y$9 = $uD($g.Math.min(gradientY12, 1.0));
+  var startNormalZ = (minV$8 + ((maxV$8 - minV$8) * $uD($g.Math.max(0.0, y$9))));
+  var minV$9 = vec3.normal$1.z$1;
+  var maxV$9 = vec4.normal$1.z$1;
+  var y$10 = $uD($g.Math.min(gradientY34, 1.0));
+  var endNormalZ = (minV$9 + ((maxV$9 - minV$9) * $uD($g.Math.max(0.0, y$10))));
+  var minV$10 = vec1.texture$1.x$1;
+  var maxV$10 = vec2.texture$1.x$1;
+  var y$11 = $uD($g.Math.min(gradientY12, 1.0));
+  var startXTex = (minV$10 + ((maxV$10 - minV$10) * $uD($g.Math.max(0.0, y$11))));
+  var minV$11 = vec3.texture$1.x$1;
+  var maxV$11 = vec4.texture$1.x$1;
+  var y$12 = $uD($g.Math.min(gradientY34, 1.0));
+  var endXTex = (minV$11 + ((maxV$11 - minV$11) * $uD($g.Math.max(0.0, y$12))));
+  var minV$12 = vec1.texture$1.y$1;
+  var maxV$12 = vec2.texture$1.y$1;
+  var y$13 = $uD($g.Math.min(gradientY12, 1.0));
+  var startYTex = (minV$12 + ((maxV$12 - minV$12) * $uD($g.Math.max(0.0, y$13))));
+  var minV$13 = vec3.texture$1.y$1;
+  var maxV$13 = vec4.texture$1.y$1;
+  var y$14 = $uD($g.Math.min(gradientY34, 1.0));
+  var endYTex = (minV$13 + ((maxV$13 - minV$13) * $uD($g.Math.max(0.0, y$14))));
+  var isEmpty$4 = (startX >= endX);
+  var scala$collection$immutable$Range$$lastElement$4 = (((-1) + endX) | 0);
+  if ((!isEmpty$4)) {
+    var i = startX;
+    while (true) {
+      var v1 = i;
+      var gradientX = ((v1 - startX) / ((endX - startX) | 0));
+      var y$15 = $uD($g.Math.min(gradientX, 1.0));
+      var jsx$2 = $uD($g.Math.max(0.0, y$15));
+      var y$16 = $uD($g.Math.min(gradientX, 1.0));
+      var jsx$1 = $uD($g.Math.max(0.0, y$16));
+      var y$17 = $uD($g.Math.min(gradientX, 1.0));
+      var normal = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((startNormalX + ((endNormalX - startNormalX) * jsx$2)), (startNormalY + ((endNormalY - startNormalY) * jsx$1)), (startNormalZ + ((endNormalZ - startNormalZ) * $uD($g.Math.max(0.0, y$17)))));
+      var y$18 = $uD($g.Math.min(gradientX, 1.0));
+      var z = (startZ + ((endZ - startZ) * $uD($g.Math.max(0.0, y$18))));
+      var vec1$1 = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.5, 0.7);
+      var intensity = (((vec1$1.x$1 * normal.x$1) + (vec1$1.y$1 * normal.y$1)) + (vec1$1.z$1 * normal.z$1));
+      var y$19 = $uD($g.Math.min(gradientX, 1.0));
+      var xTex = (startXTex + ((endXTex - startXTex) * $uD($g.Math.max(0.0, y$19))));
+      var y$20 = $uD($g.Math.min(gradientX, 1.0));
+      var yTex = (startYTex + ((endYTex - startYTex) * $uD($g.Math.max(0.0, y$20))));
+      var this$109 = $m_s_Console$();
+      var this$110 = $as_Ljava_io_PrintStream(this$109.outVar$2.v$1);
+      this$110.java$lang$JSConsoleBasedPrintStream$$printString__T__V((yTex + "\n"));
+      var color = this.deffuse$1.get__D__D__Ltinyrenderer_Commone_package$Color(xTex, yTex);
+      scene.dot__I__I__D__D__D__D__D__V(v1, y, z, (color.r$1 * intensity), (color.g$1 * intensity), (color.b$1 * intensity), (color.a$1 * intensity));
+      if ((i === scala$collection$immutable$Range$$lastElement$4)) {
+        break
+      };
+      i = ((1 + i) | 0)
+    }
+  }
 });
 $c_Ltinyrenderer_Obj.prototype.init___ALtinyrenderer_Commone_package$Vec3__ALtinyrenderer_Commone_package$Vec3__ALtinyrenderer_Commone_package$Vec2__AT3__Ltinyrenderer_Texture = (function(vertices, normals, textures, faces, deffuse) {
   this.vertices$1 = vertices;
@@ -4292,6 +4289,9 @@ $c_Ltinyrenderer_Obj.prototype.init___ALtinyrenderer_Commone_package$Vec3__ALtin
   this.faces$1 = faces;
   this.deffuse$1 = deffuse;
   return this
+});
+$c_Ltinyrenderer_Obj.prototype.drawDebugingTriangle__Ltinyrenderer_Scene__V = (function(scene) {
+  this.triangle__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Scene__V(new $c_Ltinyrenderer_Commone_package$Vertex().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((-1.0), (-1.0), 1.0), new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.0, (-1.0)), new $c_Ltinyrenderer_Commone_package$Vec2().init___D__D(0.0, 0.0)), new $c_Ltinyrenderer_Commone_package$Vertex().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(1.0, 0.0, 0.5), new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.0, (-1.0)), new $c_Ltinyrenderer_Commone_package$Vec2().init___D__D(1.0, 1.0)), new $c_Ltinyrenderer_Commone_package$Vertex().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(1.0, 1.0, 0.0), new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.0, 1.0), new $c_Ltinyrenderer_Commone_package$Vec2().init___D__D(0.0, 0.0)), scene)
 });
 function $is_Ltinyrenderer_Obj(obj) {
   return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltinyrenderer_Obj)))
@@ -4650,6 +4650,16 @@ $c_Ltinyrenderer_Scene.prototype.dot__I__I__D__D__D__D__D__V = (function(x, y, z
     this.zBuffer$1.get(x).set(y, z)
   }
 });
+$c_Ltinyrenderer_Scene.prototype.clear__V = (function() {
+  var i = 0;
+  while ((i < this.dataAmount$1)) {
+    this.img$1.data[i] = 0;
+    this.img$1.data[((1 + i) | 0)] = 0;
+    this.img$1.data[((2 + i) | 0)] = 0;
+    this.img$1.data[((3 + i) | 0)] = 255;
+    i = ((4 + i) | 0)
+  }
+});
 var $d_Ltinyrenderer_Scene = new $TypeData().initClass({
   Ltinyrenderer_Scene: 0
 }, false, "tinyrenderer.Scene", {
@@ -4671,6 +4681,10 @@ function $h_Ltinyrenderer_Texture() {
   /*<skip>*/
 }
 $h_Ltinyrenderer_Texture.prototype = $c_Ltinyrenderer_Texture.prototype;
+$c_Ltinyrenderer_Texture.prototype.get__D__D__Ltinyrenderer_Commone_package$Color = (function(x, y) {
+  var redIndex = ((($doubleToInt((this.width$1 * y)) + $doubleToInt(x)) | 0) << 2);
+  return new $c_Ltinyrenderer_Commone_package$Color().init___I__I__I__I((($uI(this.data$1[redIndex]) << 16) >> 16), (($uI(this.data$1[((1 + redIndex) | 0)]) << 16) >> 16), (($uI(this.data$1[((2 + redIndex) | 0)]) << 16) >> 16), (($uI(this.data$1[((3 + redIndex) | 0)]) << 16) >> 16))
+});
 $c_Ltinyrenderer_Texture.prototype.init___sjs_js_typedarray_Uint8ClampedArray__I__I = (function(data, width, height) {
   this.data$1 = data;
   this.width$1 = width;
@@ -5028,6 +5042,17 @@ function $m_ju_Arrays$() {
   };
   return $n_ju_Arrays$
 }
+/** @constructor */
+function $c_s_DeprecatedConsole() {
+  $c_O.call(this)
+}
+$c_s_DeprecatedConsole.prototype = new $h_O();
+$c_s_DeprecatedConsole.prototype.constructor = $c_s_DeprecatedConsole;
+/** @constructor */
+function $h_s_DeprecatedConsole() {
+  /*<skip>*/
+}
+$h_s_DeprecatedConsole.prototype = $c_s_DeprecatedConsole.prototype;
 /** @constructor */
 function $c_s_FallbackArrayBuilding() {
   $c_O.call(this)
@@ -5736,6 +5761,32 @@ function $m_s_sys_package$() {
   };
   return $n_s_sys_package$
 }
+/** @constructor */
+function $c_s_util_DynamicVariable() {
+  $c_O.call(this);
+  this.v$1 = null
+}
+$c_s_util_DynamicVariable.prototype = new $h_O();
+$c_s_util_DynamicVariable.prototype.constructor = $c_s_util_DynamicVariable;
+/** @constructor */
+function $h_s_util_DynamicVariable() {
+  /*<skip>*/
+}
+$h_s_util_DynamicVariable.prototype = $c_s_util_DynamicVariable.prototype;
+$c_s_util_DynamicVariable.prototype.toString__T = (function() {
+  return (("DynamicVariable(" + this.v$1) + ")")
+});
+$c_s_util_DynamicVariable.prototype.init___O = (function(init) {
+  this.v$1 = init;
+  return this
+});
+var $d_s_util_DynamicVariable = new $TypeData().initClass({
+  s_util_DynamicVariable: 0
+}, false, "scala.util.DynamicVariable", {
+  s_util_DynamicVariable: 1,
+  O: 1
+});
+$c_s_util_DynamicVariable.prototype.$classData = $d_s_util_DynamicVariable;
 /** @constructor */
 function $c_s_util_control_Breaks() {
   $c_O.call(this);
@@ -9346,7 +9397,9 @@ $c_Ltinyrenderer_App$.prototype.main__V = (function() {
     return (function(obj$2) {
       var obj = $as_Ltinyrenderer_Obj(obj$2);
       var scene = enginge$1.Scene__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Scene(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((-1.0), 1.0, (-1.0)), new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(1.0, (-1.0), 1.0));
-      obj.draw__Ltinyrenderer_Scene__V(scene);
+      scene.clear__V();
+      enginge$1.render__Ltinyrenderer_Scene__V(scene);
+      obj.drawDebugingTriangle__Ltinyrenderer_Scene__V(scene);
       enginge$1.render__Ltinyrenderer_Scene__V(scene)
     })
   })(this, enginge)), $m_Lmonix_execution_Scheduler$().Implicits__Lmonix_execution_schedulers_SchedulerCompanionImpl$Implicits$().global__Lmonix_execution_Scheduler())
@@ -13102,6 +13155,43 @@ function $m_ju_regex_Pattern$() {
     $n_ju_regex_Pattern$ = new $c_ju_regex_Pattern$().init___()
   };
   return $n_ju_regex_Pattern$
+}
+/** @constructor */
+function $c_s_Console$() {
+  $c_s_DeprecatedConsole.call(this);
+  this.outVar$2 = null;
+  this.errVar$2 = null;
+  this.inVar$2 = null
+}
+$c_s_Console$.prototype = new $h_s_DeprecatedConsole();
+$c_s_Console$.prototype.constructor = $c_s_Console$;
+/** @constructor */
+function $h_s_Console$() {
+  /*<skip>*/
+}
+$h_s_Console$.prototype = $c_s_Console$.prototype;
+$c_s_Console$.prototype.init___ = (function() {
+  $n_s_Console$ = this;
+  this.outVar$2 = new $c_s_util_DynamicVariable().init___O($m_jl_System$().out$1);
+  this.errVar$2 = new $c_s_util_DynamicVariable().init___O($m_jl_System$().err$1);
+  this.inVar$2 = new $c_s_util_DynamicVariable().init___O(null);
+  return this
+});
+var $d_s_Console$ = new $TypeData().initClass({
+  s_Console$: 0
+}, false, "scala.Console$", {
+  s_Console$: 1,
+  s_DeprecatedConsole: 1,
+  O: 1,
+  s_io_AnsiColor: 1
+});
+$c_s_Console$.prototype.$classData = $d_s_Console$;
+var $n_s_Console$ = (void 0);
+function $m_s_Console$() {
+  if ((!$n_s_Console$)) {
+    $n_s_Console$ = new $c_s_Console$().init___()
+  };
+  return $n_s_Console$
 }
 /** @constructor */
 function $c_s_Option$() {
@@ -20495,6 +20585,18 @@ $c_Ljava_io_PrintStream.prototype.println__T__V = (function(s) {
   this.print__T__V(s);
   this.java$lang$JSConsoleBasedPrintStream$$printString__T__V("\n")
 });
+function $is_Ljava_io_PrintStream(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ljava_io_PrintStream)))
+}
+function $as_Ljava_io_PrintStream(obj) {
+  return (($is_Ljava_io_PrintStream(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "java.io.PrintStream"))
+}
+function $isArrayOf_Ljava_io_PrintStream(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ljava_io_PrintStream)))
+}
+function $asArrayOf_Ljava_io_PrintStream(obj, depth) {
+  return (($isArrayOf_Ljava_io_PrintStream(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ljava.io.PrintStream;", depth))
+}
 /** @constructor */
 function $c_Ljava_nio_CharBuffer() {
   $c_Ljava_nio_Buffer.call(this);

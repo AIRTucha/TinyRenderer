@@ -19,7 +19,10 @@ object App extends js.JSApp {
     dom.document.getElementById("main").appendChild(canvas)
     Obj("obj/african_head/african_head.obj") map { obj =>
       val scene = enginge.Scene(Vec3(-1, 1, -1), Vec3(1, -1, 1))
-      obj draw scene
+      // obj draw scene
+      scene.clear
+      enginge render scene
+      obj drawDebugingTriangle scene
       enginge render scene
     }
   }

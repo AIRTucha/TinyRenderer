@@ -24,62 +24,56 @@ class Obj(
     val deffuse: Texture
 ) {
   def draw(scene: Scene) = {
-    val color = Color( 255, 255, 255 )
-    for ( (fst, snd, trd) <- faces) {
+    for ( (fst, snd, trd) <- faces.take(20) ) {
       triangle(
         Vertex(
-          vertices(fst.vertex),
-          normals(fst.normal),
-          textures(fst.texture)
+          scene scale vertices( fst.vertex ),
+          normals( fst.normal ),
+          textures( fst.texture )
         ),
         Vertex(
-          vertices(snd.vertex),
-          normals(snd.normal),
-          textures(snd.texture)
+          scene scale vertices( snd.vertex ),
+          normals( snd.normal ),
+          textures( snd.texture )
         ),
         Vertex(
-          vertices(trd.vertex),
-          normals(trd.normal),
-          textures(trd.texture)
+          scene scale vertices( trd.vertex ),
+          normals( trd.normal ),
+          textures( trd.texture )
         ),
-        color,
         scene
       )
     }
   }
-  def triangle(vec1: Vertex, vec2: Vertex, vec3: Vertex, color: Color, scene: Scene) =
+  def drawDebugingTriangle(scene: Scene) = {
+    triangle(
+      Vertex(
+        Vec3(-1, -1, 1),
+        Vec3(0, 0, -1),
+        Vec2(0, 0)
+      ),
+      Vertex(
+        Vec3(1, 0, 0.5),
+        Vec3(0, 0, -1),
+        Vec2(1, 1)
+      ),
+      Vertex(
+        Vec3(1, 1, 0),
+        Vec3(0, 0, 1),
+        Vec2(0, 0)
+      ),
+      scene
+    )
+  }
+  def triangle(vec1: Vertex, vec2: Vertex, vec3: Vertex, scene: Scene) =
     if (
       dotProduct(Vec3(0, 0, 1), vec1.normal) > 0 ||
       dotProduct(Vec3(0, 0, 1), vec2.normal) > 0 ||
       dotProduct(Vec3(0, 0, 1), vec3.normal) > 0
     ) {
-      var vert1 = Vertex(
-        Vec3(
-          (scene.width * (vec1.vertex.x - scene.low.x) / (scene.high.x - scene.low.x)),
-          (scene.height * (vec1.vertex.y - scene.low.y) / (scene.high.y - scene.low.y)),
-          vec1.vertex.z
-        ),
-        vec1.normal,
-        vec1.texture
-      )
-      var vert2 = Vertex(
-        Vec3(
-          (scene.width * (vec2.vertex.x - scene.low.x) / (scene.high.x - scene.low.x)),
-          (scene.height * (vec2.vertex.y - scene.low.y) / (scene.high.y - scene.low.y)),
-          vec2.vertex.z
-        ),
-        vec2.normal,
-        vec2.texture
-      )
-      var vert3 = Vertex(
-        Vec3(
-          (scene.width * (vec3.vertex.x - scene.low.x) / (scene.high.x - scene.low.x)),
-          (scene.height * (vec3.vertex.y - scene.low.y) / (scene.high.y - scene.low.y)),
-          vec3.vertex.z
-        ),
-        vec3.normal,
-        vec3.texture
-      )
+      var vert1 = vec1
+      var vert2 = vec2
+      var vert3 = vec3
       if (vert1.vertex.y > vert2.vertex.y) {
         val buff = vert1
         vert1 = vert2
@@ -107,14 +101,14 @@ class Obj(
 
       if (d1 > d2) {
         for (y <- vert1.vertex.y.asInstanceOf[Int] to vert2.vertex.y.asInstanceOf[Int])
-          line(y, vert1, vert3, vert1, vert2, color, scene)
+          line(y, vert1, vert3, vert1, vert2, scene)
         for (y <- vert2.vertex.y.asInstanceOf[Int] until vert3.vertex.y.asInstanceOf[Int])
-          line(y, vert3, vert1, vert3, vert2, color, scene)
+          line(y, vert3, vert1, vert3, vert2, scene)
       } else {
         for (y <- vert1.vertex.y.asInstanceOf[Int] to vert2.vertex.y.asInstanceOf[Int])
-          line(y, vert1, vert2, vert1, vert3, color, scene)
+          line(y, vert1, vert2, vert1, vert3, scene)
         for (y <- vert2.vertex.y.asInstanceOf[Int] until vert3.vertex.y.asInstanceOf[Int])
-          line(y, vert3, vert2, vert3, vert1, color, scene)
+          line(y, vert3, vert2, vert3, vert1, scene)
       }
     }
   def line(
@@ -123,34 +117,32 @@ class Obj(
     vec2: Vertex,
     vec3: Vertex,
     vec4: Vertex,
-    color: Color,
     scene: Scene
   ) {
-    val gradientY1 = if (vec1.vertex.y != vec2.vertex.y)
+    val gradientY12 = if (vec1.vertex.y != vec2.vertex.y)
       (y.asInstanceOf[Double] - vec1.vertex.y) / (vec2.vertex.y - vec1.vertex.y)
     else 1
-    val gradientY2 = if (vec3.vertex.y != vec4.vertex.y)
+    val gradientY34 = if (vec3.vertex.y != vec4.vertex.y)
       (y.asInstanceOf[Double] - vec3.vertex.y) / (vec4.vertex.y - vec3.vertex.y)
     else 1
 
-    val startX =
-      interpolate(vec1.vertex.x, vec2.vertex.x, gradientY1).asInstanceOf[Int]
-    val endX =
-      interpolate(vec3.vertex.x, vec4.vertex.x, gradientY2).asInstanceOf[Int]
-
-    val startNormalX = interpolate(vec1.normal.x, vec2.normal.x, gradientY1)
-    val endNormalX = interpolate(vec3.normal.x, vec4.normal.x, gradientY2)
-    val startNormalY = interpolate(vec1.normal.y, vec2.normal.y, gradientY1)
-    val endNormalY = interpolate(vec3.normal.y, vec4.normal.y, gradientY2)
-    val startNormalZ = interpolate(vec1.normal.z, vec2.normal.z, gradientY1)
-    val endNormalZ = interpolate(vec3.normal.z, vec4.normal.z, gradientY2)
-
-    val startZ = interpolate(vec1.vertex.z, vec2.vertex.z, gradientY1)
-    val endZ = interpolate(vec3.vertex.z, vec4.vertex.z, gradientY2)
+    val startX       = interpolate(vec1.vertex.x, vec2.vertex.x, gradientY12).asInstanceOf[Int]
+    val endX         = interpolate(vec3.vertex.x, vec4.vertex.x, gradientY34).asInstanceOf[Int]
+    val startZ       = interpolate(vec1.vertex.z, vec2.vertex.z, gradientY12)
+    val endZ         = interpolate(vec3.vertex.z, vec4.vertex.z, gradientY34)
+    val startNormalX = interpolate(vec1.normal.x, vec2.normal.x, gradientY12)
+    val endNormalX   = interpolate(vec3.normal.x, vec4.normal.x, gradientY34)
+    val startNormalY = interpolate(vec1.normal.y, vec2.normal.y, gradientY12)
+    val endNormalY   = interpolate(vec3.normal.y, vec4.normal.y, gradientY34)
+    val startNormalZ = interpolate(vec1.normal.z, vec2.normal.z, gradientY12)
+    val endNormalZ   = interpolate(vec3.normal.z, vec4.normal.z, gradientY34)
+    val startXTex    = interpolate(vec1.texture.x, vec2.texture.x, gradientY12)
+    val endXTex      = interpolate(vec3.texture.x, vec4.texture.x, gradientY34)
+    val startYTex    = interpolate(vec1.texture.y, vec2.texture.y, gradientY12)
+    val endYTex      = interpolate(vec3.texture.y, vec4.texture.y, gradientY34)
 
     for (x <- startX until endX) {
-      val gradientX: Double = (x
-        .asInstanceOf[Double] - startX) / (endX - startX)
+      val gradientX: Double = (x.asInstanceOf[Double] - startX) / (endX - startX)
       val normal = Vec3(
         interpolate(startNormalX, endNormalX, gradientX),
         interpolate(startNormalY, endNormalY, gradientX),
@@ -158,6 +150,10 @@ class Obj(
       )
       val z = interpolate(startZ, endZ, gradientX)
       val intensity = dotProduct(Vec3(0, 0.5, 0.7), normal)
+      val xTex = interpolate(startXTex, endXTex, gradientX)
+      val yTex = interpolate(startYTex, endYTex, gradientX)
+      println(yTex)
+      val color = deffuse.get(xTex, yTex)
       scene.dot(
         x,
         y,

@@ -57,4 +57,9 @@ class Scene(
       zBuffer(x)(y) = z
     }
   def getImg = img
+  def scale( vec: Vec3 ) = Vec3(
+    ( width * ( vec.x - low.x ) / ( high.x - low.x ) ),
+    ( height * ( vec.y - low.y ) / ( high.y - low.y ) ),
+    vec.z
+  )
 }
