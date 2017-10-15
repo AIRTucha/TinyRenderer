@@ -6,7 +6,7 @@ import fr.hmil.roshttp.response.SimpleHttpResponse
 import fr.hmil.roshttp.HttpRequest
 import monix.execution.Scheduler.Implicits.global
 import org.scalajs.dom
-import scala.math.{floor, abs, pow}
+import scala.math.{floor, abs, pow, max, min}
 import Commone.{
   Vec3,
   Color,
@@ -22,7 +22,8 @@ class Obj(
     val textures: Array[Vec2],
     val faces: Array[(Indeces, Indeces, Indeces)],
     val deffuse: Texture,
-    val normalsTex: Texture
+    val normalsTex: Texture,
+    val specular: Texture
 ) {
   def draw(scene: Scene) = {
     for ( (fst, snd, trd) <- faces ) {
@@ -144,37 +145,43 @@ class Obj(
       val xTex = interpolate(startXTex, endXTex, gradientX)
       val yTex = interpolate(startYTex, endYTex, gradientX)
       val normal = normalize(normalsTex.getVec3(xTex, yTex))
-      //(n*(n*l*2.f) - l).normalize();   // reflected light
+      val specularPow = specular.getColor(xTex, yTex)
       val rPlusL = crossProduct( normal, crossProduct( normal, Vec3(-light.x*2, -light.y*2, light.z*2) ))
       val r = normalize(Vec3(rPlusL.x - light.x, rPlusL.y - light.y, rPlusL.z - light.z))
       val color = deffuse.getColor(xTex, yTex)
-      val spec = pow(dotProduct(r, Vec3(0, 0, 1)), 10)
-      val intensity = dotProduct( light, normal ) + spec
+      val spec = dotProduct(r, Vec3(0, 0, 1))
+      val deffuseIntensity = dotProduct( light, normal )
+      val g = pow(spec, specularPow.r)
+      // println(
+      //   min(deffuseIntensity + max(0, pow(spec, specularPow.r)), 1)
+      // )
       scene.dot(
         x,
         y,
         z,
-        color.r * intensity,
-        color.g * intensity,
-        color.b * intensity,
-        color.a * intensity
+        color.r * min(deffuseIntensity + 0.3*abs(pow(spec, specularPow.r)), 1),
+        color.g * min(deffuseIntensity + 0.3*abs(pow(spec, specularPow.g)), 1),
+        color.b * min(deffuseIntensity + 0.3*abs(pow(spec, specularPow.b)), 1),
+        color.a
       )
     }
   }
 }
 object Obj {
-  def apply(modelUrl: String, deffuseUrl: String, normalsUrl: String): Future[Obj] = {
+  def apply(modelUrl: String, deffuseUrl: String, normalsUrl: String, specularUrl: String): Future[Obj] = {
     for {
       obj <- get(modelUrl) map { _.body.split("\n").map( _.split(" ") ) } 
       deffuse <- Texture(deffuseUrl)
       normals <- Texture(normalsUrl)
+      specular <- Texture(specularUrl)
     } yield new Obj(
       parseV(obj),
       parseVN(obj),
       parseVT(obj),
       parseF(obj),
       deffuse,
-      normals
+      normals,
+      specular
     )
   }
   def get(url: String) = HttpRequest(s"${dom.window.location.href}/${url}").send
