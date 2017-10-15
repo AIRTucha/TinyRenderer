@@ -3,7 +3,7 @@ package tinyrenderer
 import scala.concurrent.{Future, Promise}
 import monix.execution.Scheduler.Implicits.global
 import scala.scalajs.js.typedarray.Uint8ClampedArray
-import Commone.Color
+import Commone.{ Color, Vec3 }
 import org.scalajs.dom
 //"obj/african_head/african_head_diffuse.jpg"
 class Texture(
@@ -11,7 +11,7 @@ class Texture(
     val width: Int,
     val height: Int
 ) {
-  def get(x: Double, y: Double) = {
+  def getColor(x: Double, y: Double) = {
     val redIndex: Int = (
       width * ( height * ( 1 - y ) ).asInstanceOf[Int] + 
       ( width * x ).asInstanceOf[Int]
@@ -21,6 +21,17 @@ class Texture(
       data(redIndex + 1).asInstanceOf[Short],
       data(redIndex + 2).asInstanceOf[Short],
       data(redIndex + 3).asInstanceOf[Short]
+    )
+  }
+  def getVec3(x: Double, y: Double) = {
+    val redIndex: Int = (
+      width * ( height * ( 1 - y ) ).asInstanceOf[Int] + 
+      ( width * x ).asInstanceOf[Int]
+    ) * 4
+    Vec3(
+      data(redIndex).asInstanceOf[Short],
+      data(redIndex + 1).asInstanceOf[Short],
+      data(redIndex + 2).asInstanceOf[Short]
     )
   }
   //TODO: implement interpolation

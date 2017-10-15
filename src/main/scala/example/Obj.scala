@@ -21,7 +21,8 @@ class Obj(
     val normals: Array[Vec3],
     val textures: Array[Vec2],
     val faces: Array[(Indeces, Indeces, Indeces)],
-    val deffuse: Texture
+    val deffuse: Texture,
+    val normalsTex: Texture
 ) {
   def draw(scene: Scene) = {
     for ( (fst, snd, trd) <- faces ) {
@@ -130,12 +131,6 @@ class Obj(
     val endX         = interpolate(vec3.vertex.x, vec4.vertex.x, gradientY34).asInstanceOf[Int]
     val startZ       = interpolate(vec1.vertex.z, vec2.vertex.z, gradientY12)
     val endZ         = interpolate(vec3.vertex.z, vec4.vertex.z, gradientY34)
-    val startNormalX = interpolate(vec1.normal.x, vec2.normal.x, gradientY12)
-    val endNormalX   = interpolate(vec3.normal.x, vec4.normal.x, gradientY34)
-    val startNormalY = interpolate(vec1.normal.y, vec2.normal.y, gradientY12)
-    val endNormalY   = interpolate(vec3.normal.y, vec4.normal.y, gradientY34)
-    val startNormalZ = interpolate(vec1.normal.z, vec2.normal.z, gradientY12)
-    val endNormalZ   = interpolate(vec3.normal.z, vec4.normal.z, gradientY34)
     val startXTex    = interpolate(vec1.texture.x, vec2.texture.x, gradientY12)
     val endXTex      = interpolate(vec3.texture.x, vec4.texture.x, gradientY34)
     val startYTex    = interpolate(vec1.texture.y, vec2.texture.y, gradientY12)
@@ -143,17 +138,13 @@ class Obj(
 
     for (x <- startX until endX) {
       val gradientX: Double = (x.asInstanceOf[Double] - startX) / (endX - startX)
-      val normal = Vec3(
-        interpolate(startNormalX, endNormalX, gradientX),
-        interpolate(startNormalY, endNormalY, gradientX),
-        interpolate(startNormalZ, endNormalZ, gradientX)
-      )
+
       val z = interpolate(startZ, endZ, gradientX)
-      val intensity = dotProduct(Vec3(0, 0.5, 0.7), normal)
       val xTex = interpolate(startXTex, endXTex, gradientX)
       val yTex = interpolate(startYTex, endYTex, gradientX)
-    
-      val color = deffuse.get(xTex, yTex)
+      val normal = normalize(normalsTex.getVec3(xTex, yTex))
+      val color = deffuse.getColor(xTex, yTex)
+      val intensity = dotProduct(Vec3(0.65, 0.65, 0), normal)
       scene.dot(
         x,
         y,
@@ -167,16 +158,18 @@ class Obj(
   }
 }
 object Obj {
-  def apply(modelUrl: String, deffuseUrl: String): Future[Obj] = {
+  def apply(modelUrl: String, deffuseUrl: String, normalsUrl: String): Future[Obj] = {
     for {
       obj <- get(modelUrl) map { _.body.split("\n").map( _.split(" ") ) } 
       deffuse <- Texture(deffuseUrl)
+      normals <- Texture(normalsUrl)
     } yield new Obj(
       parseV(obj),
       parseVN(obj),
       parseVT(obj),
       parseF(obj),
-      deffuse
+      deffuse,
+      normals
     )
   }
   def get(url: String) = HttpRequest(s"${dom.window.location.href}/${url}").send

@@ -1,5 +1,5 @@
 package tinyrenderer
-
+import org.scalajs.dom
 import org.scalajs.dom.CanvasRenderingContext2D
 import org.scalajs.dom.html.Canvas
 import org.scalajs.dom.raw.ImageData
@@ -7,8 +7,15 @@ import Commone.{ Vec3, Color }
 import scala.collection.mutable.ListBuffer
 
 class Engine(val canvas: Canvas) {
-  canvas.width = 2500;
-  canvas.height = 2500;
+  if(dom.window.location.href.contains("localhost")) {
+    //dev mode
+    canvas.width = 1000;
+    canvas.height = 1000;
+  } else {
+    //demo mode
+    canvas.width = 2500;
+    canvas.height = 2500;
+  }
   private val ctx = canvas.getContext("2d").asInstanceOf[CanvasRenderingContext2D]
   def render(scene: Scene) = ctx.putImageData(scene.getImg, 0, 0)
   def Scene(low: Vec3, high: Vec3) = new Scene(

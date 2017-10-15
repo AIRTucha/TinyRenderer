@@ -17,18 +17,23 @@ object App extends js.JSApp {
     val canvas = dom.document.createElement("canvas").asInstanceOf[dom.html.Canvas]
     val enginge = new Engine(canvas)
     dom.document.getElementById("main").appendChild(canvas)
+    // Obj(
+    //   "obj/diablo3_pose/diablo3_pose.obj",
+    //   "obj/diablo3_pose/diablo3_pose_diffuse.jpg",
+    //   "obj/diablo3_pose/diablo3_pose_nm.jpg"
+    // ) map { obj =>
+    //   val scene = enginge.Scene(Vec3(-1, 1, -1), Vec3(1, -1, 1))
+    //   obj draw scene
+    //   enginge render scene
+    // }
     Obj(
-      "obj/diablo3_pose/diablo3_pose.obj",
-      "obj/diablo3_pose/diablo3_pose_diffuse.jpg"
+      "obj/african_head/african_head.obj", 
+      "obj/african_head/african_head_diffuse.jpg",
+      "obj/african_head/african_head_nm.jpg"
     ) map { obj =>
       val scene = enginge.Scene(Vec3(-1, 1, -1), Vec3(1, -1, 1))
       obj draw scene
       enginge render scene
     }
-    // Obj("obj/african_head/african_head.obj", "obj/african_head/african_head_diffuse.jpg") map { obj =>
-    //   val scene = enginge.Scene(Vec3(-1, 1, -1), Vec3(1, -1, 1))
-    //   obj draw scene
-    //   enginge render scene
-    // }
   }
 }

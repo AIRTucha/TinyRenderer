@@ -4052,8 +4052,14 @@ function $h_Ltinyrenderer_Engine() {
 $h_Ltinyrenderer_Engine.prototype = $c_Ltinyrenderer_Engine.prototype;
 $c_Ltinyrenderer_Engine.prototype.init___Lorg_scalajs_dom_raw_HTMLCanvasElement = (function(canvas) {
   this.canvas$1 = canvas;
-  canvas.width = 2500;
-  canvas.height = 2500;
+  var thiz = $as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().location.href);
+  if (($uI(thiz.indexOf("localhost")) !== (-1))) {
+    canvas.width = 1000;
+    canvas.height = 1000
+  } else {
+    canvas.width = 2500;
+    canvas.height = 2500
+  };
   this.ctx$1 = canvas.getContext("2d");
   return this
 });
@@ -4077,7 +4083,8 @@ function $c_Ltinyrenderer_Obj() {
   this.normals$1 = null;
   this.textures$1 = null;
   this.faces$1 = null;
-  this.deffuse$1 = null
+  this.deffuse$1 = null;
+  this.normalsTex$1 = null
 }
 $c_Ltinyrenderer_Obj.prototype = new $h_O();
 $c_Ltinyrenderer_Obj.prototype.constructor = $c_Ltinyrenderer_Obj;
@@ -4086,6 +4093,15 @@ function $h_Ltinyrenderer_Obj() {
   /*<skip>*/
 }
 $h_Ltinyrenderer_Obj.prototype = $c_Ltinyrenderer_Obj.prototype;
+$c_Ltinyrenderer_Obj.prototype.init___ALtinyrenderer_Commone_package$Vec3__ALtinyrenderer_Commone_package$Vec3__ALtinyrenderer_Commone_package$Vec2__AT3__Ltinyrenderer_Texture__Ltinyrenderer_Texture = (function(vertices, normals, textures, faces, deffuse, normalsTex) {
+  this.vertices$1 = vertices;
+  this.normals$1 = normals;
+  this.textures$1 = textures;
+  this.faces$1 = faces;
+  this.deffuse$1 = deffuse;
+  this.normalsTex$1 = normalsTex;
+  return this
+});
 $c_Ltinyrenderer_Obj.prototype.triangle__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Scene__V = (function(vec1, vec2, vec3, scene) {
   var vec1$1 = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.0, 1.0);
   var vec2$1 = vec1.normal$1;
@@ -4209,46 +4225,22 @@ $c_Ltinyrenderer_Obj.prototype.line__I__Ltinyrenderer_Commone_package$Vertex__Lt
   var maxV$3 = vec4.vertex$1.z$1;
   var y$4 = $uD($g.Math.min(gradientY34, 1.0));
   var endZ = (minV$3 + ((maxV$3 - minV$3) * $uD($g.Math.max(0.0, y$4))));
-  var minV$4 = vec1.normal$1.x$1;
-  var maxV$4 = vec2.normal$1.x$1;
+  var minV$4 = vec1.texture$1.x$1;
+  var maxV$4 = vec2.texture$1.x$1;
   var y$5 = $uD($g.Math.min(gradientY12, 1.0));
-  var startNormalX = (minV$4 + ((maxV$4 - minV$4) * $uD($g.Math.max(0.0, y$5))));
-  var minV$5 = vec3.normal$1.x$1;
-  var maxV$5 = vec4.normal$1.x$1;
+  var startXTex = (minV$4 + ((maxV$4 - minV$4) * $uD($g.Math.max(0.0, y$5))));
+  var minV$5 = vec3.texture$1.x$1;
+  var maxV$5 = vec4.texture$1.x$1;
   var y$6 = $uD($g.Math.min(gradientY34, 1.0));
-  var endNormalX = (minV$5 + ((maxV$5 - minV$5) * $uD($g.Math.max(0.0, y$6))));
-  var minV$6 = vec1.normal$1.y$1;
-  var maxV$6 = vec2.normal$1.y$1;
+  var endXTex = (minV$5 + ((maxV$5 - minV$5) * $uD($g.Math.max(0.0, y$6))));
+  var minV$6 = vec1.texture$1.y$1;
+  var maxV$6 = vec2.texture$1.y$1;
   var y$7 = $uD($g.Math.min(gradientY12, 1.0));
-  var startNormalY = (minV$6 + ((maxV$6 - minV$6) * $uD($g.Math.max(0.0, y$7))));
-  var minV$7 = vec3.normal$1.y$1;
-  var maxV$7 = vec4.normal$1.y$1;
+  var startYTex = (minV$6 + ((maxV$6 - minV$6) * $uD($g.Math.max(0.0, y$7))));
+  var minV$7 = vec3.texture$1.y$1;
+  var maxV$7 = vec4.texture$1.y$1;
   var y$8 = $uD($g.Math.min(gradientY34, 1.0));
-  var endNormalY = (minV$7 + ((maxV$7 - minV$7) * $uD($g.Math.max(0.0, y$8))));
-  var minV$8 = vec1.normal$1.z$1;
-  var maxV$8 = vec2.normal$1.z$1;
-  var y$9 = $uD($g.Math.min(gradientY12, 1.0));
-  var startNormalZ = (minV$8 + ((maxV$8 - minV$8) * $uD($g.Math.max(0.0, y$9))));
-  var minV$9 = vec3.normal$1.z$1;
-  var maxV$9 = vec4.normal$1.z$1;
-  var y$10 = $uD($g.Math.min(gradientY34, 1.0));
-  var endNormalZ = (minV$9 + ((maxV$9 - minV$9) * $uD($g.Math.max(0.0, y$10))));
-  var minV$10 = vec1.texture$1.x$1;
-  var maxV$10 = vec2.texture$1.x$1;
-  var y$11 = $uD($g.Math.min(gradientY12, 1.0));
-  var startXTex = (minV$10 + ((maxV$10 - minV$10) * $uD($g.Math.max(0.0, y$11))));
-  var minV$11 = vec3.texture$1.x$1;
-  var maxV$11 = vec4.texture$1.x$1;
-  var y$12 = $uD($g.Math.min(gradientY34, 1.0));
-  var endXTex = (minV$11 + ((maxV$11 - minV$11) * $uD($g.Math.max(0.0, y$12))));
-  var minV$12 = vec1.texture$1.y$1;
-  var maxV$12 = vec2.texture$1.y$1;
-  var y$13 = $uD($g.Math.min(gradientY12, 1.0));
-  var startYTex = (minV$12 + ((maxV$12 - minV$12) * $uD($g.Math.max(0.0, y$13))));
-  var minV$13 = vec3.texture$1.y$1;
-  var maxV$13 = vec4.texture$1.y$1;
-  var y$14 = $uD($g.Math.min(gradientY34, 1.0));
-  var endYTex = (minV$13 + ((maxV$13 - minV$13) * $uD($g.Math.max(0.0, y$14))));
+  var endYTex = (minV$7 + ((maxV$7 - minV$7) * $uD($g.Math.max(0.0, y$8))));
   var isEmpty$4 = (startX >= endX);
   var scala$collection$immutable$Range$$lastElement$4 = (((-1) + endX) | 0);
   if ((!isEmpty$4)) {
@@ -4256,21 +4248,24 @@ $c_Ltinyrenderer_Obj.prototype.line__I__Ltinyrenderer_Commone_package$Vertex__Lt
     while (true) {
       var v1 = i;
       var gradientX = ((v1 - startX) / ((endX - startX) | 0));
-      var y$15 = $uD($g.Math.min(gradientX, 1.0));
-      var jsx$2 = $uD($g.Math.max(0.0, y$15));
-      var y$16 = $uD($g.Math.min(gradientX, 1.0));
-      var jsx$1 = $uD($g.Math.max(0.0, y$16));
-      var y$17 = $uD($g.Math.min(gradientX, 1.0));
-      var normal = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((startNormalX + ((endNormalX - startNormalX) * jsx$2)), (startNormalY + ((endNormalY - startNormalY) * jsx$1)), (startNormalZ + ((endNormalZ - startNormalZ) * $uD($g.Math.max(0.0, y$17)))));
-      var y$18 = $uD($g.Math.min(gradientX, 1.0));
-      var z = (startZ + ((endZ - startZ) * $uD($g.Math.max(0.0, y$18))));
-      var vec1$1 = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.5, 0.7);
+      var y$9 = $uD($g.Math.min(gradientX, 1.0));
+      var z = (startZ + ((endZ - startZ) * $uD($g.Math.max(0.0, y$9))));
+      var y$10 = $uD($g.Math.min(gradientX, 1.0));
+      var xTex = (startXTex + ((endXTex - startXTex) * $uD($g.Math.max(0.0, y$10))));
+      var y$11 = $uD($g.Math.min(gradientX, 1.0));
+      var yTex = (startYTex + ((endYTex - startYTex) * $uD($g.Math.max(0.0, y$11))));
+      var vec = this.normalsTex$1.getVec3__D__D__Ltinyrenderer_Commone_package$Vec3(xTex, yTex);
+      var x = vec.x$1;
+      var jsx$2 = $uD($g.Math.pow(x, 2.0));
+      var x$1 = vec.y$1;
+      var jsx$1 = $uD($g.Math.pow(x$1, 2.0));
+      var x$2 = vec.z$1;
+      var x$3 = ((jsx$2 + jsx$1) + $uD($g.Math.pow(x$2, 2.0)));
+      var lenght = $uD($g.Math.sqrt(x$3));
+      var normal = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((vec.x$1 / lenght), (vec.y$1 / lenght), (vec.z$1 / lenght));
+      var color = this.deffuse$1.getColor__D__D__Ltinyrenderer_Commone_package$Color(xTex, yTex);
+      var vec1$1 = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.65, 0.65, 0.0);
       var intensity = (((vec1$1.x$1 * normal.x$1) + (vec1$1.y$1 * normal.y$1)) + (vec1$1.z$1 * normal.z$1));
-      var y$19 = $uD($g.Math.min(gradientX, 1.0));
-      var xTex = (startXTex + ((endXTex - startXTex) * $uD($g.Math.max(0.0, y$19))));
-      var y$20 = $uD($g.Math.min(gradientX, 1.0));
-      var yTex = (startYTex + ((endYTex - startYTex) * $uD($g.Math.max(0.0, y$20))));
-      var color = this.deffuse$1.get__D__D__Ltinyrenderer_Commone_package$Color(xTex, yTex);
       scene.dot__I__I__D__D__D__D__D__V(v1, y, z, (color.r$1 * intensity), (color.g$1 * intensity), (color.b$1 * intensity), (color.a$1 * intensity));
       if ((i === scala$collection$immutable$Range$$lastElement$4)) {
         break
@@ -4301,14 +4296,6 @@ $c_Ltinyrenderer_Obj.prototype.draw__Ltinyrenderer_Scene__V = (function(scene) {
       }
     })
   })(this, scene)))
-});
-$c_Ltinyrenderer_Obj.prototype.init___ALtinyrenderer_Commone_package$Vec3__ALtinyrenderer_Commone_package$Vec3__ALtinyrenderer_Commone_package$Vec2__AT3__Ltinyrenderer_Texture = (function(vertices, normals, textures, faces, deffuse) {
-  this.vertices$1 = vertices;
-  this.normals$1 = normals;
-  this.textures$1 = textures;
-  this.faces$1 = faces;
-  this.deffuse$1 = deffuse;
-  return this
 });
 function $is_Ltinyrenderer_Obj(obj) {
   return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltinyrenderer_Obj)))
@@ -4342,45 +4329,6 @@ function $h_Ltinyrenderer_Obj$() {
 $h_Ltinyrenderer_Obj$.prototype = $c_Ltinyrenderer_Obj$.prototype;
 $c_Ltinyrenderer_Obj$.prototype.init___ = (function() {
   return this
-});
-$c_Ltinyrenderer_Obj$.prototype.apply__T__T__s_concurrent_Future = (function(modelUrl, deffuseUrl) {
-  return this.get__T__s_concurrent_Future(modelUrl).map__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this) {
-    return (function(x$2$2) {
-      var x$2 = $as_Lfr_hmil_roshttp_response_SimpleHttpResponse(x$2$2);
-      var thiz = x$2.body$1;
-      var xs = $m_sjsr_RuntimeString$().split__T__T__I__AT(thiz, "\n", 0);
-      var elems$2 = null;
-      elems$2 = [];
-      var x1 = xs.u.length;
-      switch (x1) {
-        case (-1): {
-          break
-        }
-      };
-      var i = 0;
-      var len = xs.u.length;
-      while ((i < len)) {
-        var index = i;
-        var arg1 = xs.get(index);
-        var x$3 = $as_T(arg1);
-        var elem = $m_sjsr_RuntimeString$().split__T__T__I__AT(x$3, " ", 0);
-        var unboxedElem = ((elem === null) ? null : elem);
-        elems$2.push(unboxedElem);
-        i = ((1 + i) | 0)
-      };
-      return $makeNativeArrayWrapper($d_T.getArrayOf().getArrayOf(), elems$2)
-    })
-  })(this)), $m_Lmonix_execution_Scheduler$().Implicits__Lmonix_execution_schedulers_SchedulerCompanionImpl$Implicits$().global__Lmonix_execution_Scheduler()).flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(this$2$1, deffuseUrl$1) {
-    return (function(obj$2) {
-      var obj = $asArrayOf_T(obj$2, 2);
-      return $m_Ltinyrenderer_Texture$().apply__T__s_concurrent_Future(deffuseUrl$1).map__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this$1, obj$1) {
-        return (function(deffuse$2) {
-          var deffuse = $as_Ltinyrenderer_Texture(deffuse$2);
-          return new $c_Ltinyrenderer_Obj().init___ALtinyrenderer_Commone_package$Vec3__ALtinyrenderer_Commone_package$Vec3__ALtinyrenderer_Commone_package$Vec2__AT3__Ltinyrenderer_Texture($this$1.parseV__AAT__ALtinyrenderer_Commone_package$Vec3(obj$1), $this$1.parseVN__AAT__ALtinyrenderer_Commone_package$Vec3(obj$1), $this$1.parseVT__AAT__ALtinyrenderer_Commone_package$Vec2(obj$1), $this$1.parseF__AAT__AT3(obj$1), deffuse)
-        })
-      })(this$2$1, obj)), $m_Lmonix_execution_Scheduler$().Implicits__Lmonix_execution_schedulers_SchedulerCompanionImpl$Implicits$().global__Lmonix_execution_Scheduler())
-    })
-  })(this, deffuseUrl)), $m_Lmonix_execution_Scheduler$().Implicits__Lmonix_execution_schedulers_SchedulerCompanionImpl$Implicits$().global__Lmonix_execution_Scheduler())
 });
 $c_Ltinyrenderer_Obj$.prototype.parseF__AAT__AT3 = (function(data) {
   var this$2 = new $c_scm_ArrayOps$ofRef().init___AO(data);
@@ -4518,6 +4466,50 @@ $c_Ltinyrenderer_Obj$.prototype.parseV__AAT__ALtinyrenderer_Commone_package$Vec3
     })
   })(this$14, f, b)));
   return $asArrayOf_Ltinyrenderer_Commone_package$Vec3(b.result__O(), 1)
+});
+$c_Ltinyrenderer_Obj$.prototype.apply__T__T__T__s_concurrent_Future = (function(modelUrl, deffuseUrl, normalsUrl) {
+  return this.get__T__s_concurrent_Future(modelUrl).map__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this) {
+    return (function(x$2$2) {
+      var x$2 = $as_Lfr_hmil_roshttp_response_SimpleHttpResponse(x$2$2);
+      var thiz = x$2.body$1;
+      var xs = $m_sjsr_RuntimeString$().split__T__T__I__AT(thiz, "\n", 0);
+      var elems$2 = null;
+      elems$2 = [];
+      var x1 = xs.u.length;
+      switch (x1) {
+        case (-1): {
+          break
+        }
+      };
+      var i = 0;
+      var len = xs.u.length;
+      while ((i < len)) {
+        var index = i;
+        var arg1 = xs.get(index);
+        var x$3 = $as_T(arg1);
+        var elem = $m_sjsr_RuntimeString$().split__T__T__I__AT(x$3, " ", 0);
+        var unboxedElem = ((elem === null) ? null : elem);
+        elems$2.push(unboxedElem);
+        i = ((1 + i) | 0)
+      };
+      return $makeNativeArrayWrapper($d_T.getArrayOf().getArrayOf(), elems$2)
+    })
+  })(this)), $m_Lmonix_execution_Scheduler$().Implicits__Lmonix_execution_schedulers_SchedulerCompanionImpl$Implicits$().global__Lmonix_execution_Scheduler()).flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(this$2$1, deffuseUrl$1, normalsUrl$1) {
+    return (function(obj$2) {
+      var obj = $asArrayOf_T(obj$2, 2);
+      return $m_Ltinyrenderer_Texture$().apply__T__s_concurrent_Future(deffuseUrl$1).flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this$1, normalsUrl$1$1, obj$1) {
+        return (function(deffuse$2) {
+          var deffuse = $as_Ltinyrenderer_Texture(deffuse$2);
+          return $m_Ltinyrenderer_Texture$().apply__T__s_concurrent_Future(normalsUrl$1$1).map__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this$2, obj$1$1, deffuse$1) {
+            return (function(normals$2) {
+              var normals = $as_Ltinyrenderer_Texture(normals$2);
+              return new $c_Ltinyrenderer_Obj().init___ALtinyrenderer_Commone_package$Vec3__ALtinyrenderer_Commone_package$Vec3__ALtinyrenderer_Commone_package$Vec2__AT3__Ltinyrenderer_Texture__Ltinyrenderer_Texture($this$2.parseV__AAT__ALtinyrenderer_Commone_package$Vec3(obj$1$1), $this$2.parseVN__AAT__ALtinyrenderer_Commone_package$Vec3(obj$1$1), $this$2.parseVT__AAT__ALtinyrenderer_Commone_package$Vec2(obj$1$1), $this$2.parseF__AAT__AT3(obj$1$1), deffuse$1, normals)
+            })
+          })($this$1, obj$1, deffuse)), $m_Lmonix_execution_Scheduler$().Implicits__Lmonix_execution_schedulers_SchedulerCompanionImpl$Implicits$().global__Lmonix_execution_Scheduler())
+        })
+      })(this$2$1, normalsUrl$1, obj)), $m_Lmonix_execution_Scheduler$().Implicits__Lmonix_execution_schedulers_SchedulerCompanionImpl$Implicits$().global__Lmonix_execution_Scheduler())
+    })
+  })(this, deffuseUrl, normalsUrl)), $m_Lmonix_execution_Scheduler$().Implicits__Lmonix_execution_schedulers_SchedulerCompanionImpl$Implicits$().global__Lmonix_execution_Scheduler())
 });
 $c_Ltinyrenderer_Obj$.prototype.parseVT__AAT__ALtinyrenderer_Commone_package$Vec2 = (function(data) {
   var this$2 = new $c_scm_ArrayOps$ofRef().init___AO(data);
@@ -4691,15 +4683,19 @@ function $h_Ltinyrenderer_Texture() {
   /*<skip>*/
 }
 $h_Ltinyrenderer_Texture.prototype = $c_Ltinyrenderer_Texture.prototype;
-$c_Ltinyrenderer_Texture.prototype.get__D__D__Ltinyrenderer_Commone_package$Color = (function(x, y) {
-  var redIndex = ((($imul(this.width$1, $doubleToInt((this.height$1 * (1 - y)))) + $doubleToInt((this.width$1 * x))) | 0) << 2);
-  return new $c_Ltinyrenderer_Commone_package$Color().init___I__I__I__I((($uI(this.data$1[redIndex]) << 16) >> 16), (($uI(this.data$1[((1 + redIndex) | 0)]) << 16) >> 16), (($uI(this.data$1[((2 + redIndex) | 0)]) << 16) >> 16), (($uI(this.data$1[((3 + redIndex) | 0)]) << 16) >> 16))
-});
 $c_Ltinyrenderer_Texture.prototype.init___sjs_js_typedarray_Uint8ClampedArray__I__I = (function(data, width, height) {
   this.data$1 = data;
   this.width$1 = width;
   this.height$1 = height;
   return this
+});
+$c_Ltinyrenderer_Texture.prototype.getColor__D__D__Ltinyrenderer_Commone_package$Color = (function(x, y) {
+  var redIndex = ((($imul(this.width$1, $doubleToInt((this.height$1 * (1 - y)))) + $doubleToInt((this.width$1 * x))) | 0) << 2);
+  return new $c_Ltinyrenderer_Commone_package$Color().init___I__I__I__I((($uI(this.data$1[redIndex]) << 16) >> 16), (($uI(this.data$1[((1 + redIndex) | 0)]) << 16) >> 16), (($uI(this.data$1[((2 + redIndex) | 0)]) << 16) >> 16), (($uI(this.data$1[((3 + redIndex) | 0)]) << 16) >> 16))
+});
+$c_Ltinyrenderer_Texture.prototype.getVec3__D__D__Ltinyrenderer_Commone_package$Vec3 = (function(x, y) {
+  var redIndex = ((($imul(this.width$1, $doubleToInt((this.height$1 * (1 - y)))) + $doubleToInt((this.width$1 * x))) | 0) << 2);
+  return new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((($uI(this.data$1[redIndex]) << 16) >> 16), (($uI(this.data$1[((1 + redIndex) | 0)]) << 16) >> 16), (($uI(this.data$1[((2 + redIndex) | 0)]) << 16) >> 16))
 });
 function $is_Ltinyrenderer_Texture(obj) {
   return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltinyrenderer_Texture)))
@@ -9366,7 +9362,7 @@ $c_Ltinyrenderer_App$.prototype.main__V = (function() {
   var canvas = $m_Lorg_scalajs_dom_package$().document__Lorg_scalajs_dom_raw_HTMLDocument().createElement("canvas");
   var enginge = new $c_Ltinyrenderer_Engine().init___Lorg_scalajs_dom_raw_HTMLCanvasElement(canvas);
   $m_Lorg_scalajs_dom_package$().document__Lorg_scalajs_dom_raw_HTMLDocument().getElementById("main").appendChild(canvas);
-  $m_Ltinyrenderer_Obj$().apply__T__T__s_concurrent_Future("obj/diablo3_pose/diablo3_pose.obj", "obj/diablo3_pose/diablo3_pose_diffuse.jpg").map__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, enginge$1) {
+  $m_Ltinyrenderer_Obj$().apply__T__T__T__s_concurrent_Future("obj/african_head/african_head.obj", "obj/african_head/african_head_diffuse.jpg", "obj/african_head/african_head_nm.jpg").map__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, enginge$1) {
     return (function(obj$2) {
       var obj = $as_Ltinyrenderer_Obj(obj$2);
       var scene = enginge$1.Scene__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Scene(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((-1.0), 1.0, (-1.0)), new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(1.0, (-1.0), 1.0));
