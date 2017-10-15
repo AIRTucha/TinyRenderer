@@ -12,15 +12,10 @@ class Texture(
     val height: Int
 ) {
   def get(x: Double, y: Double) = {
-    // Color(
-    //   (x * 255).asInstanceOf[Short],
-    //   (y * 255).asInstanceOf[Short],
-    //   255.asInstanceOf[Short],
-    //   255.asInstanceOf[Short]
-    // )
-    val yLoc = (height * (1 -y)).asInstanceOf[Int]
-    val xLoc = width * x
-    val redIndex: Int = (width * yLoc  + xLoc.asInstanceOf[Int] ) * 4
+    val redIndex: Int = (
+      width * ( height * ( 1 - y ) ).asInstanceOf[Int] + 
+      ( width * x ).asInstanceOf[Int]
+    ) * 4
     Color(
       data(redIndex).asInstanceOf[Short],
       data(redIndex + 1).asInstanceOf[Short],

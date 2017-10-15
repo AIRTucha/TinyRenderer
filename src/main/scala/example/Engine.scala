@@ -7,8 +7,8 @@ import Commone.{ Vec3, Color }
 import scala.collection.mutable.ListBuffer
 
 class Engine(val canvas: Canvas) {
-  canvas.width = 1000;
-  canvas.height = 1000;
+  canvas.width = 2500;
+  canvas.height = 2500;
   private val ctx = canvas.getContext("2d").asInstanceOf[CanvasRenderingContext2D]
   def render(scene: Scene) = ctx.putImageData(scene.getImg, 0, 0)
   def Scene(low: Vec3, high: Vec3) = new Scene(

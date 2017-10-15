@@ -167,10 +167,10 @@ class Obj(
   }
 }
 object Obj {
-  def apply(url: String): Future[Obj] = {
+  def apply(modelUrl: String, deffuseUrl: String): Future[Obj] = {
     for {
-      obj <- get("obj/african_head/african_head.obj") map { _.body.split("\n").map( _.split(" ") ) } 
-      deffuse <- Texture("obj/african_head/african_head_diffuse.jpg")
+      obj <- get(modelUrl) map { _.body.split("\n").map( _.split(" ") ) } 
+      deffuse <- Texture(deffuseUrl)
     } yield new Obj(
       parseV(obj),
       parseVN(obj),
