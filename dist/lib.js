@@ -3990,11 +3990,11 @@ function $h_Lorg_scalajs_dom_package$() {
   /*<skip>*/
 }
 $h_Lorg_scalajs_dom_package$.prototype = $c_Lorg_scalajs_dom_package$.prototype;
-$c_Lorg_scalajs_dom_package$.prototype.init___ = (function() {
-  return this
-});
 $c_Lorg_scalajs_dom_package$.prototype.XMLHttpRequest__Lorg_scalajs_dom_raw_XMLHttpRequest$ = (function() {
   return (((33554432 & this.bitmap$0$1) === 0) ? this.XMLHttpRequest$lzycompute__p1__Lorg_scalajs_dom_raw_XMLHttpRequest$() : this.XMLHttpRequest$1)
+});
+$c_Lorg_scalajs_dom_package$.prototype.init___ = (function() {
+  return this
 });
 $c_Lorg_scalajs_dom_package$.prototype.document__Lorg_scalajs_dom_raw_HTMLDocument = (function() {
   return (((268435456 & this.bitmap$0$1) === 0) ? this.document$lzycompute__p1__Lorg_scalajs_dom_raw_HTMLDocument() : this.document$1)
@@ -4270,9 +4270,6 @@ $c_Ltinyrenderer_Obj.prototype.line__I__Ltinyrenderer_Commone_package$Vertex__Lt
       var xTex = (startXTex + ((endXTex - startXTex) * $uD($g.Math.max(0.0, y$19))));
       var y$20 = $uD($g.Math.min(gradientX, 1.0));
       var yTex = (startYTex + ((endYTex - startYTex) * $uD($g.Math.max(0.0, y$20))));
-      var this$109 = $m_s_Console$();
-      var this$110 = $as_Ljava_io_PrintStream(this$109.outVar$2.v$1);
-      this$110.java$lang$JSConsoleBasedPrintStream$$printString__T__V((yTex + "\n"));
       var color = this.deffuse$1.get__D__D__Ltinyrenderer_Commone_package$Color(xTex, yTex);
       scene.dot__I__I__D__D__D__D__D__V(v1, y, z, (color.r$1 * intensity), (color.g$1 * intensity), (color.b$1 * intensity), (color.a$1 * intensity));
       if ((i === scala$collection$immutable$Range$$lastElement$4)) {
@@ -4282,6 +4279,29 @@ $c_Ltinyrenderer_Obj.prototype.line__I__Ltinyrenderer_Commone_package$Vertex__Lt
     }
   }
 });
+$c_Ltinyrenderer_Obj.prototype.draw__Ltinyrenderer_Scene__V = (function(scene) {
+  var xs = this.faces$1;
+  var this$2 = new $c_scm_ArrayOps$ofRef().init___AO(xs);
+  var p = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this) {
+    return (function(check$ifrefutable$1$2) {
+      var check$ifrefutable$1 = $as_T3(check$ifrefutable$1$2);
+      return (check$ifrefutable$1 !== null)
+    })
+  })(this));
+  new $c_sc_TraversableLike$WithFilter().init___sc_TraversableLike__F1(this$2, p).foreach__F1__V(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(this$2$1, scene$1) {
+    return (function(x$1$2) {
+      var x$1 = $as_T3(x$1$2);
+      if ((x$1 !== null)) {
+        var fst = $as_Ltinyrenderer_Commone_package$Indeces(x$1.$$und1$1);
+        var snd = $as_Ltinyrenderer_Commone_package$Indeces(x$1.$$und2$1);
+        var trd = $as_Ltinyrenderer_Commone_package$Indeces(x$1.$$und3$1);
+        this$2$1.triangle__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Scene__V(new $c_Ltinyrenderer_Commone_package$Vertex().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(scene$1.scale__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3(this$2$1.vertices$1.get(fst.vertex$1)), this$2$1.normals$1.get(fst.normal$1), this$2$1.textures$1.get(fst.texture$1)), new $c_Ltinyrenderer_Commone_package$Vertex().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(scene$1.scale__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3(this$2$1.vertices$1.get(snd.vertex$1)), this$2$1.normals$1.get(snd.normal$1), this$2$1.textures$1.get(snd.texture$1)), new $c_Ltinyrenderer_Commone_package$Vertex().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(scene$1.scale__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3(this$2$1.vertices$1.get(trd.vertex$1)), this$2$1.normals$1.get(trd.normal$1), this$2$1.textures$1.get(trd.texture$1)), scene$1)
+      } else {
+        throw new $c_s_MatchError().init___O(x$1)
+      }
+    })
+  })(this, scene)))
+});
 $c_Ltinyrenderer_Obj.prototype.init___ALtinyrenderer_Commone_package$Vec3__ALtinyrenderer_Commone_package$Vec3__ALtinyrenderer_Commone_package$Vec2__AT3__Ltinyrenderer_Texture = (function(vertices, normals, textures, faces, deffuse) {
   this.vertices$1 = vertices;
   this.normals$1 = normals;
@@ -4289,9 +4309,6 @@ $c_Ltinyrenderer_Obj.prototype.init___ALtinyrenderer_Commone_package$Vec3__ALtin
   this.faces$1 = faces;
   this.deffuse$1 = deffuse;
   return this
-});
-$c_Ltinyrenderer_Obj.prototype.drawDebugingTriangle__Ltinyrenderer_Scene__V = (function(scene) {
-  this.triangle__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Scene__V(new $c_Ltinyrenderer_Commone_package$Vertex().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((-1.0), (-1.0), 1.0), new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.0, (-1.0)), new $c_Ltinyrenderer_Commone_package$Vec2().init___D__D(0.0, 0.0)), new $c_Ltinyrenderer_Commone_package$Vertex().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(1.0, 0.0, 0.5), new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.0, (-1.0)), new $c_Ltinyrenderer_Commone_package$Vec2().init___D__D(1.0, 1.0)), new $c_Ltinyrenderer_Commone_package$Vertex().init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(1.0, 1.0, 0.0), new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.0, 1.0), new $c_Ltinyrenderer_Commone_package$Vec2().init___D__D(0.0, 0.0)), scene)
 });
 function $is_Ltinyrenderer_Obj(obj) {
   return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltinyrenderer_Obj)))
@@ -4650,15 +4667,8 @@ $c_Ltinyrenderer_Scene.prototype.dot__I__I__D__D__D__D__D__V = (function(x, y, z
     this.zBuffer$1.get(x).set(y, z)
   }
 });
-$c_Ltinyrenderer_Scene.prototype.clear__V = (function() {
-  var i = 0;
-  while ((i < this.dataAmount$1)) {
-    this.img$1.data[i] = 0;
-    this.img$1.data[((1 + i) | 0)] = 0;
-    this.img$1.data[((2 + i) | 0)] = 0;
-    this.img$1.data[((3 + i) | 0)] = 255;
-    i = ((4 + i) | 0)
-  }
+$c_Ltinyrenderer_Scene.prototype.scale__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3 = (function(vec) {
+  return new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(((this.width$1 * (vec.x$1 - this.low$1.x$1)) / (this.high$1.x$1 - this.low$1.x$1)), ((this.height$1 * (vec.y$1 - this.low$1.y$1)) / (this.high$1.y$1 - this.low$1.y$1)), vec.z$1)
 });
 var $d_Ltinyrenderer_Scene = new $TypeData().initClass({
   Ltinyrenderer_Scene: 0
@@ -4682,7 +4692,9 @@ function $h_Ltinyrenderer_Texture() {
 }
 $h_Ltinyrenderer_Texture.prototype = $c_Ltinyrenderer_Texture.prototype;
 $c_Ltinyrenderer_Texture.prototype.get__D__D__Ltinyrenderer_Commone_package$Color = (function(x, y) {
-  var redIndex = ((($doubleToInt((this.width$1 * y)) + $doubleToInt(x)) | 0) << 2);
+  var yLoc = $doubleToInt((this.height$1 * (1 - y)));
+  var xLoc = (this.width$1 * x);
+  var redIndex = ((($imul(this.width$1, yLoc) + $doubleToInt(xLoc)) | 0) << 2);
   return new $c_Ltinyrenderer_Commone_package$Color().init___I__I__I__I((($uI(this.data$1[redIndex]) << 16) >> 16), (($uI(this.data$1[((1 + redIndex) | 0)]) << 16) >> 16), (($uI(this.data$1[((2 + redIndex) | 0)]) << 16) >> 16), (($uI(this.data$1[((3 + redIndex) | 0)]) << 16) >> 16))
 });
 $c_Ltinyrenderer_Texture.prototype.init___sjs_js_typedarray_Uint8ClampedArray__I__I = (function(data, width, height) {
@@ -5042,17 +5054,6 @@ function $m_ju_Arrays$() {
   };
   return $n_ju_Arrays$
 }
-/** @constructor */
-function $c_s_DeprecatedConsole() {
-  $c_O.call(this)
-}
-$c_s_DeprecatedConsole.prototype = new $h_O();
-$c_s_DeprecatedConsole.prototype.constructor = $c_s_DeprecatedConsole;
-/** @constructor */
-function $h_s_DeprecatedConsole() {
-  /*<skip>*/
-}
-$h_s_DeprecatedConsole.prototype = $c_s_DeprecatedConsole.prototype;
 /** @constructor */
 function $c_s_FallbackArrayBuilding() {
   $c_O.call(this)
@@ -5761,32 +5762,6 @@ function $m_s_sys_package$() {
   };
   return $n_s_sys_package$
 }
-/** @constructor */
-function $c_s_util_DynamicVariable() {
-  $c_O.call(this);
-  this.v$1 = null
-}
-$c_s_util_DynamicVariable.prototype = new $h_O();
-$c_s_util_DynamicVariable.prototype.constructor = $c_s_util_DynamicVariable;
-/** @constructor */
-function $h_s_util_DynamicVariable() {
-  /*<skip>*/
-}
-$h_s_util_DynamicVariable.prototype = $c_s_util_DynamicVariable.prototype;
-$c_s_util_DynamicVariable.prototype.toString__T = (function() {
-  return (("DynamicVariable(" + this.v$1) + ")")
-});
-$c_s_util_DynamicVariable.prototype.init___O = (function(init) {
-  this.v$1 = init;
-  return this
-});
-var $d_s_util_DynamicVariable = new $TypeData().initClass({
-  s_util_DynamicVariable: 0
-}, false, "scala.util.DynamicVariable", {
-  s_util_DynamicVariable: 1,
-  O: 1
-});
-$c_s_util_DynamicVariable.prototype.$classData = $d_s_util_DynamicVariable;
 /** @constructor */
 function $c_s_util_control_Breaks() {
   $c_O.call(this);
@@ -9397,9 +9372,7 @@ $c_Ltinyrenderer_App$.prototype.main__V = (function() {
     return (function(obj$2) {
       var obj = $as_Ltinyrenderer_Obj(obj$2);
       var scene = enginge$1.Scene__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Scene(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((-1.0), 1.0, (-1.0)), new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(1.0, (-1.0), 1.0));
-      scene.clear__V();
-      enginge$1.render__Ltinyrenderer_Scene__V(scene);
-      obj.drawDebugingTriangle__Ltinyrenderer_Scene__V(scene);
+      obj.draw__Ltinyrenderer_Scene__V(scene);
       enginge$1.render__Ltinyrenderer_Scene__V(scene)
     })
   })(this, enginge)), $m_Lmonix_execution_Scheduler$().Implicits__Lmonix_execution_schedulers_SchedulerCompanionImpl$Implicits$().global__Lmonix_execution_Scheduler())
@@ -12528,11 +12501,11 @@ function $h_jl_Double$() {
   /*<skip>*/
 }
 $h_jl_Double$.prototype = $c_jl_Double$.prototype;
-$c_jl_Double$.prototype.init___ = (function() {
-  return this
-});
 $c_jl_Double$.prototype.doubleStrPat__p1__sjs_js_RegExp = (function() {
   return ((!this.bitmap$0$1) ? this.doubleStrPat$lzycompute__p1__sjs_js_RegExp() : this.doubleStrPat$1)
+});
+$c_jl_Double$.prototype.init___ = (function() {
+  return this
 });
 $c_jl_Double$.prototype.doubleStrPat$lzycompute__p1__sjs_js_RegExp = (function() {
   if ((!this.bitmap$0$1)) {
@@ -12700,17 +12673,17 @@ $c_jl_Integer$.prototype.parseInt__T__I__I = (function(s, radix) {
     }
   }
 });
-$c_jl_Integer$.prototype.bitCount__I__I = (function(i) {
-  var t1 = ((i - (1431655765 & (i >> 1))) | 0);
-  var t2 = (((858993459 & t1) + (858993459 & (t1 >> 2))) | 0);
-  return ($imul(16843009, (252645135 & ((t2 + (t2 >> 4)) | 0))) >> 24)
-});
 $c_jl_Integer$.prototype.reverseBytes__I__I = (function(i) {
   var byte3 = ((i >>> 24) | 0);
   var byte2 = (65280 & ((i >>> 8) | 0));
   var byte1 = (16711680 & (i << 8));
   var byte0 = (i << 24);
   return (((byte0 | byte1) | byte2) | byte3)
+});
+$c_jl_Integer$.prototype.bitCount__I__I = (function(i) {
+  var t1 = ((i - (1431655765 & (i >> 1))) | 0);
+  var t2 = (((858993459 & t1) + (858993459 & (t1 >> 2))) | 0);
+  return ($imul(16843009, (252645135 & ((t2 + (t2 >> 4)) | 0))) >> 24)
 });
 var $d_jl_Integer$ = new $TypeData().initClass({
   jl_Integer$: 0
@@ -13155,43 +13128,6 @@ function $m_ju_regex_Pattern$() {
     $n_ju_regex_Pattern$ = new $c_ju_regex_Pattern$().init___()
   };
   return $n_ju_regex_Pattern$
-}
-/** @constructor */
-function $c_s_Console$() {
-  $c_s_DeprecatedConsole.call(this);
-  this.outVar$2 = null;
-  this.errVar$2 = null;
-  this.inVar$2 = null
-}
-$c_s_Console$.prototype = new $h_s_DeprecatedConsole();
-$c_s_Console$.prototype.constructor = $c_s_Console$;
-/** @constructor */
-function $h_s_Console$() {
-  /*<skip>*/
-}
-$h_s_Console$.prototype = $c_s_Console$.prototype;
-$c_s_Console$.prototype.init___ = (function() {
-  $n_s_Console$ = this;
-  this.outVar$2 = new $c_s_util_DynamicVariable().init___O($m_jl_System$().out$1);
-  this.errVar$2 = new $c_s_util_DynamicVariable().init___O($m_jl_System$().err$1);
-  this.inVar$2 = new $c_s_util_DynamicVariable().init___O(null);
-  return this
-});
-var $d_s_Console$ = new $TypeData().initClass({
-  s_Console$: 0
-}, false, "scala.Console$", {
-  s_Console$: 1,
-  s_DeprecatedConsole: 1,
-  O: 1,
-  s_io_AnsiColor: 1
-});
-$c_s_Console$.prototype.$classData = $d_s_Console$;
-var $n_s_Console$ = (void 0);
-function $m_s_Console$() {
-  if ((!$n_s_Console$)) {
-    $n_s_Console$ = new $c_s_Console$().init___()
-  };
-  return $n_s_Console$
 }
 /** @constructor */
 function $c_s_Option$() {
@@ -17510,14 +17446,14 @@ var $d_Lmonix_execution_Cancelable$$anon$1 = new $TypeData().initClass({
   Lmonix_execution_Cancelable$IsDummy: 1
 });
 $c_Lmonix_execution_Cancelable$$anon$1.prototype.$classData = $d_Lmonix_execution_Cancelable$$anon$1;
-function $f_Lmonix_execution_CancelableFuture__flatMap__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture($thiz, f, executor) {
-  $m_Lmonix_execution_CancelableFuture$();
-  var underlying = $f_s_concurrent_Future__flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future($thiz, f, executor);
-  return new $c_Lmonix_execution_CancelableFuture$Implementation().init___s_concurrent_Future__Lmonix_execution_Cancelable(underlying, $thiz)
-}
 function $f_Lmonix_execution_CancelableFuture__andThen__s_PartialFunction__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture($thiz, pf, executor) {
   $m_Lmonix_execution_CancelableFuture$();
   var underlying = $f_s_concurrent_Future__andThen__s_PartialFunction__s_concurrent_ExecutionContext__s_concurrent_Future($thiz, pf, executor);
+  return new $c_Lmonix_execution_CancelableFuture$Implementation().init___s_concurrent_Future__Lmonix_execution_Cancelable(underlying, $thiz)
+}
+function $f_Lmonix_execution_CancelableFuture__flatMap__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture($thiz, f, executor) {
+  $m_Lmonix_execution_CancelableFuture$();
+  var underlying = $f_s_concurrent_Future__flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future($thiz, f, executor);
   return new $c_Lmonix_execution_CancelableFuture$Implementation().init___s_concurrent_Future__Lmonix_execution_Cancelable(underlying, $thiz)
 }
 function $f_Lmonix_execution_CancelableFuture__map__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture($thiz, f, executor) {
@@ -20585,18 +20521,6 @@ $c_Ljava_io_PrintStream.prototype.println__T__V = (function(s) {
   this.print__T__V(s);
   this.java$lang$JSConsoleBasedPrintStream$$printString__T__V("\n")
 });
-function $is_Ljava_io_PrintStream(obj) {
-  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ljava_io_PrintStream)))
-}
-function $as_Ljava_io_PrintStream(obj) {
-  return (($is_Ljava_io_PrintStream(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "java.io.PrintStream"))
-}
-function $isArrayOf_Ljava_io_PrintStream(obj, depth) {
-  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ljava_io_PrintStream)))
-}
-function $asArrayOf_Ljava_io_PrintStream(obj, depth) {
-  return (($isArrayOf_Ljava_io_PrintStream(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ljava.io.PrintStream;", depth))
-}
 /** @constructor */
 function $c_Ljava_nio_CharBuffer() {
   $c_Ljava_nio_Buffer.call(this);
@@ -21955,6 +21879,11 @@ function $f_sc_TraversableLike__$$plus$plus__sc_GenTraversableOnce__scg_CanBuild
   b.$$plus$plus$eq__sc_TraversableOnce__scg_Growable(that.seq__sc_TraversableOnce());
   return b.result__O()
 }
+function $f_sc_TraversableLike__builder$1__psc_TraversableLike__scg_CanBuildFrom__scm_Builder($thiz, bf$2) {
+  var b = bf$2.apply__O__scm_Builder($thiz.repr__O());
+  $f_scm_Builder__sizeHint__sc_TraversableLike__V(b, $thiz);
+  return b
+}
 function $f_sc_TraversableLike__map__F1__scg_CanBuildFrom__O($thiz, f, bf) {
   var b = $f_sc_TraversableLike__builder$1__psc_TraversableLike__scg_CanBuildFrom__scm_Builder($thiz, bf);
   $thiz.foreach__F1__V(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, f$1, b$1) {
@@ -21963,11 +21892,6 @@ function $f_sc_TraversableLike__map__F1__scg_CanBuildFrom__O($thiz, f, bf) {
     })
   })($thiz, f, b)));
   return b.result__O()
-}
-function $f_sc_TraversableLike__builder$1__psc_TraversableLike__scg_CanBuildFrom__scm_Builder($thiz, bf$2) {
-  var b = bf$2.apply__O__scm_Builder($thiz.repr__O());
-  $f_scm_Builder__sizeHint__sc_TraversableLike__V(b, $thiz);
-  return b
 }
 function $f_sc_TraversableLike__stringPrefix__T($thiz) {
   var this$1 = $thiz.repr__O();
@@ -22732,11 +22656,11 @@ $c_Lmonix_execution_CancelableFuture$Implementation.prototype.transformWith__F1_
 $c_Lmonix_execution_CancelableFuture$Implementation.prototype.flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future = (function(f, executor) {
   return this.flatMap__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture(f, executor)
 });
-$c_Lmonix_execution_CancelableFuture$Implementation.prototype.flatMap__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture = (function(f, executor) {
-  return new $c_Lmonix_execution_CancelableFuture$Implementation().init___s_concurrent_Future__Lmonix_execution_Cancelable(this.underlying$1.flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future(f, executor), this.cancelable$1)
-});
 $c_Lmonix_execution_CancelableFuture$Implementation.prototype.onComplete__F1__s_concurrent_ExecutionContext__V = (function(f, executor) {
   this.underlying$1.onComplete__F1__s_concurrent_ExecutionContext__V(f, executor)
+});
+$c_Lmonix_execution_CancelableFuture$Implementation.prototype.flatMap__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture = (function(f, executor) {
+  return new $c_Lmonix_execution_CancelableFuture$Implementation().init___s_concurrent_Future__Lmonix_execution_Cancelable(this.underlying$1.flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future(f, executor), this.cancelable$1)
 });
 $c_Lmonix_execution_CancelableFuture$Implementation.prototype.andThen__s_PartialFunction__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture = (function(pf, executor) {
   return new $c_Lmonix_execution_CancelableFuture$Implementation().init___s_concurrent_Future__Lmonix_execution_Cancelable(this.underlying$1.andThen__s_PartialFunction__s_concurrent_ExecutionContext__s_concurrent_Future(pf, executor), this.cancelable$1)
@@ -22744,28 +22668,28 @@ $c_Lmonix_execution_CancelableFuture$Implementation.prototype.andThen__s_Partial
 $c_Lmonix_execution_CancelableFuture$Implementation.prototype.andThen__s_PartialFunction__s_concurrent_ExecutionContext__s_concurrent_Future = (function(pf, executor) {
   return this.andThen__s_PartialFunction__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture(pf, executor)
 });
+$c_Lmonix_execution_CancelableFuture$Implementation.prototype.map__F1__s_concurrent_ExecutionContext__s_concurrent_Future = (function(f, executor) {
+  return this.map__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture(f, executor)
+});
+$c_Lmonix_execution_CancelableFuture$Implementation.prototype.transform__F1__s_concurrent_ExecutionContext__s_concurrent_Future = (function(f, executor) {
+  return this.transform__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture(f, executor)
+});
 $c_Lmonix_execution_CancelableFuture$Implementation.prototype.value__s_Option = (function() {
   return this.underlying$1.value__s_Option()
 });
 $c_Lmonix_execution_CancelableFuture$Implementation.prototype.map__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture = (function(f, executor) {
   return new $c_Lmonix_execution_CancelableFuture$Implementation().init___s_concurrent_Future__Lmonix_execution_Cancelable(this.underlying$1.map__F1__s_concurrent_ExecutionContext__s_concurrent_Future(f, executor), this.cancelable$1)
 });
-$c_Lmonix_execution_CancelableFuture$Implementation.prototype.transform__F1__s_concurrent_ExecutionContext__s_concurrent_Future = (function(f, executor) {
-  return this.transform__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture(f, executor)
-});
-$c_Lmonix_execution_CancelableFuture$Implementation.prototype.map__F1__s_concurrent_ExecutionContext__s_concurrent_Future = (function(f, executor) {
-  return this.map__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture(f, executor)
-});
 $c_Lmonix_execution_CancelableFuture$Implementation.prototype.transform__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture = (function(f, executor) {
   return new $c_Lmonix_execution_CancelableFuture$Implementation().init___s_concurrent_Future__Lmonix_execution_Cancelable($m_Lmonix_execution_FutureUtils$().transform__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this.underlying$1, f, executor), this.cancelable$1)
-});
-$c_Lmonix_execution_CancelableFuture$Implementation.prototype.transformWith__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture = (function(f, executor) {
-  return new $c_Lmonix_execution_CancelableFuture$Implementation().init___s_concurrent_Future__Lmonix_execution_Cancelable($m_Lmonix_execution_FutureUtils$().transformWith__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this.underlying$1, f, executor), this.cancelable$1)
 });
 $c_Lmonix_execution_CancelableFuture$Implementation.prototype.init___s_concurrent_Future__Lmonix_execution_Cancelable = (function(underlying, cancelable) {
   this.underlying$1 = underlying;
   this.cancelable$1 = cancelable;
   return this
+});
+$c_Lmonix_execution_CancelableFuture$Implementation.prototype.transformWith__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture = (function(f, executor) {
+  return new $c_Lmonix_execution_CancelableFuture$Implementation().init___s_concurrent_Future__Lmonix_execution_Cancelable($m_Lmonix_execution_FutureUtils$().transformWith__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this.underlying$1, f, executor), this.cancelable$1)
 });
 $c_Lmonix_execution_CancelableFuture$Implementation.prototype.cancel__V = (function() {
   this.cancelable$1.cancel__V()
@@ -22811,17 +22735,17 @@ $c_Lmonix_execution_CancelableFuture$Now.prototype.onComplete__F1__s_concurrent_
 $c_Lmonix_execution_CancelableFuture$Now.prototype.andThen__s_PartialFunction__s_concurrent_ExecutionContext__s_concurrent_Future = (function(pf, executor) {
   return $f_Lmonix_execution_CancelableFuture__andThen__s_PartialFunction__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture(this, pf, executor)
 });
-$c_Lmonix_execution_CancelableFuture$Now.prototype.map__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture = (function(f, executor) {
+$c_Lmonix_execution_CancelableFuture$Now.prototype.value__s_Option = (function() {
+  return this.value$1
+});
+$c_Lmonix_execution_CancelableFuture$Now.prototype.map__F1__s_concurrent_ExecutionContext__s_concurrent_Future = (function(f, executor) {
   return $f_Lmonix_execution_CancelableFuture__map__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture(this, f, executor)
 });
 $c_Lmonix_execution_CancelableFuture$Now.prototype.transform__F1__s_concurrent_ExecutionContext__s_concurrent_Future = (function(f, executor) {
   return $f_Lmonix_execution_CancelableFuture__transform__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture(this, f, executor)
 });
-$c_Lmonix_execution_CancelableFuture$Now.prototype.map__F1__s_concurrent_ExecutionContext__s_concurrent_Future = (function(f, executor) {
+$c_Lmonix_execution_CancelableFuture$Now.prototype.map__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture = (function(f, executor) {
   return $f_Lmonix_execution_CancelableFuture__map__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture(this, f, executor)
-});
-$c_Lmonix_execution_CancelableFuture$Now.prototype.value__s_Option = (function() {
-  return this.value$1
 });
 $c_Lmonix_execution_CancelableFuture$Now.prototype.cancel__V = (function() {
   /*<skip>*/
@@ -25692,14 +25616,14 @@ function $h_Lmonix_execution_Ack$Continue$() {
   /*<skip>*/
 }
 $h_Lmonix_execution_Ack$Continue$.prototype = $c_Lmonix_execution_Ack$Continue$.prototype;
-$c_Lmonix_execution_Ack$Continue$.prototype.productPrefix__T = (function() {
-  return "Continue"
-});
 $c_Lmonix_execution_Ack$Continue$.prototype.init___ = (function() {
   $n_Lmonix_execution_Ack$Continue$ = this;
   this.AsSuccess$3 = new $c_s_util_Success().init___O($m_Lmonix_execution_Ack$Continue$());
   this.value$3 = new $c_s_Some().init___O(this.AsSuccess$3);
   return this
+});
+$c_Lmonix_execution_Ack$Continue$.prototype.productPrefix__T = (function() {
+  return "Continue"
 });
 $c_Lmonix_execution_Ack$Continue$.prototype.productArity__I = (function() {
   return 0
@@ -25766,14 +25690,14 @@ function $h_Lmonix_execution_Ack$Stop$() {
   /*<skip>*/
 }
 $h_Lmonix_execution_Ack$Stop$.prototype = $c_Lmonix_execution_Ack$Stop$.prototype;
-$c_Lmonix_execution_Ack$Stop$.prototype.productPrefix__T = (function() {
-  return "Stop"
-});
 $c_Lmonix_execution_Ack$Stop$.prototype.init___ = (function() {
   $n_Lmonix_execution_Ack$Stop$ = this;
   this.AsSuccess$3 = new $c_s_util_Success().init___O($m_Lmonix_execution_Ack$Stop$());
   this.value$3 = new $c_s_Some().init___O(this.AsSuccess$3);
   return this
+});
+$c_Lmonix_execution_Ack$Stop$.prototype.productPrefix__T = (function() {
+  return "Stop"
 });
 $c_Lmonix_execution_Ack$Stop$.prototype.productArity__I = (function() {
   return 0
@@ -27513,11 +27437,11 @@ $c_sci_StringOps.prototype.thisCollection__sc_Traversable = (function() {
 $c_sci_StringOps.prototype.equals__O__Z = (function(x$1) {
   return $m_sci_StringOps$().equals$extension__T__O__Z(this.repr$1, x$1)
 });
-$c_sci_StringOps.prototype.mkString__T__T__T__T = (function(start, sep, end) {
-  return $f_sc_TraversableOnce__mkString__T__T__T__T(this, start, sep, end)
-});
 $c_sci_StringOps.prototype.mkString__T__T = (function(sep) {
   return $f_sc_TraversableOnce__mkString__T__T__T__T(this, "", sep, "")
+});
+$c_sci_StringOps.prototype.mkString__T__T__T__T = (function(start, sep, end) {
+  return $f_sc_TraversableOnce__mkString__T__T__T__T(this, start, sep, end)
 });
 $c_sci_StringOps.prototype.toString__T = (function() {
   var $$this = this.repr$1;
@@ -31644,13 +31568,13 @@ $c_sci_HashSet$HashSetCollision1.prototype.foreach__F1__V = (function(f) {
   var this$3 = new $c_sc_LinearSeqLike$$anon$1().init___sc_LinearSeqLike(this$2);
   $f_sc_Iterator__foreach__F1__V(this$3, f)
 });
+$c_sci_HashSet$HashSetCollision1.prototype.size__I = (function() {
+  return this.ks$6.size__I()
+});
 $c_sci_HashSet$HashSetCollision1.prototype.iterator__sc_Iterator = (function() {
   var this$1 = this.ks$6;
   var this$2 = this$1.reverseList$1__p4__sci_List();
   return new $c_sc_LinearSeqLike$$anon$1().init___sc_LinearSeqLike(this$2)
-});
-$c_sci_HashSet$HashSetCollision1.prototype.size__I = (function() {
-  return this.ks$6.size__I()
 });
 $c_sci_HashSet$HashSetCollision1.prototype.init___I__sci_ListSet = (function(hash, ks) {
   this.hash$6 = hash;
@@ -32023,9 +31947,6 @@ $c_sci_Stream.prototype.flatMap__F1__scg_CanBuildFrom__O = (function(f, bf) {
     return $f_sc_TraversableLike__flatMap__F1__scg_CanBuildFrom__O(this, f, bf)
   }
 });
-$c_sci_Stream.prototype.drop__I__sc_LinearSeqOptimized = (function(n) {
-  return this.drop__I__sci_Stream(n)
-});
 $c_sci_Stream.prototype.filterImpl__F1__Z__sci_Stream = (function(p, isFlipped) {
   var rest = this;
   while (((!rest.isEmpty__Z()) && ($uZ(p.apply__O__O(rest.head__O())) === isFlipped))) {
@@ -32038,12 +31959,15 @@ $c_sci_Stream.prototype.filterImpl__F1__Z__sci_Stream = (function(p, isFlipped) 
     return $m_sci_Stream$Empty$()
   }
 });
-$c_sci_Stream.prototype.mkString__T__T__T__T = (function(start, sep, end) {
-  this.force__sci_Stream();
-  return $f_sc_TraversableOnce__mkString__T__T__T__T(this, start, sep, end)
+$c_sci_Stream.prototype.drop__I__sc_LinearSeqOptimized = (function(n) {
+  return this.drop__I__sci_Stream(n)
 });
 $c_sci_Stream.prototype.mkString__T__T = (function(sep) {
   return this.mkString__T__T__T__T("", sep, "")
+});
+$c_sci_Stream.prototype.mkString__T__T__T__T = (function(start, sep, end) {
+  this.force__sci_Stream();
+  return $f_sc_TraversableOnce__mkString__T__T__T__T(this, start, sep, end)
 });
 $c_sci_Stream.prototype.withFilter__F1__scg_FilterMonadic = (function(p) {
   return new $c_sci_Stream$StreamWithFilter().init___F0__F1(new $c_sjsr_AnonFunction0().init___sjs_js_Function0((function($this) {
@@ -35426,13 +35350,13 @@ $c_scm_ListBuffer.prototype.equals__O__Z = (function(that) {
     return $f_sc_GenSeqLike__equals__O__Z(this, that)
   }
 });
-$c_scm_ListBuffer.prototype.mkString__T__T__T__T = (function(start, sep, end) {
-  var this$1 = this.scala$collection$mutable$ListBuffer$$start$6;
-  return $f_sc_TraversableOnce__mkString__T__T__T__T(this$1, start, sep, end)
-});
 $c_scm_ListBuffer.prototype.mkString__T__T = (function(sep) {
   var this$1 = this.scala$collection$mutable$ListBuffer$$start$6;
   return $f_sc_TraversableOnce__mkString__T__T__T__T(this$1, "", sep, "")
+});
+$c_scm_ListBuffer.prototype.mkString__T__T__T__T = (function(start, sep, end) {
+  var this$1 = this.scala$collection$mutable$ListBuffer$$start$6;
+  return $f_sc_TraversableOnce__mkString__T__T__T__T(this$1, start, sep, end)
 });
 $c_scm_ListBuffer.prototype.$$plus$eq__O__scg_Growable = (function(elem) {
   return this.$$plus$eq__O__scm_ListBuffer(elem)

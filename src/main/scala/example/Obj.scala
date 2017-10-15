@@ -24,7 +24,7 @@ class Obj(
     val deffuse: Texture
 ) {
   def draw(scene: Scene) = {
-    for ( (fst, snd, trd) <- faces.take(20) ) {
+    for ( (fst, snd, trd) <- faces ) {
       triangle(
         Vertex(
           scene scale vertices( fst.vertex ),
@@ -48,19 +48,19 @@ class Obj(
   def drawDebugingTriangle(scene: Scene) = {
     triangle(
       Vertex(
-        Vec3(-1, -1, 1),
-        Vec3(0, 0, -1),
+        scene scale Vec3(-1, -1, 1),
+        Vec3(0, 1, 1),
         Vec2(0, 0)
       ),
       Vertex(
-        Vec3(1, 0, 0.5),
-        Vec3(0, 0, -1),
-        Vec2(1, 1)
+        scene scale Vec3(1, -0.999, 0.5),
+        Vec3(1, 1, 1),
+        Vec2(1, 0)
       ),
       Vertex(
-        Vec3(1, 1, 0),
+        scene scale Vec3(1, 1, 0),
         Vec3(0, 0, 1),
-        Vec2(0, 0)
+        Vec2(0, 1)
       ),
       scene
     )
@@ -152,7 +152,7 @@ class Obj(
       val intensity = dotProduct(Vec3(0, 0.5, 0.7), normal)
       val xTex = interpolate(startXTex, endXTex, gradientX)
       val yTex = interpolate(startYTex, endYTex, gradientX)
-      println(yTex)
+    
       val color = deffuse.get(xTex, yTex)
       scene.dot(
         x,

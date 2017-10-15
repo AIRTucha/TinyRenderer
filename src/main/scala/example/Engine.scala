@@ -48,7 +48,6 @@ class Scene(
     b: Double,
     a: Double
   ) = if (zBuffer(x)(y) < z) {
-      val e = z * 255
       val redIndex: Int = (width * y + x) * 4
       img.data(redIndex) = r.asInstanceOf[Short]
       img.data(redIndex + 1) = g.asInstanceOf[Short]
