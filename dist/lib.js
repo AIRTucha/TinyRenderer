@@ -4038,6 +4038,37 @@ function $m_Lorg_scalajs_dom_package$() {
   return $n_Lorg_scalajs_dom_package$
 }
 /** @constructor */
+function $c_Ltinyrenderer_Commone_package$() {
+  $c_O.call(this)
+}
+$c_Ltinyrenderer_Commone_package$.prototype = new $h_O();
+$c_Ltinyrenderer_Commone_package$.prototype.constructor = $c_Ltinyrenderer_Commone_package$;
+/** @constructor */
+function $h_Ltinyrenderer_Commone_package$() {
+  /*<skip>*/
+}
+$h_Ltinyrenderer_Commone_package$.prototype = $c_Ltinyrenderer_Commone_package$.prototype;
+$c_Ltinyrenderer_Commone_package$.prototype.init___ = (function() {
+  return this
+});
+$c_Ltinyrenderer_Commone_package$.prototype.crossProduct__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3 = (function(vec1, vec2) {
+  return new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(((vec1.y$1 * vec2.z$1) - (vec2.y$1 * vec1.z$1)), (-((vec1.x$1 * vec2.z$1) - (vec2.x$1 * vec1.z$1))), ((vec1.x$1 * vec2.y$1) - (vec1.y$1 * vec2.x$1)))
+});
+var $d_Ltinyrenderer_Commone_package$ = new $TypeData().initClass({
+  Ltinyrenderer_Commone_package$: 0
+}, false, "tinyrenderer.Commone.package$", {
+  Ltinyrenderer_Commone_package$: 1,
+  O: 1
+});
+$c_Ltinyrenderer_Commone_package$.prototype.$classData = $d_Ltinyrenderer_Commone_package$;
+var $n_Ltinyrenderer_Commone_package$ = (void 0);
+function $m_Ltinyrenderer_Commone_package$() {
+  if ((!$n_Ltinyrenderer_Commone_package$)) {
+    $n_Ltinyrenderer_Commone_package$ = new $c_Ltinyrenderer_Commone_package$().init___()
+  };
+  return $n_Ltinyrenderer_Commone_package$
+}
+/** @constructor */
 function $c_Ltinyrenderer_Engine() {
   $c_O.call(this);
   this.canvas$1 = null;
@@ -4207,6 +4238,7 @@ $c_Ltinyrenderer_Obj.prototype.triangle__Ltinyrenderer_Commone_package$Vertex__L
   }
 });
 $c_Ltinyrenderer_Obj.prototype.line__I__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Scene__V = (function(y, vec1, vec2, vec3, vec4, scene) {
+  var light = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.65, 0.65, 0.0);
   var gradientY12 = ((vec1.vertex$1.y$1 !== vec2.vertex$1.y$1) ? ((y - vec1.vertex$1.y$1) / (vec2.vertex$1.y$1 - vec1.vertex$1.y$1)) : 1.0);
   var gradientY34 = ((vec3.vertex$1.y$1 !== vec4.vertex$1.y$1) ? ((y - vec3.vertex$1.y$1) / (vec4.vertex$1.y$1 - vec3.vertex$1.y$1)) : 1.0);
   var minV = vec1.vertex$1.x$1;
@@ -4263,9 +4295,21 @@ $c_Ltinyrenderer_Obj.prototype.line__I__Ltinyrenderer_Commone_package$Vertex__Lt
       var x$3 = ((jsx$2 + jsx$1) + $uD($g.Math.pow(x$2, 2.0)));
       var lenght = $uD($g.Math.sqrt(x$3));
       var normal = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((vec.x$1 / lenght), (vec.y$1 / lenght), (vec.z$1 / lenght));
+      var rPlusL = $m_Ltinyrenderer_Commone_package$().crossProduct__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3(normal, $m_Ltinyrenderer_Commone_package$().crossProduct__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3(normal, new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((2 * (-light.x$1)), (2 * (-light.y$1)), (2 * light.z$1))));
+      var vec$1 = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((rPlusL.x$1 - light.x$1), (rPlusL.y$1 - light.y$1), (rPlusL.z$1 - light.z$1));
+      var x$4 = vec$1.x$1;
+      var jsx$4 = $uD($g.Math.pow(x$4, 2.0));
+      var x$5 = vec$1.y$1;
+      var jsx$3 = $uD($g.Math.pow(x$5, 2.0));
+      var x$6 = vec$1.z$1;
+      var x$7 = ((jsx$4 + jsx$3) + $uD($g.Math.pow(x$6, 2.0)));
+      var lenght$1 = $uD($g.Math.sqrt(x$7));
+      var r = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((vec$1.x$1 / lenght$1), (vec$1.y$1 / lenght$1), (vec$1.z$1 / lenght$1));
       var color = this.deffuse$1.getColor__D__D__Ltinyrenderer_Commone_package$Color(xTex, yTex);
-      var vec1$1 = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.65, 0.65, 0.0);
-      var intensity = (((vec1$1.x$1 * normal.x$1) + (vec1$1.y$1 * normal.y$1)) + (vec1$1.z$1 * normal.z$1));
+      var vec2$1 = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.0, 1.0);
+      var x$8 = (((r.x$1 * vec2$1.x$1) + (r.y$1 * vec2$1.y$1)) + (r.z$1 * vec2$1.z$1));
+      var spec = $uD($g.Math.pow(x$8, 10.0));
+      var intensity = ((((light.x$1 * normal.x$1) + (light.y$1 * normal.y$1)) + (light.z$1 * normal.z$1)) + spec);
       scene.dot__I__I__D__D__D__D__D__V(v1, y, z, (color.r$1 * intensity), (color.g$1 * intensity), (color.b$1 * intensity), (color.a$1 * intensity));
       if ((i === scala$collection$immutable$Range$$lastElement$4)) {
         break

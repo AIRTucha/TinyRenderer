@@ -120,6 +120,7 @@ class Obj(
     vec4: Vertex,
     scene: Scene
   ) {
+    val light = Vec3(0.65, 0.65, 0)
     val gradientY12 = if (vec1.vertex.y != vec2.vertex.y)
       (y.asInstanceOf[Double] - vec1.vertex.y) / (vec2.vertex.y - vec1.vertex.y)
     else 1
@@ -143,8 +144,12 @@ class Obj(
       val xTex = interpolate(startXTex, endXTex, gradientX)
       val yTex = interpolate(startYTex, endYTex, gradientX)
       val normal = normalize(normalsTex.getVec3(xTex, yTex))
+      //(n*(n*l*2.f) - l).normalize();   // reflected light
+      val rPlusL = crossProduct( normal, crossProduct( normal, Vec3(-light.x*2, -light.y*2, light.z*2) ))
+      val r = normalize(Vec3(rPlusL.x - light.x, rPlusL.y - light.y, rPlusL.z - light.z))
       val color = deffuse.getColor(xTex, yTex)
-      val intensity = dotProduct(Vec3(0.65, 0.65, 0), normal)
+      val spec = pow(dotProduct(r, Vec3(0, 0, 1)), 10)
+      val intensity = dotProduct( light, normal ) + spec
       scene.dot(
         x,
         y,
