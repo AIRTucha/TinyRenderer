@@ -121,7 +121,7 @@ class Obj(
     vec4: Vertex,
     scene: Scene
   ) {
-    val light = Vec3(0.65, 0.65, 0)
+    val light = Vec3(0.65, 0.65, -0.15)
     val gradientY12 = if (vec1.vertex.y != vec2.vertex.y)
       (y.asInstanceOf[Double] - vec1.vertex.y) / (vec2.vertex.y - vec1.vertex.y)
     else 1

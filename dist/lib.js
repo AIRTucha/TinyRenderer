@@ -4230,7 +4230,7 @@ $c_Ltinyrenderer_Obj.prototype.triangle__Ltinyrenderer_Commone_package$Vertex__L
   }
 });
 $c_Ltinyrenderer_Obj.prototype.line__I__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Scene__V = (function(y, vec1, vec2, vec3, vec4, scene) {
-  var light = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.65, 0.65, 0.0);
+  var light = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.65, 0.65, (-0.15));
   var gradientY12 = ((vec1.vertex$1.y$1 !== vec2.vertex$1.y$1) ? ((y - vec1.vertex$1.y$1) / (vec2.vertex$1.y$1 - vec1.vertex$1.y$1)) : 1.0);
   var gradientY34 = ((vec3.vertex$1.y$1 !== vec4.vertex$1.y$1) ? ((y - vec3.vertex$1.y$1) / (vec4.vertex$1.y$1 - vec3.vertex$1.y$1)) : 1.0);
   var minV = vec1.vertex$1.x$1;
@@ -17507,14 +17507,14 @@ var $d_Lmonix_execution_Cancelable$$anon$1 = new $TypeData().initClass({
   Lmonix_execution_Cancelable$IsDummy: 1
 });
 $c_Lmonix_execution_Cancelable$$anon$1.prototype.$classData = $d_Lmonix_execution_Cancelable$$anon$1;
-function $f_Lmonix_execution_CancelableFuture__andThen__s_PartialFunction__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture($thiz, pf, executor) {
-  $m_Lmonix_execution_CancelableFuture$();
-  var underlying = $f_s_concurrent_Future__andThen__s_PartialFunction__s_concurrent_ExecutionContext__s_concurrent_Future($thiz, pf, executor);
-  return new $c_Lmonix_execution_CancelableFuture$Implementation().init___s_concurrent_Future__Lmonix_execution_Cancelable(underlying, $thiz)
-}
 function $f_Lmonix_execution_CancelableFuture__flatMap__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture($thiz, f, executor) {
   $m_Lmonix_execution_CancelableFuture$();
   var underlying = $f_s_concurrent_Future__flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future($thiz, f, executor);
+  return new $c_Lmonix_execution_CancelableFuture$Implementation().init___s_concurrent_Future__Lmonix_execution_Cancelable(underlying, $thiz)
+}
+function $f_Lmonix_execution_CancelableFuture__andThen__s_PartialFunction__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture($thiz, pf, executor) {
+  $m_Lmonix_execution_CancelableFuture$();
+  var underlying = $f_s_concurrent_Future__andThen__s_PartialFunction__s_concurrent_ExecutionContext__s_concurrent_Future($thiz, pf, executor);
   return new $c_Lmonix_execution_CancelableFuture$Implementation().init___s_concurrent_Future__Lmonix_execution_Cancelable(underlying, $thiz)
 }
 function $f_Lmonix_execution_CancelableFuture__map__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture($thiz, f, executor) {
@@ -22717,11 +22717,11 @@ $c_Lmonix_execution_CancelableFuture$Implementation.prototype.transformWith__F1_
 $c_Lmonix_execution_CancelableFuture$Implementation.prototype.flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future = (function(f, executor) {
   return this.flatMap__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture(f, executor)
 });
-$c_Lmonix_execution_CancelableFuture$Implementation.prototype.onComplete__F1__s_concurrent_ExecutionContext__V = (function(f, executor) {
-  this.underlying$1.onComplete__F1__s_concurrent_ExecutionContext__V(f, executor)
-});
 $c_Lmonix_execution_CancelableFuture$Implementation.prototype.flatMap__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture = (function(f, executor) {
   return new $c_Lmonix_execution_CancelableFuture$Implementation().init___s_concurrent_Future__Lmonix_execution_Cancelable(this.underlying$1.flatMap__F1__s_concurrent_ExecutionContext__s_concurrent_Future(f, executor), this.cancelable$1)
+});
+$c_Lmonix_execution_CancelableFuture$Implementation.prototype.onComplete__F1__s_concurrent_ExecutionContext__V = (function(f, executor) {
+  this.underlying$1.onComplete__F1__s_concurrent_ExecutionContext__V(f, executor)
 });
 $c_Lmonix_execution_CancelableFuture$Implementation.prototype.andThen__s_PartialFunction__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture = (function(pf, executor) {
   return new $c_Lmonix_execution_CancelableFuture$Implementation().init___s_concurrent_Future__Lmonix_execution_Cancelable(this.underlying$1.andThen__s_PartialFunction__s_concurrent_ExecutionContext__s_concurrent_Future(pf, executor), this.cancelable$1)
@@ -22744,13 +22744,13 @@ $c_Lmonix_execution_CancelableFuture$Implementation.prototype.map__F1__s_concurr
 $c_Lmonix_execution_CancelableFuture$Implementation.prototype.transform__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture = (function(f, executor) {
   return new $c_Lmonix_execution_CancelableFuture$Implementation().init___s_concurrent_Future__Lmonix_execution_Cancelable($m_Lmonix_execution_FutureUtils$().transform__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this.underlying$1, f, executor), this.cancelable$1)
 });
+$c_Lmonix_execution_CancelableFuture$Implementation.prototype.transformWith__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture = (function(f, executor) {
+  return new $c_Lmonix_execution_CancelableFuture$Implementation().init___s_concurrent_Future__Lmonix_execution_Cancelable($m_Lmonix_execution_FutureUtils$().transformWith__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this.underlying$1, f, executor), this.cancelable$1)
+});
 $c_Lmonix_execution_CancelableFuture$Implementation.prototype.init___s_concurrent_Future__Lmonix_execution_Cancelable = (function(underlying, cancelable) {
   this.underlying$1 = underlying;
   this.cancelable$1 = cancelable;
   return this
-});
-$c_Lmonix_execution_CancelableFuture$Implementation.prototype.transformWith__F1__s_concurrent_ExecutionContext__Lmonix_execution_CancelableFuture = (function(f, executor) {
-  return new $c_Lmonix_execution_CancelableFuture$Implementation().init___s_concurrent_Future__Lmonix_execution_Cancelable($m_Lmonix_execution_FutureUtils$().transformWith__s_concurrent_Future__F1__s_concurrent_ExecutionContext__s_concurrent_Future(this.underlying$1, f, executor), this.cancelable$1)
 });
 $c_Lmonix_execution_CancelableFuture$Implementation.prototype.cancel__V = (function() {
   this.cancelable$1.cancel__V()

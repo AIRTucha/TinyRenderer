@@ -28,7 +28,7 @@ object App extends js.JSApp {
     //   enginge render scene
     // }
     Obj(
-      "obj/african_head/african_head.obj", 
+      "obj/african_head/african_head.obj",  
       "obj/african_head/african_head_diffuse.jpg",
       "obj/african_head/african_head_nm.jpg",
       "obj/african_head/african_head_spec.jpg"
