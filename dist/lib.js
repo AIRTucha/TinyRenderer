@@ -9429,7 +9429,7 @@ $c_Ltinyrenderer_App$.prototype.main__V = (function() {
   var canvas = $m_Lorg_scalajs_dom_package$().document__Lorg_scalajs_dom_raw_HTMLDocument().createElement("canvas");
   var enginge = new $c_Ltinyrenderer_Engine().init___Lorg_scalajs_dom_raw_HTMLCanvasElement(canvas);
   $m_Lorg_scalajs_dom_package$().document__Lorg_scalajs_dom_raw_HTMLDocument().getElementById("main").appendChild(canvas);
-  $m_Ltinyrenderer_Obj$().apply__T__T__T__T__s_concurrent_Future("obj/diablo3_pose/diablo3_pose.obj", "obj/diablo3_pose/diablo3_pose_diffuse.jpg", "obj/diablo3_pose/diablo3_pose_nm.jpg", "obj/diablo3_pose/diablo3_pose_spec.jpg").map__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, enginge$1) {
+  $m_Ltinyrenderer_Obj$().apply__T__T__T__T__s_concurrent_Future("obj/african_head/african_head.obj", "obj/african_head/african_head_diffuse.jpg", "obj/african_head/african_head_nm.jpg", "obj/african_head/african_head_spec.jpg").map__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, enginge$1) {
     return (function(obj$2) {
       var obj = $as_Ltinyrenderer_Obj(obj$2);
       var scene = enginge$1.Scene__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Scene(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((-1.0), 1.0, (-1.0)), new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(1.0, (-1.0), 1.0));
