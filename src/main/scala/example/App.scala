@@ -34,7 +34,7 @@ object App extends js.JSApp {
       "obj/african_head/african_head_spec.jpg"
     ) map { obj =>
       val scene = enginge.Scene(Vec3(-1, 1, -1), Vec3(1, -1, 1))
-      obj draw scene
+      Pipeline.draw(obj, scene)
       enginge render scene
     }
   }
