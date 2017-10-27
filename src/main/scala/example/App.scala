@@ -27,6 +27,7 @@ object App extends js.JSApp {
     //   obj draw scene
     //   enginge render scene
     // }
+
     Obj(
       "obj/african_head/african_head.obj",  
       "obj/african_head/african_head_diffuse.jpg",
@@ -36,6 +37,7 @@ object App extends js.JSApp {
       val scene = enginge.Scene(Vec3(-1, 1, -1), Vec3(1, -1, 1))
       Pipeline.draw(obj, scene)
       enginge render scene
+        // obj.forEachPolygon( a )
     }
   }
 }

@@ -13,37 +13,26 @@ import Commone.{
   crossProduct
 }
 object Pipeline {
-    def draw(obj: Obj, scene: Scene) = {
-        obj forEachPolygon triangle(scene, obj)
+  def draw(obj: Obj, scene: Scene) = obj forEachPolygon triangle(scene, obj)
+  def vertexShader(vert: Vertex, scene: Scene): Vertex = {
+    vert match { 
+          case Vertex( vertex: Vec3, normal: Vec3, texture: Vec2 ) => Vertex(
+            scene scale vertex,
+            normal,
+            texture
+        )
     }
-    // def drawDebugingTriangle(scene: Scene) = {
-    //     triangle(scene)(
-    //     Vertex(
-    //         scene scale Vec3(-1, -1, 1),
-    //         Vec3(0, 1, 1),
-    //         Vec2(0, 0)
-    //     ),
-    //     Vertex(
-    //         scene scale Vec3(1, -0.999, 0.5),
-    //         Vec3(1, 1, 1),
-    //         Vec2(1, 0)
-    //     ),
-    //     Vertex(
-    //         scene scale Vec3(1, 1, 0),
-    //         Vec3(0, 0, 1),
-    //         Vec2(0, 1)
-    //     )
-    //     )
-    // }
+  }
   def triangle(scene: Scene, obj: Obj)(vec1: Vertex, vec2: Vertex, vec3: Vertex) =
     if (
       dotProduct(Vec3(0, 0, 1), vec1.normal) > 0 ||
       dotProduct(Vec3(0, 0, 1), vec2.normal) > 0 ||
       dotProduct(Vec3(0, 0, 1), vec3.normal) > 0
     ) {
-      var vert1 = vec1
-      var vert2 = vec2
-      var vert3 = vec3
+        // scene scale 
+      var vert1 = vertexShader(vec1, scene)
+      var vert2 = vertexShader(vec2, scene)
+      var vert3 = vertexShader(vec3, scene)
       if (vert1.vertex.y > vert2.vertex.y) {
         val buff = vert1
         vert1 = vert2

@@ -6,7 +6,17 @@ import fr.hmil.roshttp.response.SimpleHttpResponse
 import fr.hmil.roshttp.HttpRequest
 import monix.execution.Scheduler.Implicits.global
 import org.scalajs.dom
-
+import scala.math.{floor, abs, pow, max, min}
+import Commone.{
+  Vec2,
+  Vec3,
+  Color,
+  interpolate,
+  dotProduct,
+  Vertex,
+  normalize,
+  crossProduct
+}
 class Obj(
     val vertices: Array[Vec3],
     val normals: Array[Vec3],
@@ -17,6 +27,7 @@ class Obj(
     val specular: Texture
 ) {
   def forEachPolygon( action: ( Vertex, Vertex, Vertex) => Unit ) = {
+    val vert = Vertex(Vec3(1, 1,1), Vec3(1,1,1), Vec2(1,1))
     for ( (fst, snd, trd) <- faces ) {
       action(
         Vertex(
@@ -36,7 +47,7 @@ class Obj(
         )
       )
     }
-  }
+}
 }
 object Obj {
   def apply[T >: Obj](modelUrl: String, deffuseUrl: String, normalsUrl: String, specularUrl: String): Future[T] = {
