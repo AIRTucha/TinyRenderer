@@ -14,18 +14,22 @@ import Commone.{
   interpolate,
   dotProduct,
   Vertex,
+  Position,
   normalize,
   crossProduct
 }
+trait Model[T <: Position] {
+  def forEachPolygon( action: ( T, T, T ) => Unit ): Unit
+}
 class Obj(
-    val vertices: Array[Vec3],
-    val normals: Array[Vec3],
-    val textures: Array[Vec2],
-    val faces: Array[(Indeces, Indeces, Indeces)],
+    private val vertices: Array[Vec3],
+    private val normals: Array[Vec3],
+    private val textures: Array[Vec2],
+    private val faces: Array[(Indeces, Indeces, Indeces)],
     val deffuse: Texture,
     val normalsTex: Texture,
     val specular: Texture
-) {
+) extends Model[Vertex] {
   def forEachPolygon( action: ( Vertex, Vertex, Vertex) => Unit ) = {
     val vert = Vertex(Vec3(1, 1,1), Vec3(1,1,1), Vec2(1,1))
     for ( (fst, snd, trd) <- faces ) {
@@ -47,10 +51,8 @@ class Obj(
         )
       )
     }
+  }
 }
-}
-
-// class ObjDNSMaps extends 
 object Obj {
   def apply[T >: Obj](modelUrl: String, deffuseUrl: String, normalsUrl: String, specularUrl: String): Future[T] = {
     for {

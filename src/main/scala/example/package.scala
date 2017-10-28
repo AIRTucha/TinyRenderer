@@ -11,7 +11,10 @@ package object Commone {
   case class Vec3(x: Double, y: Double, z: Double = 0)
   case class Vec2(x: Double, y: Double)
   case class Indeces(vertex: Int, texture: Int, normal: Int)
-  case class Vertex( vertex: Vec3, normal: Vec3, texture: Vec2 )
+  trait Position {
+    val vertex: Vec3
+  }
+  case class Vertex( vertex: Vec3, normal: Vec3, texture: Vec2 ) extends Position
   @inline
   def interpolate( minV: Double, maxV: Double, gradient: Double) = {
 			minV + ( maxV - minV ) * clamp( gradient )
@@ -47,6 +50,7 @@ package object Commone {
         vec12.x * vec34.y - vec12.y * vec34.x
       )
 		}
+  
   def crossProduct(vec1: Vec3, vec2: Vec3): Vec3 = {
 			Vec3(
         vec1.y * vec2.z - vec2.y * vec1.z,

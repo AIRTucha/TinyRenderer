@@ -1,5 +1,7 @@
 package tinyrenderer
 import scala.math.{floor, abs, pow, max, min}
+import annotation.tailrec
+import scala.{ Option, Some, None }
 import Commone.{
   Vec2,
   Vec3,
@@ -9,38 +11,38 @@ import Commone.{
   interpolate,
   dotProduct,
   Vertex,
+  Position,
   normalize,
   crossProduct
 }
-trait Pipeline {
-  def vertexShader(vert: Vertex, scene: Scene): Vertex
+trait Pipeline[T <: Position, M <: Model[T]] {
+  def vertexShader(vert: T, scene: Scene): Option[T]
   def pixelShader(x: Double, y: Double, obj: Obj ): ( Double, Double, Double, Double )
-  def draw(obj: Obj, scene: Scene) = obj forEachPolygon triangle(scene, obj)
-  def triangle(scene: Scene, obj: Obj)(vec1: Vertex, vec2: Vertex, vec3: Vertex) =
-    if (
-      dotProduct(Vec3(0, 0, 1), vec1.normal) > 0 ||
-      dotProduct(Vec3(0, 0, 1), vec2.normal) > 0 ||
-      dotProduct(Vec3(0, 0, 1), vec3.normal) > 0
-    ) {
-      var vert1 = vertexShader(vec1, scene)
-      var vert2 = vertexShader(vec2, scene)
-      var vert3 = vertexShader(vec3, scene)
-      if (vert1.vertex.y > vert2.vertex.y) {
-        val buff = vert1
-        vert1 = vert2
-        vert2 = buff
-      }
-      if (vert2.vertex.y > vert3.vertex.y) {
-        val buff = vert2
-        vert2 = vert3
-        vert3 = buff
-      }
-      if (vert1.vertex.y > vert2.vertex.y) {
-        val buff = vert1
-        vert1 = vert2
-        vert2 = buff
-      }
-
+  def draw(obj: M, scene: Scene) = obj forEachPolygon triangle(scene, obj)
+  def line(
+    y: Int,
+    vec1: T,
+    vec2: T,
+    vec3: T,
+    vec4: T,
+    scene: Scene,
+    obj: M
+  ): Unit
+  def triangle(scene: Scene, obj: M)(vec1: T, vec2: T, vec3: T) = 
+    for {
+      vertex1 <- vertexShader(vec1, scene)
+      vertex2 <- vertexShader(vec2, scene)
+      vertex3 <- vertexShader(vec3, scene)
+    } {
+      rasterize(scene, obj, vertex1, vertex2, vertex3)
+  }
+  @tailrec
+  private def rasterize(scene: Scene, obj: M, vert1: T, vert2: T, vert3: T): Unit = {
+    if (vert1.vertex.y > vert2.vertex.y) 
+      rasterize(scene, obj, vert2, vert1, vert3)
+    else if(vert2.vertex.y > vert3.vertex.y)
+      rasterize(scene, obj, vert1, vert3, vert2)
+    else {
       val d1 =
         if (vert2.vertex.y - vert1.vertex.y > 0)
           (vert2.vertex.x - vert1.vertex.x) / (vert2.vertex.y - vert1.vertex.y)
@@ -62,6 +64,9 @@ trait Pipeline {
           line(y, vert3, vert2, vert3, vert1, scene, obj)
       }
     }
+  }
+}
+trait VertexPipeline extends Pipeline[Vertex, Obj] {
   def line(
     y: Int,
     vec1: Vertex,
@@ -71,7 +76,6 @@ trait Pipeline {
     scene: Scene,
     obj: Obj
   ) {
-    
     val gradientY12 = if (vec1.vertex.y != vec2.vertex.y)
       (y.asInstanceOf[Double] - vec1.vertex.y) / (vec2.vertex.y - vec1.vertex.y)
     else 1
@@ -100,16 +104,20 @@ trait Pipeline {
     }
   }
 }
-object ObjPipeline extends Pipeline {
-    def vertexShader(vert: Vertex, scene: Scene): Vertex = {
+object ObjPipeline extends VertexPipeline {
+  def vertexShader(vert: Vertex, scene: Scene) = 
       vert match { 
-            case Vertex( vertex: Vec3, normal: Vec3, texture: Vec2 ) => Vertex(
-              scene scale vertex,
-              normal,
-              texture
-          )
-      }
-  }
+            case Vertex( vertex: Vec3, normal: Vec3, texture: Vec2 ) => 
+              if( dotProduct(Vec3(0, 0, 1), normal) > 0 ) 
+                Some ( 
+                  Vertex(
+                    scene scale vertex,
+                    normal,
+                    texture
+                  )
+                )
+              else None
+        }
   def pixelShader(x: Double, y: Double, obj: Obj ) = {
     val light = Vec3(0.65, 0.65, -0.15)
     val normal = normalize(obj.normalsTex.getVec3(x, y))

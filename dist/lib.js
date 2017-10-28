@@ -4687,16 +4687,6 @@ function $h_Ltinyrenderer_Scene() {
   /*<skip>*/
 }
 $h_Ltinyrenderer_Scene.prototype = $c_Ltinyrenderer_Scene.prototype;
-$c_Ltinyrenderer_Scene.prototype.dot__I__I__D__D__D__D__D__V = (function(x, y, z, r, g, b, a) {
-  if ((this.zBuffer$1.get(x).get(y) < z)) {
-    var redIndex = ((($imul(this.width$1, y) + x) | 0) << 2);
-    this.img$1.data[redIndex] = ((r << 16) >> 16);
-    this.img$1.data[((1 + redIndex) | 0)] = ((g << 16) >> 16);
-    this.img$1.data[((2 + redIndex) | 0)] = ((b << 16) >> 16);
-    this.img$1.data[((3 + redIndex) | 0)] = 255;
-    this.zBuffer$1.get(x).set(y, z)
-  }
-});
 $c_Ltinyrenderer_Scene.prototype.init___I__I__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Lorg_scalajs_dom_raw_ImageData = (function(width, height, low, high, img) {
   this.width$1 = width;
   this.height$1 = height;
@@ -4723,6 +4713,16 @@ $c_Ltinyrenderer_Scene.prototype.init___I__I__Ltinyrenderer_Commone_package$Vec3
   this.lights$1 = $as_scm_ListBuffer($m_scm_ListBuffer$().apply__sc_Seq__sc_GenTraversable($m_sci_Nil$()));
   this.dataAmount$1 = ($imul(width, height) << 2);
   return this
+});
+$c_Ltinyrenderer_Scene.prototype.dot__I__I__D__D__D__D__D__V = (function(x, y, z, r, g, b, a) {
+  if ((this.zBuffer$1.get(x).get(y) < z)) {
+    var redIndex = ((($imul(this.width$1, y) + x) | 0) << 2);
+    this.img$1.data[redIndex] = ((r << 16) >> 16);
+    this.img$1.data[((1 + redIndex) | 0)] = ((g << 16) >> 16);
+    this.img$1.data[((2 + redIndex) | 0)] = ((b << 16) >> 16);
+    this.img$1.data[((3 + redIndex) | 0)] = 255;
+    this.zBuffer$1.get(x).set(y, z)
+  }
 });
 $c_Ltinyrenderer_Scene.prototype.scale__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3 = (function(vec) {
   return new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(((this.width$1 * (vec.x$1 - this.low$1.x$1)) / (this.high$1.x$1 - this.low$1.x$1)), ((this.height$1 * (vec.y$1 - this.low$1.y$1)) / (this.high$1.y$1 - this.low$1.y$1)), vec.z$1)
@@ -18390,109 +18390,6 @@ var $d_Ltinyrenderer_Commone_package$Vec3 = new $TypeData().initClass({
 });
 $c_Ltinyrenderer_Commone_package$Vec3.prototype.$classData = $d_Ltinyrenderer_Commone_package$Vec3;
 /** @constructor */
-function $c_Ltinyrenderer_Commone_package$Vertex() {
-  $c_O.call(this);
-  this.vertex$1 = null;
-  this.normal$1 = null;
-  this.texture$1 = null
-}
-$c_Ltinyrenderer_Commone_package$Vertex.prototype = new $h_O();
-$c_Ltinyrenderer_Commone_package$Vertex.prototype.constructor = $c_Ltinyrenderer_Commone_package$Vertex;
-/** @constructor */
-function $h_Ltinyrenderer_Commone_package$Vertex() {
-  /*<skip>*/
-}
-$h_Ltinyrenderer_Commone_package$Vertex.prototype = $c_Ltinyrenderer_Commone_package$Vertex.prototype;
-$c_Ltinyrenderer_Commone_package$Vertex.prototype.productPrefix__T = (function() {
-  return "Vertex"
-});
-$c_Ltinyrenderer_Commone_package$Vertex.prototype.init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2 = (function(vertex, normal, texture) {
-  this.vertex$1 = vertex;
-  this.normal$1 = normal;
-  this.texture$1 = texture;
-  return this
-});
-$c_Ltinyrenderer_Commone_package$Vertex.prototype.productArity__I = (function() {
-  return 3
-});
-$c_Ltinyrenderer_Commone_package$Vertex.prototype.equals__O__Z = (function(x$1) {
-  if ((this === x$1)) {
-    return true
-  } else if ($is_Ltinyrenderer_Commone_package$Vertex(x$1)) {
-    var Vertex$1 = $as_Ltinyrenderer_Commone_package$Vertex(x$1);
-    var x = this.vertex$1;
-    var x$2 = Vertex$1.vertex$1;
-    if (((x === null) ? (x$2 === null) : x.equals__O__Z(x$2))) {
-      var x$3 = this.normal$1;
-      var x$4 = Vertex$1.normal$1;
-      var jsx$1 = ((x$3 === null) ? (x$4 === null) : x$3.equals__O__Z(x$4))
-    } else {
-      var jsx$1 = false
-    };
-    if (jsx$1) {
-      var x$5 = this.texture$1;
-      var x$6 = Vertex$1.texture$1;
-      return ((x$5 === null) ? (x$6 === null) : x$5.equals__O__Z(x$6))
-    } else {
-      return false
-    }
-  } else {
-    return false
-  }
-});
-$c_Ltinyrenderer_Commone_package$Vertex.prototype.productElement__I__O = (function(x$1) {
-  switch (x$1) {
-    case 0: {
-      return this.vertex$1;
-      break
-    }
-    case 1: {
-      return this.normal$1;
-      break
-    }
-    case 2: {
-      return this.texture$1;
-      break
-    }
-    default: {
-      throw new $c_jl_IndexOutOfBoundsException().init___T(("" + x$1))
-    }
-  }
-});
-$c_Ltinyrenderer_Commone_package$Vertex.prototype.toString__T = (function() {
-  return $m_sr_ScalaRunTime$().$$undtoString__s_Product__T(this)
-});
-$c_Ltinyrenderer_Commone_package$Vertex.prototype.hashCode__I = (function() {
-  var this$2 = $m_s_util_hashing_MurmurHash3$();
-  return this$2.productHash__s_Product__I__I(this, (-889275714))
-});
-$c_Ltinyrenderer_Commone_package$Vertex.prototype.productIterator__sc_Iterator = (function() {
-  return new $c_sr_ScalaRunTime$$anon$1().init___s_Product(this)
-});
-function $is_Ltinyrenderer_Commone_package$Vertex(obj) {
-  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltinyrenderer_Commone_package$Vertex)))
-}
-function $as_Ltinyrenderer_Commone_package$Vertex(obj) {
-  return (($is_Ltinyrenderer_Commone_package$Vertex(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "tinyrenderer.Commone.package$Vertex"))
-}
-function $isArrayOf_Ltinyrenderer_Commone_package$Vertex(obj, depth) {
-  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltinyrenderer_Commone_package$Vertex)))
-}
-function $asArrayOf_Ltinyrenderer_Commone_package$Vertex(obj, depth) {
-  return (($isArrayOf_Ltinyrenderer_Commone_package$Vertex(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ltinyrenderer.Commone.package$Vertex;", depth))
-}
-var $d_Ltinyrenderer_Commone_package$Vertex = new $TypeData().initClass({
-  Ltinyrenderer_Commone_package$Vertex: 0
-}, false, "tinyrenderer.Commone.package$Vertex", {
-  Ltinyrenderer_Commone_package$Vertex: 1,
-  O: 1,
-  s_Product: 1,
-  s_Equals: 1,
-  s_Serializable: 1,
-  Ljava_io_Serializable: 1
-});
-$c_Ltinyrenderer_Commone_package$Vertex.prototype.$classData = $d_Ltinyrenderer_Commone_package$Vertex;
-/** @constructor */
 function $c_jl_ArithmeticException() {
   $c_jl_RuntimeException.call(this)
 }
@@ -21145,6 +21042,110 @@ function $f_Lmonix_execution_schedulers_BatchingScheduler__execute__jl_Runnable_
     $thiz.executeAsync__jl_Runnable__V(runnable)
   }
 }
+/** @constructor */
+function $c_Ltinyrenderer_Commone_package$Vertex() {
+  $c_O.call(this);
+  this.vertex$1 = null;
+  this.normal$1 = null;
+  this.texture$1 = null
+}
+$c_Ltinyrenderer_Commone_package$Vertex.prototype = new $h_O();
+$c_Ltinyrenderer_Commone_package$Vertex.prototype.constructor = $c_Ltinyrenderer_Commone_package$Vertex;
+/** @constructor */
+function $h_Ltinyrenderer_Commone_package$Vertex() {
+  /*<skip>*/
+}
+$h_Ltinyrenderer_Commone_package$Vertex.prototype = $c_Ltinyrenderer_Commone_package$Vertex.prototype;
+$c_Ltinyrenderer_Commone_package$Vertex.prototype.productPrefix__T = (function() {
+  return "Vertex"
+});
+$c_Ltinyrenderer_Commone_package$Vertex.prototype.init___Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec2 = (function(vertex, normal, texture) {
+  this.vertex$1 = vertex;
+  this.normal$1 = normal;
+  this.texture$1 = texture;
+  return this
+});
+$c_Ltinyrenderer_Commone_package$Vertex.prototype.productArity__I = (function() {
+  return 3
+});
+$c_Ltinyrenderer_Commone_package$Vertex.prototype.equals__O__Z = (function(x$1) {
+  if ((this === x$1)) {
+    return true
+  } else if ($is_Ltinyrenderer_Commone_package$Vertex(x$1)) {
+    var Vertex$1 = $as_Ltinyrenderer_Commone_package$Vertex(x$1);
+    var x = this.vertex$1;
+    var x$2 = Vertex$1.vertex$1;
+    if (((x === null) ? (x$2 === null) : x.equals__O__Z(x$2))) {
+      var x$3 = this.normal$1;
+      var x$4 = Vertex$1.normal$1;
+      var jsx$1 = ((x$3 === null) ? (x$4 === null) : x$3.equals__O__Z(x$4))
+    } else {
+      var jsx$1 = false
+    };
+    if (jsx$1) {
+      var x$5 = this.texture$1;
+      var x$6 = Vertex$1.texture$1;
+      return ((x$5 === null) ? (x$6 === null) : x$5.equals__O__Z(x$6))
+    } else {
+      return false
+    }
+  } else {
+    return false
+  }
+});
+$c_Ltinyrenderer_Commone_package$Vertex.prototype.productElement__I__O = (function(x$1) {
+  switch (x$1) {
+    case 0: {
+      return this.vertex$1;
+      break
+    }
+    case 1: {
+      return this.normal$1;
+      break
+    }
+    case 2: {
+      return this.texture$1;
+      break
+    }
+    default: {
+      throw new $c_jl_IndexOutOfBoundsException().init___T(("" + x$1))
+    }
+  }
+});
+$c_Ltinyrenderer_Commone_package$Vertex.prototype.toString__T = (function() {
+  return $m_sr_ScalaRunTime$().$$undtoString__s_Product__T(this)
+});
+$c_Ltinyrenderer_Commone_package$Vertex.prototype.hashCode__I = (function() {
+  var this$2 = $m_s_util_hashing_MurmurHash3$();
+  return this$2.productHash__s_Product__I__I(this, (-889275714))
+});
+$c_Ltinyrenderer_Commone_package$Vertex.prototype.productIterator__sc_Iterator = (function() {
+  return new $c_sr_ScalaRunTime$$anon$1().init___s_Product(this)
+});
+function $is_Ltinyrenderer_Commone_package$Vertex(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltinyrenderer_Commone_package$Vertex)))
+}
+function $as_Ltinyrenderer_Commone_package$Vertex(obj) {
+  return (($is_Ltinyrenderer_Commone_package$Vertex(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "tinyrenderer.Commone.package$Vertex"))
+}
+function $isArrayOf_Ltinyrenderer_Commone_package$Vertex(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltinyrenderer_Commone_package$Vertex)))
+}
+function $asArrayOf_Ltinyrenderer_Commone_package$Vertex(obj, depth) {
+  return (($isArrayOf_Ltinyrenderer_Commone_package$Vertex(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ltinyrenderer.Commone.package$Vertex;", depth))
+}
+var $d_Ltinyrenderer_Commone_package$Vertex = new $TypeData().initClass({
+  Ltinyrenderer_Commone_package$Vertex: 0
+}, false, "tinyrenderer.Commone.package$Vertex", {
+  Ltinyrenderer_Commone_package$Vertex: 1,
+  O: 1,
+  Ltinyrenderer_Commone_package$Position: 1,
+  s_Product: 1,
+  s_Equals: 1,
+  s_Serializable: 1,
+  Ljava_io_Serializable: 1
+});
+$c_Ltinyrenderer_Commone_package$Vertex.prototype.$classData = $d_Ltinyrenderer_Commone_package$Vertex;
 /** @constructor */
 function $c_T2() {
   $c_O.call(this);
