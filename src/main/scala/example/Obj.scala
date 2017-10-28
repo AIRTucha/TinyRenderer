@@ -49,6 +49,8 @@ class Obj(
     }
 }
 }
+
+// class ObjDNSMaps extends 
 object Obj {
   def apply[T >: Obj](modelUrl: String, deffuseUrl: String, normalsUrl: String, specularUrl: String): Future[T] = {
     for {

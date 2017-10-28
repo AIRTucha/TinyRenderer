@@ -35,7 +35,7 @@ object App extends js.JSApp {
       "obj/african_head/african_head_spec.jpg"
     ) map { obj =>
       val scene = enginge.Scene(Vec3(-1, 1, -1), Vec3(1, -1, 1))
-      Pipeline.draw(obj, scene)
+      ObjPipeline.draw(obj, scene)
       enginge render scene
         // obj.forEachPolygon( a )
     }

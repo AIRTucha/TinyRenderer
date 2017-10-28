@@ -12,24 +12,16 @@ import Commone.{
   normalize,
   crossProduct
 }
-object Pipeline {
+trait Pipeline {
+  def vertexShader(vert: Vertex, scene: Scene): Vertex
+  def pixelShader(x: Double, y: Double, obj: Obj ): ( Double, Double, Double, Double )
   def draw(obj: Obj, scene: Scene) = obj forEachPolygon triangle(scene, obj)
-  def vertexShader(vert: Vertex, scene: Scene): Vertex = {
-    vert match { 
-          case Vertex( vertex: Vec3, normal: Vec3, texture: Vec2 ) => Vertex(
-            scene scale vertex,
-            normal,
-            texture
-        )
-    }
-  }
   def triangle(scene: Scene, obj: Obj)(vec1: Vertex, vec2: Vertex, vec3: Vertex) =
     if (
       dotProduct(Vec3(0, 0, 1), vec1.normal) > 0 ||
       dotProduct(Vec3(0, 0, 1), vec2.normal) > 0 ||
       dotProduct(Vec3(0, 0, 1), vec3.normal) > 0
     ) {
-        // scene scale 
       var vert1 = vertexShader(vec1, scene)
       var vert2 = vertexShader(vec2, scene)
       var vert3 = vertexShader(vec3, scene)
@@ -106,6 +98,17 @@ object Pipeline {
         case ( r, g, b, a ) => scene.dot( x, y, z, r, g, b, a )
       }
     }
+  }
+}
+object ObjPipeline extends Pipeline {
+    def vertexShader(vert: Vertex, scene: Scene): Vertex = {
+      vert match { 
+            case Vertex( vertex: Vec3, normal: Vec3, texture: Vec2 ) => Vertex(
+              scene scale vertex,
+              normal,
+              texture
+          )
+      }
   }
   def pixelShader(x: Double, y: Double, obj: Obj ) = {
     val light = Vec3(0.65, 0.65, -0.15)
