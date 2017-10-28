@@ -4484,6 +4484,50 @@ $h_Ltinyrenderer_Pipeline$.prototype = $c_Ltinyrenderer_Pipeline$.prototype;
 $c_Ltinyrenderer_Pipeline$.prototype.init___ = (function() {
   return this
 });
+$c_Ltinyrenderer_Pipeline$.prototype.pixelShader__D__D__Ltinyrenderer_Obj__T4 = (function(x, y, obj) {
+  var light = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.65, 0.65, (-0.15));
+  var vec = obj.normalsTex$1.getVec3__D__D__Ltinyrenderer_Commone_package$Vec3(x, y);
+  var x$1 = vec.x$1;
+  var jsx$2 = $uD($g.Math.pow(x$1, 2.0));
+  var x$2 = vec.y$1;
+  var jsx$1 = $uD($g.Math.pow(x$2, 2.0));
+  var x$3 = vec.z$1;
+  var x$4 = ((jsx$2 + jsx$1) + $uD($g.Math.pow(x$3, 2.0)));
+  var lenght = $uD($g.Math.sqrt(x$4));
+  var normal = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((vec.x$1 / lenght), (vec.y$1 / lenght), (vec.z$1 / lenght));
+  var specularPow = obj.specular$1.getColor__D__D__Ltinyrenderer_Commone_package$Color(x, y);
+  var rPlusL = $m_Ltinyrenderer_Commone_package$().crossProduct__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3(normal, $m_Ltinyrenderer_Commone_package$().crossProduct__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3(normal, new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((2 * (-light.x$1)), (2 * (-light.y$1)), (2 * light.z$1))));
+  var vec$1 = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((rPlusL.x$1 - light.x$1), (rPlusL.y$1 - light.y$1), (rPlusL.z$1 - light.z$1));
+  var x$5 = vec$1.x$1;
+  var jsx$4 = $uD($g.Math.pow(x$5, 2.0));
+  var x$6 = vec$1.y$1;
+  var jsx$3 = $uD($g.Math.pow(x$6, 2.0));
+  var x$7 = vec$1.z$1;
+  var x$8 = ((jsx$4 + jsx$3) + $uD($g.Math.pow(x$7, 2.0)));
+  var lenght$1 = $uD($g.Math.sqrt(x$8));
+  var r = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((vec$1.x$1 / lenght$1), (vec$1.y$1 / lenght$1), (vec$1.z$1 / lenght$1));
+  var color = obj.deffuse$1.getColor__D__D__Ltinyrenderer_Commone_package$Color(x, y);
+  var vec2 = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.0, 1.0);
+  var spec = (((r.x$1 * vec2.x$1) + (r.y$1 * vec2.y$1)) + (r.z$1 * vec2.z$1));
+  var deffuseIntensity = (((light.x$1 * normal.x$1) + (light.y$1 * normal.y$1)) + (light.z$1 * normal.z$1));
+  var y$1 = specularPow.r$1;
+  $uD($g.Math.pow(spec, y$1));
+  var jsx$9 = color.r$1;
+  var y$2 = specularPow.r$1;
+  var x$9 = $uD($g.Math.pow(spec, y$2));
+  var x$10 = (deffuseIntensity + (0.3 * $uD($g.Math.abs(x$9))));
+  var jsx$8 = $uD($g.Math.min(x$10, 1.0));
+  var jsx$7 = color.g$1;
+  var y$3 = specularPow.g$1;
+  var x$11 = $uD($g.Math.pow(spec, y$3));
+  var x$12 = (deffuseIntensity + (0.3 * $uD($g.Math.abs(x$11))));
+  var jsx$6 = $uD($g.Math.min(x$12, 1.0));
+  var jsx$5 = color.b$1;
+  var y$4 = specularPow.b$1;
+  var x$13 = $uD($g.Math.pow(spec, y$4));
+  var x$14 = (deffuseIntensity + (0.3 * $uD($g.Math.abs(x$13))));
+  return new $c_T4().init___O__O__O__O((jsx$9 * jsx$8), (jsx$7 * jsx$6), (jsx$5 * $uD($g.Math.min(x$14, 1.0))), color.a$1)
+});
 $c_Ltinyrenderer_Pipeline$.prototype.triangle__Ltinyrenderer_Scene__Ltinyrenderer_Obj__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__V = (function(scene, obj, vec1, vec2, vec3) {
   var vec1$1 = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.0, 1.0);
   var vec2$1 = vec1.normal$1;
@@ -4592,7 +4636,6 @@ $c_Ltinyrenderer_Pipeline$.prototype.triangle__Ltinyrenderer_Scene__Ltinyrendere
   }
 });
 $c_Ltinyrenderer_Pipeline$.prototype.line__I__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Commone_package$Vertex__Ltinyrenderer_Scene__Ltinyrenderer_Obj__V = (function(y, vec1, vec2, vec3, vec4, scene, obj) {
-  var light = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.65, 0.65, (-0.15));
   var gradientY12 = ((vec1.vertex$1.y$1 !== vec2.vertex$1.y$1) ? ((y - vec1.vertex$1.y$1) / (vec2.vertex$1.y$1 - vec1.vertex$1.y$1)) : 1.0);
   var gradientY34 = ((vec3.vertex$1.y$1 !== vec4.vertex$1.y$1) ? ((y - vec3.vertex$1.y$1) / (vec4.vertex$1.y$1 - vec3.vertex$1.y$1)) : 1.0);
   var minV = vec1.vertex$1.x$1;
@@ -4640,47 +4683,16 @@ $c_Ltinyrenderer_Pipeline$.prototype.line__I__Ltinyrenderer_Commone_package$Vert
       var xTex = (startXTex + ((endXTex - startXTex) * $uD($g.Math.max(0.0, y$10))));
       var y$11 = $uD($g.Math.min(gradientX, 1.0));
       var yTex = (startYTex + ((endYTex - startYTex) * $uD($g.Math.max(0.0, y$11))));
-      var vec = obj.normalsTex$1.getVec3__D__D__Ltinyrenderer_Commone_package$Vec3(xTex, yTex);
-      var x = vec.x$1;
-      var jsx$2 = $uD($g.Math.pow(x, 2.0));
-      var x$1 = vec.y$1;
-      var jsx$1 = $uD($g.Math.pow(x$1, 2.0));
-      var x$2 = vec.z$1;
-      var x$3 = ((jsx$2 + jsx$1) + $uD($g.Math.pow(x$2, 2.0)));
-      var lenght = $uD($g.Math.sqrt(x$3));
-      var normal = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((vec.x$1 / lenght), (vec.y$1 / lenght), (vec.z$1 / lenght));
-      var specularPow = obj.specular$1.getColor__D__D__Ltinyrenderer_Commone_package$Color(xTex, yTex);
-      var rPlusL = $m_Ltinyrenderer_Commone_package$().crossProduct__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3(normal, $m_Ltinyrenderer_Commone_package$().crossProduct__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3(normal, new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((2 * (-light.x$1)), (2 * (-light.y$1)), (2 * light.z$1))));
-      var vec$1 = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((rPlusL.x$1 - light.x$1), (rPlusL.y$1 - light.y$1), (rPlusL.z$1 - light.z$1));
-      var x$4 = vec$1.x$1;
-      var jsx$4 = $uD($g.Math.pow(x$4, 2.0));
-      var x$5 = vec$1.y$1;
-      var jsx$3 = $uD($g.Math.pow(x$5, 2.0));
-      var x$6 = vec$1.z$1;
-      var x$7 = ((jsx$4 + jsx$3) + $uD($g.Math.pow(x$6, 2.0)));
-      var lenght$1 = $uD($g.Math.sqrt(x$7));
-      var r = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((vec$1.x$1 / lenght$1), (vec$1.y$1 / lenght$1), (vec$1.z$1 / lenght$1));
-      var color = obj.deffuse$1.getColor__D__D__Ltinyrenderer_Commone_package$Color(xTex, yTex);
-      var vec2$1 = new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(0.0, 0.0, 1.0);
-      var spec = (((r.x$1 * vec2$1.x$1) + (r.y$1 * vec2$1.y$1)) + (r.z$1 * vec2$1.z$1));
-      var deffuseIntensity = (((light.x$1 * normal.x$1) + (light.y$1 * normal.y$1)) + (light.z$1 * normal.z$1));
-      var y$12 = specularPow.r$1;
-      $uD($g.Math.pow(spec, y$12));
-      var jsx$9 = color.r$1;
-      var y$13 = specularPow.r$1;
-      var x$8 = $uD($g.Math.pow(spec, y$13));
-      var x$9 = (deffuseIntensity + (0.3 * $uD($g.Math.abs(x$8))));
-      var jsx$8 = $uD($g.Math.min(x$9, 1.0));
-      var jsx$7 = color.g$1;
-      var y$14 = specularPow.g$1;
-      var x$10 = $uD($g.Math.pow(spec, y$14));
-      var x$11 = (deffuseIntensity + (0.3 * $uD($g.Math.abs(x$10))));
-      var jsx$6 = $uD($g.Math.min(x$11, 1.0));
-      var jsx$5 = color.b$1;
-      var y$15 = specularPow.b$1;
-      var x$12 = $uD($g.Math.pow(spec, y$15));
-      var x$13 = (deffuseIntensity + (0.3 * $uD($g.Math.abs(x$12))));
-      scene.dot__I__I__D__D__D__D__D__V(v1, y, z, (jsx$9 * jsx$8), (jsx$7 * jsx$6), (jsx$5 * $uD($g.Math.min(x$13, 1.0))), color.a$1);
+      var x1 = this.pixelShader__D__D__Ltinyrenderer_Obj__T4(xTex, yTex, obj);
+      if ((x1 !== null)) {
+        var r = $uD(x1.$$und1$1);
+        var g = $uD(x1.$$und2$1);
+        var b = $uD(x1.$$und3$1);
+        var a = $uI(x1.$$und4$1);
+        scene.dot__I__I__D__D__D__D__D__V(v1, y, z, r, g, b, a)
+      } else {
+        throw new $c_s_MatchError().init___O(x1)
+      };
       if ((i === scala$collection$immutable$Range$$lastElement$4)) {
         break
       };
@@ -10014,6 +10026,29 @@ function $f_s_Product3__productElement__I__O($thiz, n) {
     }
     case 2: {
       return $thiz.$$und3$1;
+      break
+    }
+    default: {
+      throw new $c_jl_IndexOutOfBoundsException().init___T(("" + n))
+    }
+  }
+}
+function $f_s_Product4__productElement__I__O($thiz, n) {
+  switch (n) {
+    case 0: {
+      return $thiz.$$und1$1;
+      break
+    }
+    case 1: {
+      return $thiz.$$und2$1;
+      break
+    }
+    case 2: {
+      return $thiz.$$und3$1;
+      break
+    }
+    case 3: {
+      return $thiz.$$und4$1;
       break
     }
     default: {
@@ -21236,6 +21271,81 @@ var $d_T3 = new $TypeData().initClass({
   Ljava_io_Serializable: 1
 });
 $c_T3.prototype.$classData = $d_T3;
+/** @constructor */
+function $c_T4() {
+  $c_O.call(this);
+  this.$$und1$1 = null;
+  this.$$und2$1 = null;
+  this.$$und3$1 = null;
+  this.$$und4$1 = null
+}
+$c_T4.prototype = new $h_O();
+$c_T4.prototype.constructor = $c_T4;
+/** @constructor */
+function $h_T4() {
+  /*<skip>*/
+}
+$h_T4.prototype = $c_T4.prototype;
+$c_T4.prototype.productPrefix__T = (function() {
+  return "Tuple4"
+});
+$c_T4.prototype.productArity__I = (function() {
+  return 4
+});
+$c_T4.prototype.equals__O__Z = (function(x$1) {
+  if ((this === x$1)) {
+    return true
+  } else if ($is_T4(x$1)) {
+    var Tuple4$1 = $as_T4(x$1);
+    return ((($m_sr_BoxesRunTime$().equals__O__O__Z(this.$$und1$1, Tuple4$1.$$und1$1) && $m_sr_BoxesRunTime$().equals__O__O__Z(this.$$und2$1, Tuple4$1.$$und2$1)) && $m_sr_BoxesRunTime$().equals__O__O__Z(this.$$und3$1, Tuple4$1.$$und3$1)) && $m_sr_BoxesRunTime$().equals__O__O__Z(this.$$und4$1, Tuple4$1.$$und4$1))
+  } else {
+    return false
+  }
+});
+$c_T4.prototype.productElement__I__O = (function(n) {
+  return $f_s_Product4__productElement__I__O(this, n)
+});
+$c_T4.prototype.toString__T = (function() {
+  return (((((((("(" + this.$$und1$1) + ",") + this.$$und2$1) + ",") + this.$$und3$1) + ",") + this.$$und4$1) + ")")
+});
+$c_T4.prototype.init___O__O__O__O = (function(_1, _2, _3, _4) {
+  this.$$und1$1 = _1;
+  this.$$und2$1 = _2;
+  this.$$und3$1 = _3;
+  this.$$und4$1 = _4;
+  return this
+});
+$c_T4.prototype.hashCode__I = (function() {
+  var this$2 = $m_s_util_hashing_MurmurHash3$();
+  return this$2.productHash__s_Product__I__I(this, (-889275714))
+});
+$c_T4.prototype.productIterator__sc_Iterator = (function() {
+  return new $c_sr_ScalaRunTime$$anon$1().init___s_Product(this)
+});
+function $is_T4(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.T4)))
+}
+function $as_T4(obj) {
+  return (($is_T4(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "scala.Tuple4"))
+}
+function $isArrayOf_T4(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.T4)))
+}
+function $asArrayOf_T4(obj, depth) {
+  return (($isArrayOf_T4(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lscala.Tuple4;", depth))
+}
+var $d_T4 = new $TypeData().initClass({
+  T4: 0
+}, false, "scala.Tuple4", {
+  T4: 1,
+  O: 1,
+  s_Product4: 1,
+  s_Product: 1,
+  s_Equals: 1,
+  s_Serializable: 1,
+  Ljava_io_Serializable: 1
+});
+$c_T4.prototype.$classData = $d_T4;
 /** @constructor */
 function $c_jl_ArrayIndexOutOfBoundsException() {
   $c_jl_IndexOutOfBoundsException.call(this)

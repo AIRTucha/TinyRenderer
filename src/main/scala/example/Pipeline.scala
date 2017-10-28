@@ -79,7 +79,7 @@ object Pipeline {
     scene: Scene,
     obj: Obj
   ) {
-    val light = Vec3(0.65, 0.65, -0.15)
+    
     val gradientY12 = if (vec1.vertex.y != vec2.vertex.y)
       (y.asInstanceOf[Double] - vec1.vertex.y) / (vec2.vertex.y - vec1.vertex.y)
     else 1
@@ -102,24 +102,27 @@ object Pipeline {
       val z = interpolate(startZ, endZ, gradientX)
       val xTex = interpolate(startXTex, endXTex, gradientX)
       val yTex = interpolate(startYTex, endYTex, gradientX)
-      val normal = normalize(obj.normalsTex.getVec3(xTex, yTex))
-      val specularPow = obj.specular.getColor(xTex, yTex)
-      val rPlusL = crossProduct( normal, crossProduct( normal, Vec3(-light.x*2, -light.y*2, light.z*2) ))
-      val r = normalize(Vec3(rPlusL.x - light.x, rPlusL.y - light.y, rPlusL.z - light.z))
-      val color = obj.deffuse.getColor(xTex, yTex)
-      val spec = dotProduct(r, Vec3(0, 0, 1))
-      val deffuseIntensity = dotProduct( light, normal )
-      val g = pow(spec, specularPow.r)
-      scene.dot(
-        x,
-        y,
-        z,
-        color.r * min(deffuseIntensity + 0.3*abs(pow(spec, specularPow.r)), 1),
-        color.g * min(deffuseIntensity + 0.3*abs(pow(spec, specularPow.g)), 1),
-        color.b * min(deffuseIntensity + 0.3*abs(pow(spec, specularPow.b)), 1),
-        color.a
-      )
+      pixelShader( xTex, yTex, obj ) match { 
+        case ( r, g, b, a ) => scene.dot( x, y, z, r, g, b, a )
+      }
     }
+  }
+  def pixelShader(x: Double, y: Double, obj: Obj ) = {
+    val light = Vec3(0.65, 0.65, -0.15)
+    val normal = normalize(obj.normalsTex.getVec3(x, y))
+    val specularPow = obj.specular.getColor(x, y)
+    val rPlusL = crossProduct( normal, crossProduct( normal, Vec3(-light.x*2, -light.y*2, light.z*2) ))
+    val r = normalize(Vec3(rPlusL.x - light.x, rPlusL.y - light.y, rPlusL.z - light.z))
+    val color = obj.deffuse.getColor( x, y)
+    val spec = dotProduct(r, Vec3(0, 0, 1))
+    val deffuseIntensity = dotProduct( light, normal )
+    val g = pow(spec, specularPow.r)
+    (
+      color.r * min(deffuseIntensity + 0.3*abs(pow(spec, specularPow.r)), 1),
+      color.g * min(deffuseIntensity + 0.3*abs(pow(spec, specularPow.g)), 1),
+      color.b * min(deffuseIntensity + 0.3*abs(pow(spec, specularPow.b)), 1),
+      color.a
+    )
   } 
 }
 
