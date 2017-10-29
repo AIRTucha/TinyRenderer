@@ -6,6 +6,7 @@ import scala.math.{ cos, sin, min, max, pow, sqrt }
 import scala.inline
 
 package object Commone {
+  type Row = ( Double, Double, Double, Double )
   def square(x: Int): Int = x * x
   case class Color(r: Int, g: Int, b: Int, a: Int = 255 )
   case class Vec3(x: Double, y: Double, z: Double = 0)

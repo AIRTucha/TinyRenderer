@@ -5044,6 +5044,17 @@ function $m_ju_Arrays$() {
   return $n_ju_Arrays$
 }
 /** @constructor */
+function $c_s_DeprecatedConsole() {
+  $c_O.call(this)
+}
+$c_s_DeprecatedConsole.prototype = new $h_O();
+$c_s_DeprecatedConsole.prototype.constructor = $c_s_DeprecatedConsole;
+/** @constructor */
+function $h_s_DeprecatedConsole() {
+  /*<skip>*/
+}
+$h_s_DeprecatedConsole.prototype = $c_s_DeprecatedConsole.prototype;
+/** @constructor */
 function $c_s_FallbackArrayBuilding() {
   $c_O.call(this)
 }
@@ -5751,6 +5762,32 @@ function $m_s_sys_package$() {
   };
   return $n_s_sys_package$
 }
+/** @constructor */
+function $c_s_util_DynamicVariable() {
+  $c_O.call(this);
+  this.v$1 = null
+}
+$c_s_util_DynamicVariable.prototype = new $h_O();
+$c_s_util_DynamicVariable.prototype.constructor = $c_s_util_DynamicVariable;
+/** @constructor */
+function $h_s_util_DynamicVariable() {
+  /*<skip>*/
+}
+$h_s_util_DynamicVariable.prototype = $c_s_util_DynamicVariable.prototype;
+$c_s_util_DynamicVariable.prototype.toString__T = (function() {
+  return (("DynamicVariable(" + this.v$1) + ")")
+});
+$c_s_util_DynamicVariable.prototype.init___O = (function(init) {
+  this.v$1 = init;
+  return this
+});
+var $d_s_util_DynamicVariable = new $TypeData().initClass({
+  s_util_DynamicVariable: 0
+}, false, "scala.util.DynamicVariable", {
+  s_util_DynamicVariable: 1,
+  O: 1
+});
+$c_s_util_DynamicVariable.prototype.$classData = $d_s_util_DynamicVariable;
 /** @constructor */
 function $c_s_util_control_Breaks() {
   $c_O.call(this);
@@ -9357,16 +9394,20 @@ $c_Ltinyrenderer_App$.prototype.main__V = (function() {
   var canvas = $m_Lorg_scalajs_dom_package$().document__Lorg_scalajs_dom_raw_HTMLDocument().createElement("canvas");
   var enginge = new $c_Ltinyrenderer_Engine().init___Lorg_scalajs_dom_raw_HTMLCanvasElement(canvas);
   $m_Lorg_scalajs_dom_package$().document__Lorg_scalajs_dom_raw_HTMLDocument().getElementById("main").appendChild(canvas);
+  var x = new $c_Ltinyrenderer_Matrix4x4().init___T4(new $c_T4().init___O__O__O__O(new $c_T4().init___O__O__O__O(2.0, 1.0, 2.0, 1.0), new $c_T4().init___O__O__O__O(1.0, 1.0, 1.0, 1.0), new $c_T4().init___O__O__O__O(1.0, 2.0, 3.0, 3.0), new $c_T4().init___O__O__O__O(1.0, 2.0, 3.0, 4.0))).invert__Ltinyrenderer_Matrix4x4();
+  var this$2 = $m_s_Console$();
+  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
+  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
   $m_Ltinyrenderer_Obj$().apply__T__T__T__T__s_concurrent_Future("obj/african_head/african_head.obj", "obj/african_head/african_head_diffuse.jpg", "obj/african_head/african_head_nm.jpg", "obj/african_head/african_head_spec.jpg").map__F1__s_concurrent_ExecutionContext__s_concurrent_Future(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, enginge$1) {
     return (function(obj$2) {
       var obj = $as_Ltinyrenderer_Obj(obj$2);
       var scene1 = enginge$1.Scene__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Scene(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((-1.0), 1.0, (-1.0)), new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(1.0, (-1.0), 1.0));
       var scene2 = enginge$1.Scene__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Commone_package$Vec3__Ltinyrenderer_Scene(new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D((-1.0), 1.0, (-1.0)), new $c_Ltinyrenderer_Commone_package$Vec3().init___D__D__D(1.0, (-1.0), 1.0));
-      var this$1 = $m_Ltinyrenderer_ObjPipeline$();
-      $f_Ltinyrenderer_Pipeline__draw__Ltinyrenderer_Model__Ltinyrenderer_Scene__V(this$1, obj, scene1);
+      var this$4 = $m_Ltinyrenderer_ObjPipeline$();
+      $f_Ltinyrenderer_Pipeline__draw__Ltinyrenderer_Model__Ltinyrenderer_Scene__V(this$4, obj, scene1);
       enginge$1.render__Ltinyrenderer_Scene__V(scene1);
-      var this$2 = $m_Ltinyrenderer_ObjTexPipeline$();
-      $f_Ltinyrenderer_Pipeline__draw__Ltinyrenderer_Model__Ltinyrenderer_Scene__V(this$2, obj, scene2);
+      var this$5 = $m_Ltinyrenderer_ObjTexPipeline$();
+      $f_Ltinyrenderer_Pipeline__draw__Ltinyrenderer_Model__Ltinyrenderer_Scene__V(this$5, obj, scene2);
       enginge$1.render__Ltinyrenderer_Scene__V(scene2)
     })
   })(this, enginge)), $m_Lmonix_execution_Scheduler$().Implicits__Lmonix_execution_schedulers_SchedulerCompanionImpl$Implicits$().global__Lmonix_execution_Scheduler())
@@ -13409,6 +13450,43 @@ function $m_ju_regex_Pattern$() {
     $n_ju_regex_Pattern$ = new $c_ju_regex_Pattern$().init___()
   };
   return $n_ju_regex_Pattern$
+}
+/** @constructor */
+function $c_s_Console$() {
+  $c_s_DeprecatedConsole.call(this);
+  this.outVar$2 = null;
+  this.errVar$2 = null;
+  this.inVar$2 = null
+}
+$c_s_Console$.prototype = new $h_s_DeprecatedConsole();
+$c_s_Console$.prototype.constructor = $c_s_Console$;
+/** @constructor */
+function $h_s_Console$() {
+  /*<skip>*/
+}
+$h_s_Console$.prototype = $c_s_Console$.prototype;
+$c_s_Console$.prototype.init___ = (function() {
+  $n_s_Console$ = this;
+  this.outVar$2 = new $c_s_util_DynamicVariable().init___O($m_jl_System$().out$1);
+  this.errVar$2 = new $c_s_util_DynamicVariable().init___O($m_jl_System$().err$1);
+  this.inVar$2 = new $c_s_util_DynamicVariable().init___O(null);
+  return this
+});
+var $d_s_Console$ = new $TypeData().initClass({
+  s_Console$: 0
+}, false, "scala.Console$", {
+  s_Console$: 1,
+  s_DeprecatedConsole: 1,
+  O: 1,
+  s_io_AnsiColor: 1
+});
+$c_s_Console$.prototype.$classData = $d_s_Console$;
+var $n_s_Console$ = (void 0);
+function $m_s_Console$() {
+  if ((!$n_s_Console$)) {
+    $n_s_Console$ = new $c_s_Console$().init___()
+  };
+  return $n_s_Console$
 }
 /** @constructor */
 function $c_s_Option$() {
@@ -18486,6 +18564,107 @@ var $d_Ltinyrenderer_Commone_package$Vec3 = new $TypeData().initClass({
 });
 $c_Ltinyrenderer_Commone_package$Vec3.prototype.$classData = $d_Ltinyrenderer_Commone_package$Vec3;
 /** @constructor */
+function $c_Ltinyrenderer_Matrix4x4() {
+  $c_O.call(this);
+  this.value$1 = null
+}
+$c_Ltinyrenderer_Matrix4x4.prototype = new $h_O();
+$c_Ltinyrenderer_Matrix4x4.prototype.constructor = $c_Ltinyrenderer_Matrix4x4;
+/** @constructor */
+function $h_Ltinyrenderer_Matrix4x4() {
+  /*<skip>*/
+}
+$h_Ltinyrenderer_Matrix4x4.prototype = $c_Ltinyrenderer_Matrix4x4.prototype;
+$c_Ltinyrenderer_Matrix4x4.prototype.productPrefix__T = (function() {
+  return "Matrix4x4"
+});
+$c_Ltinyrenderer_Matrix4x4.prototype.productArity__I = (function() {
+  return 1
+});
+$c_Ltinyrenderer_Matrix4x4.prototype.equals__O__Z = (function(x$1) {
+  if ((this === x$1)) {
+    return true
+  } else if ($is_Ltinyrenderer_Matrix4x4(x$1)) {
+    var Matrix4x4$1 = $as_Ltinyrenderer_Matrix4x4(x$1);
+    var x = this.value$1;
+    var x$2 = Matrix4x4$1.value$1;
+    return ((x === null) ? (x$2 === null) : x.equals__O__Z(x$2))
+  } else {
+    return false
+  }
+});
+$c_Ltinyrenderer_Matrix4x4.prototype.productElement__I__O = (function(x$1) {
+  switch (x$1) {
+    case 0: {
+      return this.value$1;
+      break
+    }
+    default: {
+      throw new $c_jl_IndexOutOfBoundsException().init___T(("" + x$1))
+    }
+  }
+});
+$c_Ltinyrenderer_Matrix4x4.prototype.toString__T = (function() {
+  return new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["Matrix4x4(\n            ", ", \n            ", ",\n            ", ",\n            ", " \n        )"])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([this.value$1.$$und1$1, this.value$1.$$und2$1, this.value$1.$$und3$1, this.value$1.$$und4$1]))
+});
+$c_Ltinyrenderer_Matrix4x4.prototype.$$times__D__Ltinyrenderer_Matrix4x4 = (function(f) {
+  return new $c_Ltinyrenderer_Matrix4x4().init___T4(new $c_T4().init___O__O__O__O(new $c_T4().init___O__O__O__O(($uD($as_T4(this.value$1.$$und1$1).$$und1$1) * f), ($uD($as_T4(this.value$1.$$und1$1).$$und2$1) * f), ($uD($as_T4(this.value$1.$$und1$1).$$und3$1) * f), ($uD($as_T4(this.value$1.$$und1$1).$$und4$1) * f)), new $c_T4().init___O__O__O__O(($uD($as_T4(this.value$1.$$und2$1).$$und1$1) * f), ($uD($as_T4(this.value$1.$$und2$1).$$und2$1) * f), ($uD($as_T4(this.value$1.$$und2$1).$$und3$1) * f), ($uD($as_T4(this.value$1.$$und2$1).$$und4$1) * f)), new $c_T4().init___O__O__O__O(($uD($as_T4(this.value$1.$$und3$1).$$und1$1) * f), ($uD($as_T4(this.value$1.$$und3$1).$$und2$1) * f), ($uD($as_T4(this.value$1.$$und3$1).$$und3$1) * f), ($uD($as_T4(this.value$1.$$und3$1).$$und4$1) * f)), new $c_T4().init___O__O__O__O(($uD($as_T4(this.value$1.$$und4$1).$$und1$1) * f), ($uD($as_T4(this.value$1.$$und4$1).$$und2$1) * f), ($uD($as_T4(this.value$1.$$und4$1).$$und3$1) * f), ($uD($as_T4(this.value$1.$$und4$1).$$und4$1) * f))))
+});
+$c_Ltinyrenderer_Matrix4x4.prototype.init___T4 = (function(value) {
+  this.value$1 = value;
+  return this
+});
+$c_Ltinyrenderer_Matrix4x4.prototype.hashCode__I = (function() {
+  var this$2 = $m_s_util_hashing_MurmurHash3$();
+  return this$2.productHash__s_Product__I__I(this, (-889275714))
+});
+$c_Ltinyrenderer_Matrix4x4.prototype.invert__Ltinyrenderer_Matrix4x4 = (function() {
+  var _11 = ((((((($uD($as_T4(this.value$1.$$und2$1).$$und2$1) * $uD($as_T4(this.value$1.$$und3$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und4$1)) - (($uD($as_T4(this.value$1.$$und2$1).$$und2$1) * $uD($as_T4(this.value$1.$$und3$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und3$1))) - (($uD($as_T4(this.value$1.$$und3$1).$$und2$1) * $uD($as_T4(this.value$1.$$und2$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und4$1))) + (($uD($as_T4(this.value$1.$$und3$1).$$und2$1) * $uD($as_T4(this.value$1.$$und2$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und3$1))) + (($uD($as_T4(this.value$1.$$und4$1).$$und2$1) * $uD($as_T4(this.value$1.$$und2$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und4$1))) - (($uD($as_T4(this.value$1.$$und4$1).$$und2$1) * $uD($as_T4(this.value$1.$$und2$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und3$1)));
+  var _21 = ((((((((-$uD($as_T4(this.value$1.$$und2$1).$$und1$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und4$1)) + (($uD($as_T4(this.value$1.$$und2$1).$$und1$1) * $uD($as_T4(this.value$1.$$und3$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und3$1))) + (($uD($as_T4(this.value$1.$$und3$1).$$und1$1) * $uD($as_T4(this.value$1.$$und2$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und4$1))) - (($uD($as_T4(this.value$1.$$und3$1).$$und1$1) * $uD($as_T4(this.value$1.$$und2$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und3$1))) - (($uD($as_T4(this.value$1.$$und4$1).$$und1$1) * $uD($as_T4(this.value$1.$$und2$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und4$1))) + (($uD($as_T4(this.value$1.$$und4$1).$$und1$1) * $uD($as_T4(this.value$1.$$und2$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und3$1)));
+  var _31 = ((((((($uD($as_T4(this.value$1.$$und2$1).$$und1$1) * $uD($as_T4(this.value$1.$$und3$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und4$1)) - (($uD($as_T4(this.value$1.$$und2$1).$$und1$1) * $uD($as_T4(this.value$1.$$und3$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und2$1))) - (($uD($as_T4(this.value$1.$$und3$1).$$und1$1) * $uD($as_T4(this.value$1.$$und2$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und4$1))) + (($uD($as_T4(this.value$1.$$und3$1).$$und1$1) * $uD($as_T4(this.value$1.$$und2$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und2$1))) + (($uD($as_T4(this.value$1.$$und4$1).$$und1$1) * $uD($as_T4(this.value$1.$$und2$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und4$1))) - (($uD($as_T4(this.value$1.$$und4$1).$$und1$1) * $uD($as_T4(this.value$1.$$und2$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und2$1)));
+  var _41 = ((((((((-$uD($as_T4(this.value$1.$$und2$1).$$und1$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und3$1)) + (($uD($as_T4(this.value$1.$$und2$1).$$und1$1) * $uD($as_T4(this.value$1.$$und3$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und2$1))) + (($uD($as_T4(this.value$1.$$und3$1).$$und1$1) * $uD($as_T4(this.value$1.$$und2$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und3$1))) - (($uD($as_T4(this.value$1.$$und3$1).$$und1$1) * $uD($as_T4(this.value$1.$$und2$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und2$1))) - (($uD($as_T4(this.value$1.$$und4$1).$$und1$1) * $uD($as_T4(this.value$1.$$und2$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und3$1))) + (($uD($as_T4(this.value$1.$$und4$1).$$und1$1) * $uD($as_T4(this.value$1.$$und2$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und2$1)));
+  var _12 = ((((((((-$uD($as_T4(this.value$1.$$und1$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und4$1)) + (($uD($as_T4(this.value$1.$$und1$1).$$und2$1) * $uD($as_T4(this.value$1.$$und3$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und3$1))) + (($uD($as_T4(this.value$1.$$und3$1).$$und2$1) * $uD($as_T4(this.value$1.$$und1$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und4$1))) - (($uD($as_T4(this.value$1.$$und3$1).$$und2$1) * $uD($as_T4(this.value$1.$$und1$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und3$1))) - (($uD($as_T4(this.value$1.$$und4$1).$$und2$1) * $uD($as_T4(this.value$1.$$und1$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und4$1))) + (($uD($as_T4(this.value$1.$$und4$1).$$und2$1) * $uD($as_T4(this.value$1.$$und1$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und3$1)));
+  var _22 = ((((((($uD($as_T4(this.value$1.$$und1$1).$$und1$1) * $uD($as_T4(this.value$1.$$und3$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und4$1)) - (($uD($as_T4(this.value$1.$$und1$1).$$und1$1) * $uD($as_T4(this.value$1.$$und3$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und3$1))) - (($uD($as_T4(this.value$1.$$und3$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und4$1))) + (($uD($as_T4(this.value$1.$$und3$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und3$1))) + (($uD($as_T4(this.value$1.$$und4$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und4$1))) - (($uD($as_T4(this.value$1.$$und4$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und3$1)));
+  var _32 = ((((((((-$uD($as_T4(this.value$1.$$und1$1).$$und1$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und4$1)) + (($uD($as_T4(this.value$1.$$und1$1).$$und1$1) * $uD($as_T4(this.value$1.$$und3$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und2$1))) + (($uD($as_T4(this.value$1.$$und3$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und4$1))) - (($uD($as_T4(this.value$1.$$und3$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und2$1))) - (($uD($as_T4(this.value$1.$$und4$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und4$1))) + (($uD($as_T4(this.value$1.$$und4$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und2$1)));
+  var _42 = ((((((($uD($as_T4(this.value$1.$$und1$1).$$und1$1) * $uD($as_T4(this.value$1.$$und3$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und3$1)) - (($uD($as_T4(this.value$1.$$und1$1).$$und1$1) * $uD($as_T4(this.value$1.$$und3$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und2$1))) - (($uD($as_T4(this.value$1.$$und3$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und3$1))) + (($uD($as_T4(this.value$1.$$und3$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und2$1))) + (($uD($as_T4(this.value$1.$$und4$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und3$1))) - (($uD($as_T4(this.value$1.$$und4$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und2$1)));
+  var _13 = ((((((($uD($as_T4(this.value$1.$$und1$1).$$und2$1) * $uD($as_T4(this.value$1.$$und2$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und4$1)) - (($uD($as_T4(this.value$1.$$und1$1).$$und2$1) * $uD($as_T4(this.value$1.$$und2$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und3$1))) - (($uD($as_T4(this.value$1.$$und2$1).$$und2$1) * $uD($as_T4(this.value$1.$$und1$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und4$1))) + (($uD($as_T4(this.value$1.$$und2$1).$$und2$1) * $uD($as_T4(this.value$1.$$und1$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und3$1))) + (($uD($as_T4(this.value$1.$$und4$1).$$und2$1) * $uD($as_T4(this.value$1.$$und1$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und2$1).$$und4$1))) - (($uD($as_T4(this.value$1.$$und4$1).$$und2$1) * $uD($as_T4(this.value$1.$$und1$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und2$1).$$und3$1)));
+  var _23 = ((((((((-$uD($as_T4(this.value$1.$$und1$1).$$und1$1)) * $uD($as_T4(this.value$1.$$und2$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und4$1)) + (($uD($as_T4(this.value$1.$$und1$1).$$und1$1) * $uD($as_T4(this.value$1.$$und2$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und3$1))) + (($uD($as_T4(this.value$1.$$und2$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und4$1))) - (($uD($as_T4(this.value$1.$$und2$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und3$1))) - (($uD($as_T4(this.value$1.$$und4$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und2$1).$$und4$1))) + (($uD($as_T4(this.value$1.$$und4$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und2$1).$$und3$1)));
+  var _33 = ((((((($uD($as_T4(this.value$1.$$und1$1).$$und1$1) * $uD($as_T4(this.value$1.$$und2$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und4$1)) - (($uD($as_T4(this.value$1.$$und1$1).$$und1$1) * $uD($as_T4(this.value$1.$$und2$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und2$1))) - (($uD($as_T4(this.value$1.$$und2$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und4$1))) + (($uD($as_T4(this.value$1.$$und2$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und2$1))) + (($uD($as_T4(this.value$1.$$und4$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und2$1).$$und4$1))) - (($uD($as_T4(this.value$1.$$und4$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und2$1).$$und2$1)));
+  var _43 = ((((((((-$uD($as_T4(this.value$1.$$und1$1).$$und1$1)) * $uD($as_T4(this.value$1.$$und2$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und3$1)) + (($uD($as_T4(this.value$1.$$und1$1).$$und1$1) * $uD($as_T4(this.value$1.$$und2$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und2$1))) + (($uD($as_T4(this.value$1.$$und2$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und3$1))) - (($uD($as_T4(this.value$1.$$und2$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und4$1).$$und2$1))) - (($uD($as_T4(this.value$1.$$und4$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und2$1).$$und3$1))) + (($uD($as_T4(this.value$1.$$und4$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und2$1).$$und2$1)));
+  var _14 = ((((((((-$uD($as_T4(this.value$1.$$und1$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und2$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und4$1)) + (($uD($as_T4(this.value$1.$$und1$1).$$und2$1) * $uD($as_T4(this.value$1.$$und2$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und3$1))) + (($uD($as_T4(this.value$1.$$und2$1).$$und2$1) * $uD($as_T4(this.value$1.$$und1$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und4$1))) - (($uD($as_T4(this.value$1.$$und2$1).$$und2$1) * $uD($as_T4(this.value$1.$$und1$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und3$1))) - (($uD($as_T4(this.value$1.$$und3$1).$$und2$1) * $uD($as_T4(this.value$1.$$und1$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und2$1).$$und4$1))) + (($uD($as_T4(this.value$1.$$und3$1).$$und2$1) * $uD($as_T4(this.value$1.$$und1$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und2$1).$$und3$1)));
+  var _24 = ((((((($uD($as_T4(this.value$1.$$und1$1).$$und1$1) * $uD($as_T4(this.value$1.$$und2$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und4$1)) - (($uD($as_T4(this.value$1.$$und1$1).$$und1$1) * $uD($as_T4(this.value$1.$$und2$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und3$1))) - (($uD($as_T4(this.value$1.$$und2$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und4$1))) + (($uD($as_T4(this.value$1.$$und2$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und3$1))) + (($uD($as_T4(this.value$1.$$und3$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und2$1).$$und4$1))) - (($uD($as_T4(this.value$1.$$und3$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und2$1).$$und3$1)));
+  var _34 = ((((((((-$uD($as_T4(this.value$1.$$und1$1).$$und1$1)) * $uD($as_T4(this.value$1.$$und2$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und4$1)) + (($uD($as_T4(this.value$1.$$und1$1).$$und1$1) * $uD($as_T4(this.value$1.$$und2$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und2$1))) + (($uD($as_T4(this.value$1.$$und2$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und4$1))) - (($uD($as_T4(this.value$1.$$und2$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und2$1))) - (($uD($as_T4(this.value$1.$$und3$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und2$1).$$und4$1))) + (($uD($as_T4(this.value$1.$$und3$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und4$1)) * $uD($as_T4(this.value$1.$$und2$1).$$und2$1)));
+  var _44 = ((((((($uD($as_T4(this.value$1.$$und1$1).$$und1$1) * $uD($as_T4(this.value$1.$$und2$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und3$1)) - (($uD($as_T4(this.value$1.$$und1$1).$$und1$1) * $uD($as_T4(this.value$1.$$und2$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und2$1))) - (($uD($as_T4(this.value$1.$$und2$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und3$1))) + (($uD($as_T4(this.value$1.$$und2$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und3$1).$$und2$1))) + (($uD($as_T4(this.value$1.$$und3$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und2$1)) * $uD($as_T4(this.value$1.$$und2$1).$$und3$1))) - (($uD($as_T4(this.value$1.$$und3$1).$$und1$1) * $uD($as_T4(this.value$1.$$und1$1).$$und3$1)) * $uD($as_T4(this.value$1.$$und2$1).$$und2$1)));
+  var det = (((($uD($as_T4(this.value$1.$$und1$1).$$und1$1) * _11) + ($uD($as_T4(this.value$1.$$und1$1).$$und2$1) * _21)) + ($uD($as_T4(this.value$1.$$und1$1).$$und3$1) * _31)) + ($uD($as_T4(this.value$1.$$und1$1).$$und4$1) * _41));
+  return ((det === 0) ? this : new $c_Ltinyrenderer_Matrix4x4().init___T4(new $c_T4().init___O__O__O__O(new $c_T4().init___O__O__O__O(_11, _12, _13, _14), new $c_T4().init___O__O__O__O(_21, _22, _23, _24), new $c_T4().init___O__O__O__O(_31, _32, _33, _34), new $c_T4().init___O__O__O__O(_41, _42, _43, _44))).$$times__D__Ltinyrenderer_Matrix4x4((1 / det)))
+});
+$c_Ltinyrenderer_Matrix4x4.prototype.productIterator__sc_Iterator = (function() {
+  return new $c_sr_ScalaRunTime$$anon$1().init___s_Product(this)
+});
+function $is_Ltinyrenderer_Matrix4x4(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltinyrenderer_Matrix4x4)))
+}
+function $as_Ltinyrenderer_Matrix4x4(obj) {
+  return (($is_Ltinyrenderer_Matrix4x4(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "tinyrenderer.Matrix4x4"))
+}
+function $isArrayOf_Ltinyrenderer_Matrix4x4(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltinyrenderer_Matrix4x4)))
+}
+function $asArrayOf_Ltinyrenderer_Matrix4x4(obj, depth) {
+  return (($isArrayOf_Ltinyrenderer_Matrix4x4(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ltinyrenderer.Matrix4x4;", depth))
+}
+var $d_Ltinyrenderer_Matrix4x4 = new $TypeData().initClass({
+  Ltinyrenderer_Matrix4x4: 0
+}, false, "tinyrenderer.Matrix4x4", {
+  Ltinyrenderer_Matrix4x4: 1,
+  O: 1,
+  s_Product: 1,
+  s_Equals: 1,
+  s_Serializable: 1,
+  Ljava_io_Serializable: 1
+});
+$c_Ltinyrenderer_Matrix4x4.prototype.$classData = $d_Ltinyrenderer_Matrix4x4;
+/** @constructor */
 function $c_jl_ArithmeticException() {
   $c_jl_RuntimeException.call(this)
 }
@@ -20727,6 +20906,18 @@ $c_Ljava_io_PrintStream.prototype.println__T__V = (function(s) {
   this.print__T__V(s);
   this.java$lang$JSConsoleBasedPrintStream$$printString__T__V("\n")
 });
+function $is_Ljava_io_PrintStream(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ljava_io_PrintStream)))
+}
+function $as_Ljava_io_PrintStream(obj) {
+  return (($is_Ljava_io_PrintStream(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "java.io.PrintStream"))
+}
+function $isArrayOf_Ljava_io_PrintStream(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ljava_io_PrintStream)))
+}
+function $asArrayOf_Ljava_io_PrintStream(obj, depth) {
+  return (($isArrayOf_Ljava_io_PrintStream(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ljava.io.PrintStream;", depth))
+}
 /** @constructor */
 function $c_Ljava_nio_CharBuffer() {
   $c_Ljava_nio_Buffer.call(this);

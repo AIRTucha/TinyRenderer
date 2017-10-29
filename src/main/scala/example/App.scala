@@ -27,7 +27,12 @@ object App extends js.JSApp {
     //   obj draw scene
     //   enginge render scene
     // }
-
+    println( Matrix4x4(
+      (2, 1, 2, 1),
+      (1, 1, 1, 1),
+      (1, 2, 3, 3),
+      (1, 2, 3, 4)
+    ).invert )
     Obj(
       "obj/african_head/african_head.obj",  
       "obj/african_head/african_head_diffuse.jpg",
