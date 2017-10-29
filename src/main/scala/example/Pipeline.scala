@@ -16,7 +16,7 @@ import Commone.{
   crossProduct
 }
 trait Pipeline[T <: Position, M <: Model[T]] {
-  def vertexShader(vert: T, scene: Scene): Option[T]
+  def vertexShader(vert: T, scene: Scene): T
   def pixelShader(x: Double, y: Double, obj: Obj ): ( Double, Double, Double, Double )
   def draw(obj: M, scene: Scene) = obj forEachPolygon triangle(scene, obj)
   def line(
@@ -28,14 +28,11 @@ trait Pipeline[T <: Position, M <: Model[T]] {
     scene: Scene,
     obj: M
   ): Unit
+  def isNotBackface( vert1: T, vert2: T, vert3: T ): Boolean
   def triangle(scene: Scene, obj: M)(vec1: T, vec2: T, vec3: T) = 
-    for {
-      vertex1 <- vertexShader(vec1, scene)
-      vertex2 <- vertexShader(vec2, scene)
-      vertex3 <- vertexShader(vec3, scene)
-    } {
-      rasterize(scene, obj, vertex1, vertex2, vertex3)
-  }
+    if(isNotBackface( vec1, vec2, vec3))
+      rasterize(scene, obj, vertexShader(vec1, scene), vertexShader(vec2, scene), vertexShader(vec3, scene))
+  
   @tailrec
   private def rasterize(scene: Scene, obj: M, vert1: T, vert2: T, vert3: T): Unit = {
     if (vert1.vertex.y > vert2.vertex.y) 
@@ -67,6 +64,11 @@ trait Pipeline[T <: Position, M <: Model[T]] {
   }
 }
 trait VertexPipeline extends Pipeline[Vertex, Obj] {
+  def isNotBackface( vert1: Vertex, vert2: Vertex, vert3: Vertex ): Boolean = 
+     dotProduct(Vec3(0, 0, 1), vert1.normal) > 0 ||
+     dotProduct(Vec3(0, 0, 1), vert2.normal) > 0 ||
+     dotProduct(Vec3(0, 0, 1), vert3.normal) > 0
+  
   def line(
     y: Int,
     vec1: Vertex,
@@ -107,16 +109,41 @@ trait VertexPipeline extends Pipeline[Vertex, Obj] {
 object ObjPipeline extends VertexPipeline {
   def vertexShader(vert: Vertex, scene: Scene) = 
       vert match { 
+            case Vertex( vertex: Vec3, normal: Vec3, texture: Vec2 ) => Vertex(
+                  scene scale vertex,
+                  normal,
+                  texture
+                )
+            
+            
+      }
+
+  def pixelShader(x: Double, y: Double, obj: Obj ) = {
+    val light = Vec3(0.65, 0.65, -0.15)
+    val normal = normalize(obj.normalsTex.getVec3(x, y))
+    val specularPow = obj.specular.getColor(x, y)
+    val rPlusL = crossProduct( normal, crossProduct( normal, Vec3(-light.x*2, -light.y*2, light.z*2) ))
+    val r = normalize(Vec3(rPlusL.x - light.x, rPlusL.y - light.y, rPlusL.z - light.z))
+    val spec = dotProduct(r, Vec3(0, 0, 1))
+    val deffuseIntensity = dotProduct( light, normal )
+    val g = pow(spec, specularPow.r)
+    (
+     255 * min(deffuseIntensity + 0.3*abs(pow(spec, specularPow.r)), 1),
+     255 *min(deffuseIntensity + 0.3*abs(pow(spec, specularPow.g)), 1),
+     255 *min(deffuseIntensity + 0.3*abs(pow(spec, specularPow.b)), 1),
+     255
+    )
+  } 
+}
+object ObjTexPipeline extends VertexPipeline {
+  def vertexShader(vert: Vertex, scene: Scene) = 
+      vert match { 
             case Vertex( vertex: Vec3, normal: Vec3, texture: Vec2 ) => 
-              if( dotProduct(Vec3(0, 0, 1), normal) > 0 ) 
-                Some ( 
                   Vertex(
                     scene scale vertex,
                     normal,
                     texture
                   )
-                )
-              else None
         }
   def pixelShader(x: Double, y: Double, obj: Obj ) = {
     val light = Vec3(0.65, 0.65, -0.15)
