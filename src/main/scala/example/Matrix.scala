@@ -1,9 +1,10 @@
 package tinyrenderer
+import scala.math.{ sin, cos }
 import Commone.{
     Row,
     Vec3
 }
-case class Matrix4x4(val value: (Row, Row, Row, Row)){
+case class Matrix4x4(value: (Row, Row, Row, Row)){
     def *( other: Matrix4x4 ) = {
         Matrix4x4(
             (
@@ -178,6 +179,33 @@ case class Matrix4x4(val value: (Row, Row, Row, Row)){
                 (_31, _32, _33, _34),
                 (_41, _42, _43, _44)
             ) * (1 / det)
+    }
+    def rotate(x: Double, y: Double, z: Double) = {
+        this * 
+        Matrix4x4(
+            (
+                (   1,     0 ,      0 ,   0),
+                (   0, cos(x), -sin(x),   0),
+                (   0, sin(x),  cos(x),   0),
+                (   0,     0 ,      0 ,   1)
+            )
+        ) * 
+        Matrix4x4(
+            (
+                (   cos(x) ,     0,  sin(x),   0),
+                (        0 ,     1,      0 ,   0),
+                (  -sin(x) ,     0,  cos(x),   0),
+                (        0 ,     0,      0 ,   1)
+            )
+        ) *
+        Matrix4x4(
+            (
+                (   cos(x) , -sin(x),      0,   0),
+                (   sin(x) ,  cos(x),      0,   0),
+                (        0 ,      0 ,      1,   0),
+                (        0 ,      0 ,      0,   1)
+            )
+        )
     }
     override def toString = {
         s"""Matrix4x4(

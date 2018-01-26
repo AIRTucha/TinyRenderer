@@ -3,7 +3,7 @@ import org.scalajs.dom
 import org.scalajs.dom.CanvasRenderingContext2D
 import org.scalajs.dom.html.Canvas
 import org.scalajs.dom.raw.ImageData
-import Commone.{ Vec3, Color }
+import Commone.{ Vec3, Color, Row }
 import scala.collection.mutable.ListBuffer
 
 class Engine(val canvas: Canvas) {
@@ -63,9 +63,17 @@ class Scene(
       zBuffer(x)(y) = z
     }
   def getImg = img
-  def scale( vec: Vec3 ) = Vec3(
-    ( width * ( vec.x - low.x ) / ( high.x - low.x ) ),
-    ( height * ( vec.y - low.y ) / ( high.y - low.y ) ),
-    vec.z
-  )
+  def scale( vec: Vec3 ) = 
+    Matrix4x4(
+      ( width/2,      0, 0, 1),
+      ( 0      , height/2, 0, 1),
+      ( 0      ,      0, 1, 1),
+      ( 0      ,      0, 0, 0)
+    ) * vec
+  
+  // Vec3(
+  //   ( width * ( vec.x - low.x ) / ( high.x - low.x ) ),
+  //   ( height * ( vec.y - low.y ) / ( high.y - low.y ) ),
+  //   vec.z
+  // )
 }
