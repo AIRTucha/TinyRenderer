@@ -65,15 +65,9 @@ class Scene(
   def getImg = img
   def scale( vec: Vec3 ) = 
     Matrix4x4(
-      ( width/2,      0, 0, 1),
-      ( 0      , height/2, 0, 1),
-      ( 0      ,      0, 1, 1),
+      ( width/2,        0,   0, width/2),
+      ( 0      , -height/2, 0, height/2),
+      ( 0      ,      0,   1, 1),
       ( 0      ,      0, 0, 0)
     ) * vec
-  
-  // Vec3(
-  //   ( width * ( vec.x - low.x ) / ( high.x - low.x ) ),
-  //   ( height * ( vec.y - low.y ) / ( high.y - low.y ) ),
-  //   vec.z
-  // )
 }

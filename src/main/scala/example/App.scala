@@ -41,12 +41,9 @@ object App extends js.JSApp {
           (0, 0, 0, 1)
         ).rotate(0, 1, 0)
       )
-      val scene1 = enginge.Scene(Vec3(-1, 1, -1), Vec3(1, -1, 1))
-      val scene2 = enginge.Scene(Vec3(-1, 1, -1), Vec3(1, -1, 1))
-      ObjPipeline.draw(obj, scene1)
+      val scene1 = enginge.Scene(Vec3(-1, -1, -1), Vec3(1, 1, 1))
+      ObjTexPipeline.draw(obj, scene1)
       enginge render scene1
-      ObjTexPipeline.draw(obj, scene2)
-      enginge render scene2
         // obj.forEachPolygon( a )
     }
   }
