@@ -13,8 +13,8 @@ class Engine(val canvas: Canvas) {
     canvas.height = 1000;
   } else {
     //demo mode
-    canvas.width = 2500;
-    canvas.height = 2500;
+    canvas.width = 750;
+    canvas.height = 750;
   }
   private val ctx = canvas.getContext("2d").asInstanceOf[CanvasRenderingContext2D]
   def render(scene: Scene) = ctx.putImageData(scene.getImg, 0, 0)
